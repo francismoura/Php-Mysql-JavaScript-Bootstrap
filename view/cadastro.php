@@ -1,12 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: sabrina
- * Date: 03/12/18
- * Time: 22:50
- */
-require_once '../class/Cliente.php';
-include("../view/includes/header.php")
+//require_once '../../model/Cliente.php';
+
+include "includes/header.php";
+
 ?>
     <!-- Form cadastrar -->
     <div class="row justify-content-center" style="margin: 20px 0">
@@ -102,10 +98,10 @@ include("../view/includes/header.php")
                 <tr>
 
                     <?php
-                    foreach ($cliente->findAll() as $key => $value) { ?>
-                    <td><?php $value->id; ?></td>
-                    <td><?php $value->cod_cliente; ?></td>
-                    <td><?php $value->nome; ?></td>
+foreach ($cliente->findAll() as $key => $value) {?>
+                    <td><?php $value->id;?></td>
+                    <td><?php $value->cod_cliente;?></td>
+                    <td><?php $value->nome;?></td>
 
                     <!--
                     <td>francs@</td>
@@ -116,7 +112,7 @@ include("../view/includes/header.php")
                     <td>1</td>
                     -->
 
-                    <?php } ?>
+                    <?php }?>
                 </tr>
 
 
@@ -129,5 +125,5 @@ include("../view/includes/header.php")
 
 
 <?php
-include("../view/includes/footer.php")
+include "includes/footer.php"
 ?>

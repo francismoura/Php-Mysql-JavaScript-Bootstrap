@@ -1,12 +1,14 @@
-var btn = document.getElementById('btn_admin');
+
+
+var btn = document.getElementById('btnHome');
 btn.addEventListener('click', function () {
-    document.location.href = '../../view/dashboard.php';
+   //console.log("teste");;
 });
 
 
 $(document).ready(function () {
 
-    console.log('teste');
+    //console.log('teste');
 
     $("#enviar").click(function (e) {
         var cod_cliente = $('#cod_cliente').val();

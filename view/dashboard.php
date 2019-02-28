@@ -6,8 +6,8 @@
  * Time: 10:07
  */
 
-require_once '../class/Cliente.php';
-include("../view/includes/header.php") ?>
+require_once '../model/CrudUser.php';
+include "includes/header.php"?>
 
     <div style="margin: 50px 0">
     <h1 align="center">Cadastrar Solicitação</h1>
@@ -34,7 +34,7 @@ include("../view/includes/header.php") ?>
 
 <?php
 $cliente = new Cliente();
-foreach ($cliente->findAll() as $key => $value) { ?>
+foreach ($cliente->findAll() as $key => $value) {?>
     <td><?php $value->cod_cliente;?></td>
     <td><?php $value->nome;?></td>
     <!--
@@ -52,9 +52,9 @@ foreach ($cliente->findAll() as $key => $value) { ?>
     </div>
     </div>
 
-<?php } ?>
+<?php }?>
 
 
 <?php
-include("../view/includes/footer.php");
+include "includes/footer.php";
 ?>
