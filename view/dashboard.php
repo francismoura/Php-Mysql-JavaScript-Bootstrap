@@ -6,7 +6,6 @@
  * Time: 10:07
  */
 
-require_once '../model/CrudUser.php';
 include "includes/header.php"?>
 
     <div style="margin: 50px 0">
@@ -33,7 +32,7 @@ include "includes/header.php"?>
 <tr>
 
 <?php
-$cliente = new Cliente();
+$cliente = new ();
 foreach ($cliente->findAll() as $key => $value) {?>
     <td><?php $value->cod_cliente;?></td>
     <td><?php $value->nome;?></td>
