@@ -24,11 +24,7 @@ require_once '../model/Usuario.php';
 	</div>
 	<div class="row">
 
-<<<<<<< HEAD
 		<?php
-=======
-<?php
->>>>>>> work
 $usuario = new Usuario();
 if (isset($_POST['nome'])) {
 	$nome = filter_input(INPUT_POST, nome);
@@ -36,8 +32,7 @@ if (isset($_POST['nome'])) {
 		echo '<p>Preencha todos os dados do formulário acima.<p>';
 	} else {
 		$usuario->setNome($nome);
-<<<<<<< HEAD
-		if ($cliente->insert()) {
+		if ($usuario->insert()) {
 
 			echo '<div class="alert alert-success alert-dismissible" role="alert">
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -48,10 +43,7 @@ if (isset($_POST['nome'])) {
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 					<strong>OK!</strong> Erro ao alterar!!! </div>';
 		}
-		;
-=======
-		$usuario->insert();
->>>>>>> work
+
 	}
 } else {
 	echo "Deu errado";
@@ -81,7 +73,7 @@ if (isset($_POST['nome'])) {
 			</thead>
 			<tbody>
 				<tr>
-<?php
+					<?php
 
 foreach ($usuario->findAll() as $value):
 ?>
