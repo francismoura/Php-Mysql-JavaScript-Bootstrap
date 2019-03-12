@@ -1,13 +1,8 @@
 <?php
-//require_once '../../model/Cliente.php';
 
 include "includes/header.php";
-include '../conexao/Conexao.php';
-
-$conectionDB = new DB();
-
-$read = $conectionDB->prepare("SELECT * FROM Usuario");
-$read->execute();
+require_once '../conexao/Conexao.php';
+require_once '../model/Usuario.php';
 
 ?>
 <!-- Form cadastrar -->
@@ -29,16 +24,15 @@ $read->execute();
 	</div>
 	<div class="row">
 
-		<?php
+<?php
+$usuario = new Usuario();
 if (isset($_POST['nome'])) {
 	$nome = filter_input(INPUT_POST, nome);
 	if (empty($nome)) {
 		echo '<p>Preencha todos os dados do formulário acima.<p>';
 	} else {
-		$query = "INSERT INTO Usuario (name ) VALUES (" . "'" . $nome . "' )";
-		echo $query;
-		$insert = $conectionDB->prepare($query);
-		$insert->execute();
+		$usuario->setNome($nome);
+		$usuario->insert();
 	}
 } else {
 	echo "Deu errado";
@@ -68,9 +62,9 @@ if (isset($_POST['nome'])) {
 			</thead>
 			<tbody>
 				<tr>
-					<?php
+<?php
 
-foreach ($read as $value):
+foreach ($usuario->findAll() as $value):
 ?>
 						<td><?=$value['id']?></td>
 						<td><?=$value['name']?></td>
@@ -87,8 +81,8 @@ foreach ($read as $value):
 
 
 
-		</tr>
-		<?php
+			</tr>
+			<?php
 endforeach;
 ?>
 	</tbody>
