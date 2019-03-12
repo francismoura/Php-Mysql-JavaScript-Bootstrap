@@ -1,7 +1,7 @@
 {
-	"name": "portifolio/portifolio",
+	"name": "App",
 	"type": "project",
-	"description": "Portifólio Php.",
+	"description": "Portifólio Php",
 	"require": {
 		"php": ">=5.2.8"    
 	},
@@ -11,7 +11,7 @@
 	"config": {
 		"optimize-autoloader": true,
 		"preferred-install": "dist",
-		"sort-packages": true
+		"sort-packages": true,
 	},
 	"autoload": {
 		"psr-4": {

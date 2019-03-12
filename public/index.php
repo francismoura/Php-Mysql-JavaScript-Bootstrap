@@ -11,7 +11,6 @@ include "../view/includes/header.php"
 </nav>
 
 <div class="container-fluid">
-
 	<div style="margin: 100px 0; text-align: center; width: 400px; height: 200px; background-color: green;">
 		<a href="../view/cadastro.php">Nova Solicitação</button>
 		</a>
