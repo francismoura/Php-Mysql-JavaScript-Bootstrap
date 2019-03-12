@@ -31,7 +31,6 @@ class Usuario extends CrudUser {
 
 	public function insert() {
 		$sql = "INSERT INTO $this->tabela (name) VALUES (:name)";
-		var_dump($sql);
 		$stm = new DB();
 		$stm = $stm->prepare($sql);
 		$stm->bindValue(':name', $this->nome);
