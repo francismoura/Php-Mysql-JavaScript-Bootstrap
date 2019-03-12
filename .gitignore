@@ -1,5 +1,7 @@
 /composer
 .composer
+/composer.phar
+.composer.phar
 /vendor/
 #composer.lock
 #
