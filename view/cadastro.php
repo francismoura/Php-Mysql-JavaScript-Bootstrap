@@ -1,13 +1,8 @@
 <?php
-//require_once '../../model/Cliente.php';
 
 include "includes/header.php";
-include '../conexao/Conexao.php';
-
-$conectionDB = new DB();
-
-$read = $conectionDB->prepare("SELECT * FROM Usuario");
-$read->execute();
+require_once '../conexao/Conexao.php';
+require_once '../model/Usuario.php';
 
 ?>
 <!-- Form cadastrar -->
@@ -30,15 +25,25 @@ $read->execute();
 	<div class="row">
 
 		<?php
+$usuario = new Usuario();
 if (isset($_POST['nome'])) {
 	$nome = filter_input(INPUT_POST, nome);
 	if (empty($nome)) {
 		echo '<p>Preencha todos os dados do formulário acima.<p>';
 	} else {
-		$query = "INSERT INTO Usuario (name ) VALUES (" . "'" . $nome . "' )";
-		echo $query;
-		$insert = $conectionDB->prepare($query);
-		$insert->execute();
+		$usuario->setNome($nome);
+		if ($cliente->insert()) {
+
+			echo '<div class="alert alert-success alert-dismissible" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<strong>OK!</strong> Incluido com sucesso!!! </div>';
+
+		} else {
+			echo '<div class="alert alert-success alert-dismissible" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<strong>OK!</strong> Erro ao alterar!!! </div>';
+		}
+		;
 	}
 } else {
 	echo "Deu errado";
@@ -70,7 +75,7 @@ if (isset($_POST['nome'])) {
 				<tr>
 					<?php
 
-foreach ($read as $value):
+foreach ($usuario->findAll() as $value):
 ?>
 						<td><?=$value['id']?></td>
 						<td><?=$value['name']?></td>
@@ -87,8 +92,8 @@ foreach ($read as $value):
 
 
 
-		</tr>
-		<?php
+			</tr>
+			<?php
 endforeach;
 ?>
 	</tbody>
