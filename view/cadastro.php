@@ -4,6 +4,10 @@ require_once '../conexao/Conexao.php';
 require_once '../model/Usuario.php';
 ?>
 
+<nav class="navbar navbar-dark bd-navbar bg-dark" style="padding: 30px">
+	<a class="btn btn-link" id="btnHome" style="margin-right: 20px;" href='../public/index.php'>Sair</a>
+</nav>
+
 <div class="container">
 
 	<div class="row justify-content-center" style="margin: 20px 0">
@@ -35,7 +39,7 @@ if (isset($_POST['nome'])) {
 		} else {
 			echo '<div class="alert alert-success alert-dismissible" role="alert">
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<strong>OK!</strong> Erro ao alterar!!! </div>';
+					<strong>OK!</strong> Erro ao incluir dados!!! </div>';
 		}
 	}
 } else {
