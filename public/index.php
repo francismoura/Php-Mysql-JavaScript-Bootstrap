@@ -2,22 +2,37 @@
 include "../view/includes/header.php"
 ?>
 <body>
-	<nav class="navbar bd-navbar bg-dark" style="padding: 30px;   background: #007bff;
-	background: linear-gradient(to right, #0062E6, #33AEFF);">
-	<a class="navbar-brand" href="../public/index.php">
-		<img src="../img/setor_de_ti.jpeg" width="60" height="60" class="img-nav d-inline-block align-middle" style="margin-right: 10px; margin-left: 20px" alt="">
-		<span class="nav-title">Departamento de tecnologia da informação</span>
-	</a>
-	<a class="btn btn-link" id="btnHome" style="margin-right: 20px; background: #0092E9;" href='../view/login.php'">Entrar</a>
-</nav>
+	<nav class="navbar navbar-expand-lg sb-navbar bg-light navbar-light" style="font-family: nunito,-apple-system,BlinkMacSystemFont,segoe ui,Roboto,helvetica neue,Arial,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol,noto color emoji;">
+		<div class="container">
+			<a class="navbar-brand" href="../public/index.php"  >
+				<img src="../img/logo.png" width="60" height="60" class="img-nav"  alt="logo">
+				<span class="ml-1 nav-title"> <strong>Departamento de TI</strong></span>
+			</a>
+			<ul class="navbar-nav" >
+				<li class="nav-item">
+					<a href="../view/login.php" class="btn btn-secondary btn-sm" tabindex="-1" role="button" aria-disabled="true">Entrar</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
 
-<div class="container-fluid" style="">
-	<div class="itens-center-div">
-		<a href="../view/cadastro.php" style="">
-			<button class="btn btn-success btn-lg center">Nova Solicitação</button>
-		</a>
+	<main style=" background: #007bff; background: linear-gradient(to right, #0062E6, #33AEFF); padding: 0;">
+	<header id="header" class="" style="padding: 100px">
+		<div>
+			<h1 style="text-align: center;">TESTE</h1>
+		</div>
+
+	</header><!-- /header -->
+
+	<div class="container" style="">
+		<div class="itens-center-div">
+			<a href="../view/cadastro.php" style="">
+				<button class="btn btn-success btn-lg">Nova Solicitação</button>
+			</a>
+		</div>
 	</div>
-</div>
+
+</main>
 
 <?php
 include "../view/includes/footer.php";

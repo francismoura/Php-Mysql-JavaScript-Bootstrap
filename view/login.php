@@ -1,8 +1,7 @@
 <?php
 include "includes/header.php"
 ?>
-<body style="background: #007bff; ">
-
+<body class="teste">
 	<div class="container itens-center-div">
 		<div class="col-sm-8 col-md-6 col-lg-4 mx-auto">
 			<div class="card">

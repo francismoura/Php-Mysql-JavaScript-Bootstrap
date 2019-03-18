@@ -14,8 +14,7 @@ class Usuario extends CrudUser {
 	 */
 	public function findUnit($id) {
 		$sql = "SELECT * FROM $this->tabela WHERE id = :id";
-		$db = new DB();
-		$stm = $db->prepare($sql);
+		$stm = $this->dbPrepare($sql);
 		$stm->bindValue(':id', $id, PDO::PARAM_INT);
 		$stm->execute();
 		return $stm->fetch();
@@ -23,36 +22,36 @@ class Usuario extends CrudUser {
 
 	public function findAll() {
 		$sql = "SELECT * FROM  $this->tabela";
-		$stm = new DB();
-		$stm = $stm->prepare($sql);
+		$stm = $this->dbPrepare($sql);
 		$stm->execute();
 		return $stm->fetchAll();
 	}
 
 	public function insert() {
 		$sql = "INSERT INTO $this->tabela (name) VALUES (:name)";
-		$stm = new DB();
-		$stm = $stm->prepare($sql);
+		$stm = $this->dbPrepare($sql);
 		$stm->bindValue(':name', $this->nome);
 		return $stm->execute();
 	}
 
 	public function update($id) {
-		$sql = "UPDATE $this->tabela SET cod_cliente = :cod_cliente, nome = :nome WHERE id = :id";
-		$db = new DB();
-		$stm = $db->prepare($sql);
+		$sql = "UPDATE $this->tabela SET name = :name WHERE id = :id";
+		$stm = $this->dbPrepare($sql);
 		$stm->bindParam(':id', $id, PDO::PARAM_INT);
-		$stm->bindParam(':cod_cliente', $this->cod_cliente);
-		$stm->bindParam(':nome', $this->nome);
+		$stm->bindParam(':name', $this->nome);
 		return $stm->execute();
 	}
 
 	public function delete($id) {
 		$sql = "DELETE FROM $this->tabela WHERE id = :id";
-		$db = new DB();
-		$stm = $db->prepare($sql);
+		$stm = $this->dbPrepare($sql);
 		$stm->bindParam(':id', $id, PDO::PARAM_INT);
 		return $stm->execute();
+	}
+
+	protected function dbPrepare($sql) {
+		$db = new DB();
+		return $db->prepare($sql);
 	}
 
 }

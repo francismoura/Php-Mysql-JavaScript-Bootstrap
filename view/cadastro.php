@@ -28,6 +28,7 @@ require_once '../model/Usuario.php';
 $usuario = new Usuario();
 if (isset($_POST['nome'])) {
 	$nome = filter_input(INPUT_POST, nome);
+	var_dump($nome);
 	if (empty($nome)) {
 		echo '<p>Preencha todos os dados do formulário acima.<p>';
 	} else {

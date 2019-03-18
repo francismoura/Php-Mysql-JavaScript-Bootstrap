@@ -13,9 +13,8 @@
 
 	<link href="../css/style.css" rel="stylesheet" type="text/css"/>
 	<link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+	<link href="../css/normalize.css" rel="stylesheet" type="text/css"/>
 	<script src="../js/libs/jquery-3.3.1.min.js" type="text/javascript"></script>
 	<script src="../js/bootstrap.min.js" type="text/javascript" ></script>
-
-
 
 </head>

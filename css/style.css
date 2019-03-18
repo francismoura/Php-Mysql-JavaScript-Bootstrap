@@ -1,27 +1,25 @@
-@import "@material/textfield/mdc-text-field";
-
 :root {
 	--input-padding-x: 1.5rem;
 	--input-padding-y: .75rem;
 }
 
-a.btn-link {
+a.nav-link {
 	font-weight: 400;
 	color: #cfcfcf;
 	text-decoration: none;
 }
 
-a.btn-link:hover {
+a.nav-link:hover {
 	color: orange;
 	text-decoration: underline;
 }
 
-a.btn-link:focus, a.btn-link.focus {
+a.nav-link:focus, a.nav-link.focus {
 	text-decoration: underline;
 	box-shadow: none;
 }
 
-a.btn-link:disabled, a.btn-link.disabled {
+a.nav-link:disabled, a.nav-link.disabled {
 	color: blue;
 	pointer-events: none;
 }
@@ -37,24 +35,27 @@ body {
 	font-variant: normal; 
 	text-align: center;
 	color: #cfcfcf;
-background: #007bff;
+}
 
+.teste {
+	 background: #007bff;
+  background: linear-gradient(to right, #0062E6, #33AEFF);
 }
 
 .card-signin {
-  border: 0;
-  border-radius: 1rem;
-  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+	border: 0;
+	border-radius: 1rem;
+	box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
 }
 
 .card-signin .card-title {
-  margin-bottom: 2rem;
-  font-weight: 300;
-  font-size: 1.5rem;
+	margin-bottom: 2rem;
+	font-weight: 300;
+	font-size: 1.5rem;
 }
 
 .card-signin .card-body {
-  padding: 2rem;
+	padding: 2rem;
 }
 
 
@@ -153,6 +154,10 @@ background: #007bff;
 	color: #777;
 }
 
+.h1{
+	margin: 0px;
+}
+
 .img-nav{
 	border-radius: 100%;
 	object-fit: cover;
@@ -181,8 +186,17 @@ background: #007bff;
 }
 
 .nav-title {
-	font-size: 24px;
-	color: #cfcfcf;
+	color: black;
+}
+
+.mr-auto{
+	margin-right: auto !important; 
+}
+
+.sb-navbar .navbar-brand img{
+	height: 3.5rem;
+	font-size: 1.15rem;
+    font-weight: 700;
 }
 
 @media (max-width: 62em) {
@@ -203,8 +217,5 @@ background: #007bff;
 	.navbar-nav .nav-item + .nav-item {
 		margin-left: 0;
 	}
-	.dropdown-menu {
-		position: relative;
-		float: none;
-	}
+
 }
