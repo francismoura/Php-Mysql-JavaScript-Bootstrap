@@ -8,6 +8,9 @@
 
 	<title>Departamento de TI - Solicitação de Serviços</title>
 
+	<link rel="shortcut icon" href="../img/logo.png" type="image/x-icon" />
+
+
 	<!-- Required styles for MDC Web -->
 	<link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
 

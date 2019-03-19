@@ -16,8 +16,8 @@ include "../view/includes/header.php"
 		</div>
 	</nav>
 
-	<main style=" background: #007bff; background: linear-gradient(to right, #0062E6, #33AEFF); padding: 0;">
-	<header id="header" class="" style="padding: 100px">
+	<main style=" background: #007bff; background: linear-gradient(to right, #0062E6, #33AEFF); padding: 60px">
+	<header id="header" class="" style="padding: 0;">
 		<div>
 			<h1 style="text-align: center;">TESTE</h1>
 		</div>

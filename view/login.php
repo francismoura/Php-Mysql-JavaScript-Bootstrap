@@ -1,12 +1,12 @@
 <?php
 include "includes/header.php"
 ?>
-<body class="teste">
-	<div class="container itens-center-div">
-		<div class="col-sm-8 col-md-6 col-lg-4 mx-auto">
-			<div class="card">
+<body id="teste">
+	<div class="container">
+		<div class="col-sm-8 col-md-6 col-lg-5 mx-auto">
+			<div class="card card-signin my-5">
 				<div class="card-body">
-					<img class="mb-4 img-login" src="../img/usuario.png" alt="" >
+					<img class="mb-4 img-login" style="align-items: middle" src="../img/usuario.png" alt="" >
 					<h5 class="login-title text-center">Autenticação do Sistema</h5>
 					<form class="form-signin">
 						<div class="form-label-group">
@@ -26,6 +26,7 @@ include "includes/header.php"
 				</div>
 			</div>
 		</div>
+
 	</div>
 
 	<?php

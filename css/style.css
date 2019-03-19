@@ -37,15 +37,14 @@ body {
 	color: #cfcfcf;
 }
 
-.teste {
-	 background: #007bff;
-  background: linear-gradient(to right, #0062E6, #33AEFF);
+#teste {
+	background: #007bff;
+	background-image: linear-gradient(to right, #0062E6, #33AEFF);
 }
 
-.card-signin {
+div.card-signin {
 	border: 0;
-	border-radius: 1rem;
-	box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+	border-radius: 2rem;
 }
 
 .card-signin .card-title {
@@ -55,10 +54,8 @@ body {
 }
 
 .card-signin .card-body {
-	padding: 2rem;
+	padding: 2.5rem 2.5rem 4rem 2.5rem;
 }
-
-
 
 .centralized {
 	position: absolute;
@@ -66,12 +63,6 @@ body {
 	/* bring your own prefixes */
 	transform: translate(-50%, -50%);
 	text-align: center
-}
-
-.card-signin {
-	border: 0;
-	border-radius: 20rem;
-	box-shadow: 0 0.5rem 1rem 0;rgba(0, 0, 0, 0.1);
 }
 
 .form-control {
@@ -169,10 +160,9 @@ body {
 	height: 72px;
 	margin-left: auto;
 	margin-right: auto;
-	margin-bottom: 3rem;
 }
 
-.itens-center-div{
+.itens-center-div {
 	position: absolute;
 	left: 50%;
 	top: 50%;
@@ -189,14 +179,10 @@ body {
 	color: black;
 }
 
-.mr-auto{
-	margin-right: auto !important; 
-}
-
 .sb-navbar .navbar-brand img{
 	height: 3.5rem;
 	font-size: 1.15rem;
-    font-weight: 700;
+	font-weight: 700;
 }
 
 @media (max-width: 62em) {
