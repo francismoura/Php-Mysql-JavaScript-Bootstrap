@@ -2,13 +2,19 @@ Descrição do caso:
 
 Elaborar um sistema simples de cadastro e gestão de solicitações ao setor de TI no qual deve contemplar as rotinas de um CRUD.
 Os critérios de aceitação são:
+
     1. Banco de dados: 
+
         a. Mysql com as interações utilizando PDO.
         b. Dados coletados: código do cliente, nome, celular, e-mail, rua, nº, bairro, cidade, cep, estado, tipo de cliente (aluno, professor, técnico administrativo), setor, curso, identificador da solicitação, serviço solicitado, data da solicitação.
         c.  Todos os campos são obrigatórios.
+
     2. Codificação:
+
         a. Formulário de solicitação:
+
             ▪ O cliente ao acessar o formulário de solicitação deve preencher todos os campos (que são obrigatórios).
+
             ▪ O cliente ao digitar o campo código do cliente, o sistema deve realizar uma busca no banco e caso já existe o registro (código deve ser único), preencher automaticamente todos os demais campos (exceto o campo solicitação de serviço). Caso seja um cliente novo, ou seja, este nunca realizou uma solicitação de serviço, o sistema deve cadastrá-lo já também com a solicitação de serviço.
             ▪ Ao retornar os dados de um cliente já existente e o mesmo deseje alterar algum dado cadastral, o sistema deve permitir a ação (respeitando o código do cliente que deve ser único) .
             ▪ Ao selecionar o campo tipo de cliente (aluno, professor, técnico administrativo), o campo código do cliente deve respeitar os seguintes critérios:
@@ -36,5 +42,6 @@ Os critérios de aceitação são:
     6. Para o desenvolvimento JavaScript deve-se adotar o JQuery.
     7. Para o desenvolvimento PHP, codifique da forma desejada, porém sem utilização de frameworks.
     8. O sistema deve ser visionado no Github ou Bitbucket com instruções claras para implementação posterior em ambiente local, devendo o link de acesso ser enviado para um e-mail pessoal.
-Obs: Como no currículo foi descrita a experiência de desenvolvimento em Laravel e VueJs, caso consiga entregar também um segundo projeto, porém na versão utilizando essas tecnologias, será considerado como um diferencial, entretanto, não é obrigatório para essa avaliação.
+
+Obs: Construir, também, uma segunda versão do projeto utilizando Laravel e VueJs.
 
