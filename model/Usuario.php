@@ -7,6 +7,11 @@ class Usuario extends CrudUser {
 
 	protected $tabela = 'Usuario';
 
+	protected function dbPrepare($sql) {
+		$db = new DB();
+		return $db->prepare($sql);
+	}
+
 	/**
 	 * Find unique User ID
 	 * @param  [integer] $id
@@ -27,18 +32,18 @@ class Usuario extends CrudUser {
 		return $stm->fetchAll();
 	}
 
-	public function insert() {
-		$sql = "INSERT INTO $this->tabela (name) VALUES (:name)";
+	public function insert($nome) {
+		$sql = "INSERT INTO $this->tabela (nome) VALUES (:nome)";
 		$stm = $this->dbPrepare($sql);
-		$stm->bindValue(':name', $this->nome);
+		$stm->bindValue(':nome', $this->nome);
 		return $stm->execute();
 	}
 
 	public function update($id) {
-		$sql = "UPDATE $this->tabela SET name = :name WHERE id = :id";
+		$sql = "UPDATE $this->tabela SET nome = :nome WHERE id = :id";
 		$stm = $this->dbPrepare($sql);
 		$stm->bindParam(':id', $id, PDO::PARAM_INT);
-		$stm->bindParam(':name', $this->nome);
+		$stm->bindParam(':nome', $this->nome);
 		return $stm->execute();
 	}
 
@@ -47,11 +52,6 @@ class Usuario extends CrudUser {
 		$stm = $this->dbPrepare($sql);
 		$stm->bindParam(':id', $id, PDO::PARAM_INT);
 		return $stm->execute();
-	}
-
-	protected function dbPrepare($sql) {
-		$db = new DB();
-		return $db->prepare($sql);
 	}
 
 }

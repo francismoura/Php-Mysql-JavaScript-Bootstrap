@@ -17,7 +17,6 @@ abstract class CrudUser extends DB {
 	 * @param mixed $nome
 	 */
 	public function setNome($nome) {
-		var_dump($nome);
 		$this->nome = $nome;
 	}
 
