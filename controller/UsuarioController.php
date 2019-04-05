@@ -1,30 +1,12 @@
 <?php 
 
-require_once '../model/Usuario.php';
+//require_once ('Controller.php');
 
-
-/**
- * summary
- */
-class UserController extends Usuario {
-
-
-	public $usuario;
-
-	public $allUsers = $usuario->findAll();
-
-	public $json_users = formatarDadosUsuarios($allUsers);
+class UsuarioController extends Controller {
 
 
 
-	function formatarDadosUsuarios($allUsuers) {
-
-		$usuario = new Usuario();
-		foreach ($allUsers as $item) {
-
-
-		}
-	}
+	
 }
 
 

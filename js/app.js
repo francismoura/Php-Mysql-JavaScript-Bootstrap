@@ -1,47 +1,45 @@
-(function(){
-	
-	console.log("PRIMEIRO TESTE");
-	const form = document.querySelector('#form_cadastro');
+(function() {
 
-	function get(url){
-		const headers = new Headers();
-		headers.append('Content-Type', 'text/plain');
+    console.log("PRIMEIRO TESTE");
+    const form = document.querySelector('#form_cadastro');
 
-		let nome = document.getElementById('nome').value;
+    function get(url) {
+        const headers = new Headers();
+        headers.append('Content-Type', 'text/plain');
 
-		let user = {"nome":nome};
+        let nome = document.getElementById('nome').value;
 
-		//let nome = new FormData(document.getElementById('nome'));
+        let user = "nome:" + nome;
 
-		//console.log(nome.values);
+        //let nome = new FormData(document.getElementById('nome'));
 
-		const config = {
-			method:'POST',
-			
-			body: user
+        //console.log(nome.values);
 
-		};
+        const config = {
+            method: 'POST',
+            headers: {
+                nome: nome
+            }
+            //body: user
+        };
 
-		return fetch(url, config);
-	}
+        return fetch(url, config)
+    }
 
-	form.addEventListener('submit', function(event) {
-		event.preventDefault();
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
 
-		const request_uri = location.pathname + location.search;
+        const request_uri = location.pathname + location.search;
 
-		get('../model/teste.php')
-		.then(response => console.log(response.status))
-		.then(data => console.log(data))
-		.catch(error => console.log(error))
-	})
+        get('../model/teste.php')
+            .then(response => response)
+            .then(result => console.log(result))
+            .catch(error => console.log(error))
+    })
 
-	$('#insert').click(function(){
-		const nome = $('#nome').val();
-
-	//	console.log($('#action').val('nome'))
-
-
-})
+    $('#insert').click(function() {
+        const nome = $('#nome').val();
+        //	console.log($('#action').val('nome'))
+    })
 
 })(document);

@@ -1,12 +1,10 @@
 <?php
 include "includes/header.php";
-require_once '../conexao/Conexao.php';
-require_once '../model/Usuario.php';
-require_once '../model/teste.php';
+require_once '../classes/Usuario.php';
 ?>
 
-<nav class="navbar navbar-dark bd-navbar bg-dark" style="padding: 30px">
-	<a class="btn btn-link" id="btnHome" style="margin-right: 20px;" href='../public/index.php'>Sair</a>
+<nav class="navbar navbar-dark bd-navbar bg-dark" style="padding: 30px" xmlns="">
+	<a class="btn btn-link" id="btnHome" style="margin-right: 20px;" href='../index.php'>Sair</a>
 </nav>
 
 <div class="container">
@@ -15,8 +13,8 @@ require_once '../model/teste.php';
 		<form action="cadastro.php" name="form_cadastro" id="form_cadastro" method="post" style="margin: 30px 0">
 			<div class="form-row">
 				<div class="form-group col-md-6">
-					<label for="inputNome">Nome</label>
-					<input type="text" class="form-control" id="nome" name="nome" placeholder="Nome">
+                    <label for="nome">Nome</label>
+                    <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome">
 				</div>
 			</div>
 			<input type="submit" name="insert" id="insert" class="btn btn-primary" value="Enviar">
