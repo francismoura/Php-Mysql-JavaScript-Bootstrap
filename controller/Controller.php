@@ -1,15 +1,19 @@
-<?php 
+<?php
 
 
-class Controller {
+class Controller
+{
 
-	public static function CreateView($viewname) {
-		require_once("./view/$viewname.php");
-	}
+    public static function CreateView($viewname)
+    {
+        require_once("./view/$viewname.php");
+    }
 
-		public static function CreateIndex($viewname) {
-		require_once("$viewname.php");
-	}
+    public static function CreateIndex($viewname)
+    {
+        require_once("$viewname.php");
+    }
 
 }
+
 ?>

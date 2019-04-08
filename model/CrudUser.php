@@ -1,18 +1,23 @@
 <?php
 
-include '../conexao/Conexao.php';
-require_once 'Usuario.php';
+include './database/Conexao.php';
 
 abstract class CrudUser extends DB {
 
 	protected $tabela = 'Usuario';
 
 
-	/**
-	 * Find unique User ID
-	 * @param  [integer] $id
-	 * @return [Usuario]
-	 */
+    protected function dbPrepare($sql) {
+        $db = new DB();
+        return $db->prepare($sql);
+    }
+
+
+    /**
+     * Find unique User ID
+     * @param  [integer] $id
+     * @return mixed []
+     */
 	public function findUnit($id) {
 		$sql = "SELECT * FROM $this->tabela WHERE id = :id";
 		$stm = $this->prepare($sql);
@@ -31,7 +36,6 @@ abstract class CrudUser extends DB {
 	public function insert($nome) {
 		$sql = "INSERT INTO $this->tabela (nome) VALUES (:nome)";
 		$stm = $this->dbPrepare($sql);
-		$usuario = new Usuario ();
 		$stm->bindValue(':nome', $nome);
 		return $stm->execute();
 	}
@@ -50,4 +54,5 @@ abstract class CrudUser extends DB {
 		$stm->bindParam(':id', $id, PDO::PARAM_INT);
 		return $stm->execute();
 	}
+
 }

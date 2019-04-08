@@ -11,7 +11,7 @@
 
 	<title>Departamento de TI - Solicitação de Serviços</title>
 
-	<link rel="shortcut icon" href="img/logo.png" type="image/x-icon" />
+	<link rel="shortcut icon" href="./img/logo.png" type="image/x-icon" />
 
 
 	<!-- Required styles for MDC Web -->
@@ -24,3 +24,5 @@
 	<script src="./js/bootstrap.min.js" type="text/javascript" ></script>
 
 </head>
+
+<body>

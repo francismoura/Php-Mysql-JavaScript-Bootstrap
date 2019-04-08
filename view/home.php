@@ -1,6 +1,5 @@
 <?php 
 include 'includes/header.php';
-echo $_SERVER['LOGNAME'];
 ?>
 
 <body>

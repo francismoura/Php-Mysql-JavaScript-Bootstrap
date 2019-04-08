@@ -1,14 +1,13 @@
 <?php
-
+require_once ('./model/CrudUser.php');
 
 class Usuario extends CrudUser {
 
 	public $nome;
 
-
-	public function __construct()
+    public function __construct()
     {
-        $this->nome = $nome;
+
     }
 
     /**
