@@ -1,24 +1,58 @@
 <?php
 
-include 'Conexao.php';
+include './database/Conexao.php';
 
 abstract class CrudUser extends DB {
 
-	public $nome;
+	protected $tabela = 'Usuario';
 
-	/**
-	 * @return mixed
-	 */
-	public function getNome() {
-		return $this->nome;
+
+    protected function dbPrepare($sql) {
+        $db = new DB();
+        return $db->prepare($sql);
+    }
+
+
+    /**
+     * Find unique User ID
+     * @param  [integer] $id
+     * @return mixed []
+     */
+	public function findUnit($id) {
+		$sql = "SELECT * FROM $this->tabela WHERE id = :id";
+		$stm = $this->prepare($sql);
+		$stm->bindValue(':id', $id, PDO::PARAM_INT);
+		$stm->execute();
+		return $stm->fetch();
 	}
 
-	/**
-	 * @param mixed $nome
-	 */
-	public function setNome($nome) {
-		var_dump($nome);
-		$this->nome = $nome;
+	public function findAll() {
+		$sql = "SELECT * FROM  $this->tabela";
+		$stm = $this->prepare($sql);
+		$stm->execute();
+		return $stm->fetchAll();
+	}
+
+	public function insert($nome) {
+		$sql = "INSERT INTO $this->tabela (nome) VALUES (:nome)";
+		$stm = $this->dbPrepare($sql);
+		$stm->bindValue(':nome', $nome);
+		return $stm->execute();
+	}
+
+	public function update($id) {
+		$sql = "UPDATE $this->tabela SET nome = :nome WHERE id = :id";
+		$stm = $this->dbPrepare($sql);
+		$stm->bindParam(':id', $id, PDO::PARAM_INT);
+		$stm->bindParam(':nome', $id);
+		return $stm->execute();
+	}
+
+	public function delete($id) {
+		$sql = "DELETE FROM $this->tabela WHERE id = :id";
+		$stm = $this->dbPrepare($sql);
+		$stm->bindParam(':id', $id, PDO::PARAM_INT);
+		return $stm->execute();
 	}
 
 }

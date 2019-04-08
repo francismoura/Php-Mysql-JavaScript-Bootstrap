@@ -1,56 +1,38 @@
-(function(){
-	
-	
-	function get(url, nome){
-		// $.ajax({
-		// 	url:"cadastro.php",
-		// 	method:"POST",
-		// 	data: {nome: 'nome'},
-		// 	success:function(data) {
-		// 	console.log(data);
-		// 	}
-		// })
-		// const form = new FormData(document.getElementById('nome'));
+(function () {
 
-		return fetch(url, {
-			method:'post',
-			// body:{form: nome}
-			})
-		}
+    console.log("PRIMEIRO TESTE");
+    const form = document.querySelector('#form_cadastro');
 
-	console.log("PRIMEIRO TESTE");
-	const form = document.querySelector('#form_cadastro');
-	let nome = document.getElementById('nome').value;
+    function get(url, data) {
+        // let nome = document.getElementById('nome').value;
 
-	form.addEventListener('submit', function(event) {
-		event.preventDefault();
+        const config = {
+            credentials: 'same-origin', // 'include', default: 'omit'
+            method: 'POST',
+            body: data, // Coordinate the body type with 'Content-Type'
 
-		//$('#form_action').attr('disabled', 'disabled');
-		const form_data = $(this).serialize();
+        };
 
-		//console.log(form_data);
+        return fetch(url, config)
 
-		console.log("id" +  " = " + nome);
+    }
 
-		const request_uri = location.pathname + location.search;
-		console.log(request_uri);
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
 
+        const request_uri = location.pathname + location.search;
 
+        let nome = document.getElementById('nome').value;
 
-		get(`cadastro.php`, nome)
-		.then(response => {console.log(response.json)})
-		.then(data => {console.log(data)})
-		.catch(err => console.log(err))
-	})
+        get('teste.php', {nome: (nome)})
+            .then(response => response.text())
+            .then(data => console.log(data)) // Result from the `response.json()` call
+            .catch(error => console.error(error))
+    });
 
-
-
-	$('#insert').click(function(){
-		const nome = $('#nome').val();
-
-	//	console.log($('#action').val('nome'))
-
-
-})
+    $('#insert').click(function () {
+        const nome = $('#nome').val();
+        //	console.log($('#action').val('nome'))
+    })
 
 })(document);
