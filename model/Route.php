@@ -1,38 +1,76 @@
 <?php
 
+require_once('../config/config.php');
+
 class Route
 {
-
-    public static $validRoutes = array();
-
-    public static function set($route, $function)
+    public static function isRouteValid()
     {
+        global $Routes;
+        $uri = $_SERVER['REQUEST_URI'];
 
-        self::$validRoutes[] = $route;
-
-		print_r($_GET['url']);
-//		 echo "<pre>";
-//		 print_r($_REQUEST);
-//		 echo "</pre>";
-
-
-        switch ($route) {
-            case 'home':
-                $function->__invoke();
-                break;
-            case 'cadastro':
-                $function->__invoke();
-                break;
-            case 'index':
-                $function->__invoke();
-                break;
-            default:
-                echo "ERROOOOOOOOO";
-                break;
+        if (!in_array(explode('?', $uri)[0], $Routes)) {
+            return 0;
+        } else {
+            return 1;
         }
+    }
 
+    // Insere a rota dentro do array $Routes
+    private static function registerRoute($route)
+    {
+        global $Routes;
+        $Routes[] = BASE_PATH . $route;
+    }
+
+    public static function dyn($dyn_routes)
+    {
+        // Split the route on '/', i.e user/<1>
+        $route_components = explode('/', $dyn_routes);
+        // Split the URI on '/', i.e user/francis
+        $uri_components = explode('/', substr($_SERVER['REQUEST_URI'], strlen(BASE_PATH) - 1));
+
+        // Loop through $route_components, this allows infinite dynamic parameters in the future.
+        for ($i = 0; $i < count($route_components); $i++) {
+            // Ensure we don't go out of range by enclosing in an if statement.
+            if ($i + 1 <= count($uri_components) - 1) {
+                // Replace every occurrence of <n> with a parameter.
+                $route_components[$i] = str_replace("<$i>", $uri_components[$i + 1], $route_components[$i]);
+            }
+        }
+        // Join the array back into a string.
+        $route = implode($route_components, '/');
+        // Return the route.
+
+        return $route;
+    }
+
+    // Register the route and run the closure using __invoke().
+    public static function set($route, $closure)
+    {
+        echo "GET: " . $_GET['url'];
+        echo "</br>";
+        echo "</br>";
+        echo "ROUTE: " . $route;
+        echo "</br>";        echo "</br>";
+        echo "_SERVER: " . $_SERVER['REQUEST_URI'];
+        echo "</br>";
+        $teste = explode("/", "projeto/teste")[0];
+        echo "teste: " . $teste;
+        echo "</br>";
+        echo "Base: " . BASE_PATH . $route;
+        echo "</br>";
+
+        if ($_SERVER['REQUEST_URI'] == BASE_PATH . $route) {
+            self::registerRoute($route);
+            $closure->__invoke();
+        } else if (explode('?', $_SERVER['REQUEST_URI'])[0] == BASE_PATH . $route) {
+            self::registerRoute($route);
+            $closure->__invoke();
+        } else if ($_GET['url'] == explode('/', $route)[0]) {
+            self::registerRoute(self::dyn($route));
+            $closure->__invoke();
+        }
     }
 
 }
-
-?>

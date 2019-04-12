@@ -1,5 +1,5 @@
 <?php
-require_once ('./model/CrudUser.php');
+require_once ('../model/CrudUser.php');
 
 class Usuario extends CrudUser {
 
@@ -23,7 +23,5 @@ class Usuario extends CrudUser {
 	public function setNome($nome) {
 		$this->nome = $nome;
 	}
-
-	
 
 }

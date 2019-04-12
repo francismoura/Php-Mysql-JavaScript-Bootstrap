@@ -6,7 +6,7 @@ include "includes/header.php"
 		<div class="col-sm-8 col-md-6 col-lg-5 mx-auto">
 			<div class="card card-signin my-5">
 				<div class="card-body">
-					<img class="mb-4 img-login" style="align-items: middle" src="../img/usuario.png" alt="" >
+					<img class="mb-4 img-login" style="align-items: middle" src="../public/img/usuario.png" alt="" >
 					<h5 class="login-title text-center">Autenticação do Sistema</h5>
 					<form class="form-signin">
 						<div class="form-label-group">

@@ -1,20 +1,37 @@
 (function () {
 
+    loadTable();
+
+    function loadTable() {
+        fetch('../controller/table.php')
+            .then(response => response.text())
+            .then(function (data) {
+                $('#div-table').html(data);
+                $('#nome').val('');
+            })
+            .catch(error => console.error(error))
+    }
+
     console.log("PRIMEIRO TESTE");
     const form = document.querySelector('#form_cadastro');
 
+
     function get(url, data) {
-        // let nome = document.getElementById('nome').value;
-
         const config = {
-            credentials: 'same-origin', // 'include', default: 'omit'
             method: 'POST',
-            body: data, // Coordinate the body type with 'Content-Type'
-
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8" // otherwise $_POST is empty
+            },
+            body: data // Coordinate the body type with 'Content-Type'
         };
 
-        return fetch(url, config)
-
+        (async () => {
+            const rawResponse = await fetch(url, config);
+            const content = await rawResponse.text();
+            $('#respostaFetch').html(content);
+            loadTable();
+        })();
     }
 
     form.addEventListener('submit', function (event) {
@@ -22,17 +39,22 @@
 
         const request_uri = location.pathname + location.search;
 
-        let nome = document.getElementById('nome').value;
+        const output = `<div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong> É necessário preencher todos os dados do formulário</strong> </div>`;
 
-        get('teste.php', {nome: (nome)})
-            .then(response => response.text())
-            .then(data => console.log(data)) // Result from the `response.json()` call
-            .catch(error => console.error(error))
+        let nome = document.getElementById('nome').value;
+        if (nome === '') {
+            $('#respostaFetch').html(output);
+        }else{
+            get('../model/teste.php', ('nome=' + nome));
+        }
     });
 
+
     $('#insert').click(function () {
-        const nome = $('#nome').val();
-        //	console.log($('#action').val('nome'))
+        const table = document.getElementById('user_data');
+        //parei aqui;
     })
 
 })(document);
