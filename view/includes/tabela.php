@@ -1,7 +1,12 @@
 <?php
-require_once('../model/Usuario.php');
+
+
+require_once('../../model/Usuario.php');
+
+
 
 $usuario = new Usuario();
+
 
 $todosUsuarios = $usuario->findAll();
 
@@ -15,28 +20,30 @@ $output =
                 </tr>
             </thead>
             <tbody>
-                <tr>
         
     ';
+
 
 if (!empty($todosUsuarios)) {
     foreach ($todosUsuarios as $value) {
         $output .=
             '
-                        <td>' . $value['id'] . '</td>
-                        <td>' . $value['nome'] . '</td>                
-                ';
+                <tr>
+                    <td>' . $value['id'] . '</td>
+                    <td>' . $value['nome'] . '</td>
+                </tr>    
+            ';
     }
 } else {
     $output .=
         '     
-                    <td colspan="4" align="center">Data not found</td>
-                </tr>
+            <td colspan="4" align="center">Data not found</td>
+                
         ';
 }
 
 $output .=
-    '
+    '   
             </tbody>
         </table>
     ';

@@ -3,12 +3,14 @@ require_once ('../model/CrudUser.php');
 
 class Usuario extends CrudUser {
 
-	public $nome;
+    public $nome;
+
 
     public function __construct()
     {
 
     }
+
 
     /**
 	 * @return mixed

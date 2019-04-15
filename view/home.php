@@ -1,12 +1,11 @@
-<?php 
+<?php
 include 'includes/header.php';
 ?>
 
-<body>
-	<nav class="navbar navbar-expand-lg sb-navbar bg-light navbar-light" style="font-family: nunito,-apple-system,BlinkMacSystemFont,segoe ui,Roboto,helvetica neue,Arial,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol,noto color emoji;">
+	<nav class="navbar navbar-expand-lg sb-navbar bg-light navbar-light">
 		<div class="container">
 			<a class="navbar-brand" href=""  >
-				<img src="../public/img/logo.png" width="60" height="60" class="img-nav" alt="logo">
+				<img src="img/logo.png" width="60" height="60" class="img-nav" alt="logo">
 				<span class="ml-1 nav-title"> <strong>Departamento de TI</strong></span>
 			</a>
 			<ul class="navbar-nav" >

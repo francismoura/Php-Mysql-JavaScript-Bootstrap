@@ -9,7 +9,10 @@ function __autoload($class_name)
         require_once '../controller/' . $class_name . '.php';
     } else if (file_exists('../core/' . $class_name . '.php')) {
         require_once '../core/'. $class_name . '.php';
+    } else if (file_exists('../view/includes'.$class_name.'.php')) {
+        require_once '../view/includes' . $class_name . '.php';
     }
+
 }
 
 $app = new App();

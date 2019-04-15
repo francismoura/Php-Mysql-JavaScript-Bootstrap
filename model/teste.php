@@ -5,7 +5,6 @@ require_once('Usuario.php');
 $usuario = new Usuario();
 
 if (isset ($_POST['nome'])) {
-
     $usuario->setNome($_POST['nome']);
     if ($usuario->insert($_POST['nome'])) {
         echo '<div class="alert alert-success alert-dismissible" role="alert">

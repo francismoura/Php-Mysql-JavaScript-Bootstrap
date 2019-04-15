@@ -10,6 +10,8 @@ class Controller
             // Create the view and the view controller.
             if (file_exists('../view/' . $viewName . '.php')) {
                 require_once('../view/' . $viewName . '.php');
+            } else if (file_exists('../view/includes'.$viewName.'.php')){
+                require_once ('../view/includes'.$viewName.'.php');
             } else {
                 require_once('../public/index.php');
             }

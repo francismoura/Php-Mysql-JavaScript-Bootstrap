@@ -2,7 +2,6 @@
 require_once('includes/header.php');
 require_once('../model/Usuario.php');
 ?>
-    <body>
 
     <nav class="navbar navbar-dark bd-navbar bg-dark" style="padding: 30px" xmlns="">
         <a class="btn btn-link" id="btnHome" style="margin-right: 20px;" href='../public'>Sair</a>
@@ -34,6 +33,7 @@ require_once('../model/Usuario.php');
         </div>
     </div>
 
-<?php
-require_once('includes/footer.php')
-?>
+<script src="../view/assets/js/script.js"></script>
+
+</body>
+</html>

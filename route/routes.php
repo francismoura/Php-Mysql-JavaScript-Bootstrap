@@ -6,6 +6,6 @@ Route::set('', function () {
     UsuarioController::createView('home');
 });
 
-Route::set('cadastro',
-    function () {UsuarioController::createView('cadastro');}
-    );
+Route::set('cadastro', function () {
+    UsuarioController::createView('cadastro');
+});

@@ -48,20 +48,7 @@ class Route
     // Register the route and run the closure using __invoke().
     public static function set($route, $closure)
     {
-        echo "GET: " . $_GET['url'];
-        echo "</br>";
-        echo "</br>";
-        echo "ROUTE: " . $route;
-        echo "</br>";        echo "</br>";
-        echo "_SERVER: " . $_SERVER['REQUEST_URI'];
-        echo "</br>";
-        $teste = explode("/", "projeto/teste")[0];
-        echo "teste: " . $teste;
-        echo "</br>";
-        echo "Base: " . BASE_PATH . $route;
-        echo "</br>";
-
-        if ($_SERVER['REQUEST_URI'] == BASE_PATH . $route) {
+        if ($_SERVER['REQUEST_URI'] == BASE_PATH) {
             self::registerRoute($route);
             $closure->__invoke();
         } else if (explode('?', $_SERVER['REQUEST_URI'])[0] == BASE_PATH . $route) {
