@@ -3,8 +3,6 @@
 
 require_once('../../model/Usuario.php');
 
-
-
 $usuario = new Usuario();
 
 
