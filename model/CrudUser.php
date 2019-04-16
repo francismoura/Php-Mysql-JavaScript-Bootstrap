@@ -1,11 +1,11 @@
 <?php
 
-include '../database/Conexao.php';
+include '../database/Connection.php';
 
 abstract class CrudUser extends DB
 {
 
-    protected $tabela = 'Usuario';
+    protected $tabela = 'User';
 
     protected function dbPrepare($sql)
     {

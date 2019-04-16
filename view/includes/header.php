@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-
 	<meta name="charset" content="UTF-8" />
 	<meta name="description" content="Para portifólio">
 	<meta name="keywords" content="HTML,CSS,XML,JavaScript">

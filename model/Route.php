@@ -48,7 +48,7 @@ class Route
     // Register the route and run the closure using __invoke().
     public static function set($route, $closure)
     {
-        if ($_SERVER['REQUEST_URI'] == BASE_PATH) {
+        if ($_SERVER['REQUEST_URI'] == BASE_PATH . $route) {
             self::registerRoute($route);
             $closure->__invoke();
         } else if (explode('?', $_SERVER['REQUEST_URI'])[0] == BASE_PATH . $route) {
@@ -59,5 +59,4 @@ class Route
             $closure->__invoke();
         }
     }
-
 }
