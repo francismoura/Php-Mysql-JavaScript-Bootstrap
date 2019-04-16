@@ -1,10 +1,9 @@
 <?php
-require_once('includes/header.php');
-require_once('../model/Usuario.php');
+require_once('../view/includes/header.php');
+require_once('../model/User.php');
 ?>
-
     <nav class="navbar navbar-dark bd-navbar bg-dark" style="padding: 30px" xmlns="">
-        <a class="btn btn-link" id="btnHome" style="margin-right: 20px;" href='../public'>Sair</a>
+        <a class="btn btn-link" id="btnHome" style="margin-right: 20px;" href='../public/home'>Sair</a>
     </nav>
 
     <div class="container">
@@ -33,7 +32,7 @@ require_once('../model/Usuario.php');
         </div>
     </div>
 
-<script src="../view/assets/js/script.js"></script>
+<script src="../view/js/script.js"></script>
 
 </body>
 </html>

@@ -1,8 +1,8 @@
 RewriteEngine On
-RewriteBase /projeto/public
+RewriteBase /projeto
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^([^/]+)/? index.php?url=$1&nbsp; [QSA,L]
+RewriteRule ^([^/]+)/? public/index.php?url=$1&nbsp; [QSA,L]
 
 # <ifModule mod_rewrite.c>
 #     RewriteEngine On

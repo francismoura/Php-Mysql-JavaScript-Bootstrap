@@ -1,6 +1,6 @@
 <?php
 
-include "includes/header.php"?>
+include "includes/header.php" ?>
 
 <div style="margin: 50px 0">
 	<h1 align="center">Cadastrar Solicitação</h1>

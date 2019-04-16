@@ -3,18 +3,24 @@
     //const request_uri = location.pathname + location.search;
     const nome = document.getElementById('nome');
     let textNome;
-    const form = document.querySelector('#form_cadastro');
-    const output = `<div class="alert alert-danger alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <strong> É necessário preencher todos os dados do formulário</strong> </div>`;
+    const form = document.getElementById('form_cadastro');
+    const output =
+        `
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <strong> É necessário preencher todos os dados do formulário</strong> 
+            </div>
+        `
+    ;
 
     loadTable();
 
     function loadTable() {
-        fetch('../view/includes/tabela.php')
+        fetch('../view/cadastro/tabela.php')
             .then(response => response.text())
             .then(function (data) {
-                console.log(data);
                 $('#div-table').html(data);
                 $('#nome').val('');
             })
@@ -46,11 +52,10 @@
 
         if (textNome === '') {
             $('#respostaFetch').html(output);
-        }else{
-            post('../model/teste.php', ('nome=' + textNome));
+        } else {
+            post('../view/teste.php', 'nome='+textNome);
         }
     });
-
 
     $('#insert').click(function () {
         const table = document.getElementById('user_data');

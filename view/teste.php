@@ -1,8 +1,8 @@
 <?php
 
-require_once('Usuario.php');
+require_once('../model/User.php');
 
-$usuario = new Usuario();
+$usuario = new User();
 
 if (isset ($_POST['nome'])) {
     $usuario->setNome($_POST['nome']);

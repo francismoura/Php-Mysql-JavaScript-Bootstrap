@@ -3,7 +3,7 @@
 
 //Usuário deve ser identificado junto com
 
-class Formulario {
+class Form {
 
     public $cod_usuario;
     public $id_solicitacao;
