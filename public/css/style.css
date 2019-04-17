@@ -1,3 +1,8 @@
+:root {
+    --input-padding-x: 1.5rem;
+    --input-padding-y: .75rem;
+}
+
 a.nav-link {
     font-weight: 400;
     color: #cfcfcf;
@@ -9,21 +14,20 @@ a.nav-link:hover {
     text-decoration: underline;
 }
 
-a.nav-link:focus,
-a.nav-link.focus {
+a.nav-link:focus, a.nav-link.focus {
     text-decoration: underline;
     box-shadow: none;
 }
 
-a.nav-link:disabled,
-a.nav-link.disabled {
+a.nav-link:disabled, a.nav-link.disabled {
     color: blue;
     pointer-events: none;
 }
 
 
+
 body {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     font-style: normal;
     font-variant: normal;
     text-align: center;
@@ -31,8 +35,7 @@ body {
 }
 
 #teste {
-    background: #007bff;
-    background-image: linear-gradient(to right, #0062E6, #33AEFF);
+    background: #007bff linear-gradient(to right, #0062E6, #33AEFF);
 }
 
 div.card-signin {
@@ -59,7 +62,7 @@ div.card-signin {
 }
 
 .form-control {
-    background: transparent;
+    background:transparent;
     border: none;
 }
 
@@ -84,6 +87,11 @@ div.card-signin {
 .form-label-group input {
     height: auto;
     border-radius: 2rem;
+}
+
+.form-label-group>input,
+.form-label-group>label {
+    padding: var(--input-padding-y) var(--input-padding-x);
 }
 
 .form-label-group>label {
@@ -121,17 +129,28 @@ div.card-signin {
     color: transparent;
 }
 
+.form-label-group input:not(:placeholder-shown) {
+    padding-top: calc(var(--input-padding-y) + var(--input-padding-y) * (2 / 3));
+    padding-bottom: calc(var(--input-padding-y) / 3);
+}
 
-.h1 {
+.form-label-group input:not(:placeholder-shown)~label {
+    padding-top: calc(var(--input-padding-y) / 3);
+    padding-bottom: calc(var(--input-padding-y) / 3);
+    font-size: 12px;
+    color: #777;
+}
+
+.h1{
     margin: 0px;
 }
 
-.img-nav {
+.img-nav{
     border-radius: 100%;
     object-fit: cover;
 }
 
-.img-login {
+.img-login{
     display: block;
     width: 72px;
     height: 72px;
@@ -148,7 +167,7 @@ div.card-signin {
     align-items: center;
 }
 
-.login-title {
+.login-title{
     margin-bottom: 2rem;
 }
 
@@ -156,7 +175,7 @@ div.card-signin {
     color: black;
 }
 
-.sb-navbar .navbar-brand img {
+.sb-navbar .navbar-brand img{
     height: 3.5rem;
     font-size: 1.15rem;
     font-weight: 700;
@@ -167,22 +186,17 @@ div.card-signin {
         padding-top: .425rem;
         padding-left: 0.75rem;
     }
-
     .navbar-nav .nav-item {
         float: none;
     }
-
     .navbar-brand {
         float: right;
     }
-
     .navbar-brand,
     .navbar-nav .nav-item {
         display: block;
     }
-
-    .navbar-nav .nav-item+.nav-item {
+    .navbar-nav .nav-item + .nav-item {
         margin-left: 0;
     }
-
 }

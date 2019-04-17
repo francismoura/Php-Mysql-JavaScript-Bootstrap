@@ -10,8 +10,8 @@ class Controller
             // Create the view and the view controller.
             if (file_exists('../view/' . $viewName . '.php')) {
                 require_once('../view/' . $viewName . '.php');
-            } else if (file_exists('../view/' . $viewName . "/" . $viewName . '.php')) {
-                require_once('../view/' . $viewName . "/" . $viewName . '.php');
+            } else if (file_exists('../view/' .  $viewName . "/" . $viewName . '.php')){
+                require_once ('../view/' .  $viewName . "/" . $viewName . '.php');
             }
 
             self::setFlag(1);

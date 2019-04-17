@@ -5,15 +5,17 @@ require_once('../core/Controller.php');
 class UsuarioController extends Controller {
 
 
-    public function login(User $usuario){
+    public static function login(){
+
+        Controller::createView('login');
 
     }
 
-    public function home(){
+    public static function home(){
 
     }
 
-    public function form(){
+    public static function form(){
 
     }
 

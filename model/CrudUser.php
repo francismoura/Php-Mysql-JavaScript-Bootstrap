@@ -5,7 +5,7 @@ include '../database/Connection.php';
 abstract class CrudUser extends DB
 {
 
-    protected $tabela = 'User';
+    protected $tabela = 'Usuario';
 
     protected function dbPrepare($sql)
     {

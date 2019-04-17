@@ -1,7 +1,7 @@
 <?php
 
-require_once('../model/Route.php');
 require_once('../route/routes.php');
+require_once('../model/Route.php');
 
 function __autoload($class_name)
 {

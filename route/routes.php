@@ -10,3 +10,11 @@ Route::set('cadastro', function () {
     UsuarioController::createView('cadastro');
 });
 
+Route::set('login', function () {
+    UsuarioController::login();
+});
+
+Route::set('dashboard', function () {
+    UsuarioController::createView('dashboard');
+});
+

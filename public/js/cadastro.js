@@ -1,9 +1,9 @@
 (function () {
-    console.log("Script Funcionando Corretamente");
-    //const request_uri = location.pathname + location.search;
+
+    console.log("PRIMEIRO TESTE");
+    const form = document.getElementById('form_cadastro');
     const nome = document.getElementById('nome');
     let textNome;
-    const form = document.getElementById('form_cadastro');
     const output =
         `
             <div class="alert alert-danger alert-dismissible" role="alert">
@@ -18,22 +18,19 @@
     loadTable();
 
     function loadTable() {
-        fetch('../view/cadastro/tabela.php')
-            .then(response => response.text())
-            .then(function (data) {
-                $('#div-table').html(data);
-                $('#nome').val('');
-            })
+        fetch('../view/tabela.php')
+            .then(response => response.text()
+                .then(function (data) {
+                    $('#div-table').html(data);
+                    $('#nome').val('');
+                }))
             .catch(error => console.error(error))
     }
 
-    function post(url, data) {
+    function get(url, data) {
         const config = {
             method: 'POST',
-            headers: {
-                'Accept': 'application/json, text/plain, */*',
-                "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8" // otherwise $_POST is empty
-            },
+
             body: data // Coordinate the body type with 'Content-Type'
         };
 
@@ -53,13 +50,8 @@
         if (textNome === '') {
             $('#respostaFetch').html(output);
         } else {
-            post('../view/teste.php', 'nome='+textNome);
+            get('../view/teste.php', ('nome=' + textNome));
         }
     });
-
-    $('#insert').click(function () {
-        const table = document.getElementById('user_data');
-        //parei aqui;
-    })
 
 })(document);
