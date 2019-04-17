@@ -17,4 +17,3 @@ Route::set('login', function () {
 Route::set('dashboard', function () {
     UsuarioController::createView('dashboard');
 });
-
