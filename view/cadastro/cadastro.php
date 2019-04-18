@@ -9,7 +9,7 @@ require_once('../view/includes/header.php');
 <div class="container">
     <div class="row justify-content-center">
         <legend style="text-align: center">FORMULÁRIO DE SOLICITAÇÃO DE SERVIÇO</legend>
-        <form name="form_cadastro" id="form_cadastro" style="margin: 30px 0">
+        <form name="form_cadastro" id="form_cadastro" method="post" action="cadastro.php" style="margin: 30px 0">
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="nome">Nome</label>

@@ -14,7 +14,6 @@ abstract class CrudUser extends DB
     }
 
     /**
-     * Find unique User ID
      * @param  [integer] $id
      * @return mixed []
      */
@@ -27,15 +26,23 @@ abstract class CrudUser extends DB
         return $stm->fetch();
     }
 
+    /**
+     * Localiza todos os usuários
+     * @return array
+     */
     public function findAll()
     {
         $sql = "SELECT * FROM  $this->tabela";
         $stm = $this->prepare($sql);
         $stm->execute();
-        $result = $stm->fetchAll();
+        $result = $stm->fetchAll(PDO::FETCH_OBJ);
         return $result;
     }
 
+    /**
+     * @param [string] $nome
+     * @return bool
+     */
     public function insert($nome)
     {
         $sql = "INSERT INTO $this->tabela (nome) VALUES (:nome)";
@@ -44,6 +51,10 @@ abstract class CrudUser extends DB
         return $stm->execute();
     }
 
+    /**
+     * @param [integer] $id
+     * @return bool
+     */
     public function update($id)
     {
         $sql = "UPDATE $this->tabela SET nome = :nome WHERE id = :id";
@@ -53,6 +64,10 @@ abstract class CrudUser extends DB
         return $stm->execute();
     }
 
+    /**
+     * @param [integer] $id
+     * @return bool
+     */
     public function delete($id)
     {
         $sql = "DELETE FROM $this->tabela WHERE id = :id";

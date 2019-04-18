@@ -3,11 +3,11 @@
 require_once('../model/Route.php');
 
 Route::set('home', function () {
-    UsuarioController::createView('home');
+    UsuarioController::home();
 });
 
 Route::set('cadastro', function () {
-    UsuarioController::createView('cadastro');
+    UsuarioController::cadastrar();
 });
 
 Route::set('login', function () {

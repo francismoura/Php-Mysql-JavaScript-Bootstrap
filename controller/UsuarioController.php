@@ -1,22 +1,32 @@
-<?php 
+<?php
 
 require_once('../core/Controller.php');
 
-class UsuarioController extends Controller {
+class UsuarioController extends Controller
+{
 
+    public static function login()
+    {
 
-    public static function login(){
-
-        Controller::createView('login');
-
-    }
-
-    public static function home(){
+        self::createView('login');
 
     }
 
-    public static function form(){
+    public static function home()
+    {
+        self::createView('home');
 
+    }
+
+    public static function form()
+    {
+
+    }
+
+    public static function cadastrar()
+    {
+
+        self::createView('cadastro');
     }
 
 }

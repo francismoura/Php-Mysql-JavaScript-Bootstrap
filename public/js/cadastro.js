@@ -12,13 +12,12 @@
                 </button>
                 <strong> É necessário preencher todos os dados do formulário</strong> 
             </div>
-        `
-    ;
+        `;
 
     loadTable();
 
     function loadTable() {
-        fetch('../view/tabela.php')
+        fetch('../controller/tabela.php')
             .then(response => response.text()
                 .then(function (data) {
                     $('#div-table').html(data);
@@ -30,7 +29,6 @@
     function get(url, data) {
         const config = {
             method: 'POST',
-
             body: data // Coordinate the body type with 'Content-Type'
         };
 
@@ -46,11 +44,12 @@
         event.preventDefault();
 
         textNome = nome.value;
+        console.log(textNome.indexOf(" ") >= 0);
 
-        if (textNome === '') {
+        if (textNome.length === 0 || textNome.indexOf(" ") >= 2) {
             $('#respostaFetch').html(output);
         } else {
-            get('../view/teste.php', ('nome=' + textNome));
+            get('../controller/teste.php', ('nome=' + textNome));
         }
     });
 
