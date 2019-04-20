@@ -1,9 +1,16 @@
 <?php
 
-require_once('../core/Controller.php');
+$root = $_SERVER['DOCUMENT_ROOT'];
+require_once($root . '/core/Controller.php');
+require_once($root . '/model/User.php');
 
-class UsuarioController extends Controller
+class UserController extends Controller
 {
+    public static function insertUser($nome){
+        $user = new User();
+        $user->nome= $nome;
+        return $user->insert($user);
+    }
 
     public static function login()
     {
@@ -14,6 +21,7 @@ class UsuarioController extends Controller
 
     public static function home()
     {
+
         self::createView('home');
 
     }
@@ -27,6 +35,7 @@ class UsuarioController extends Controller
     {
 
         self::createView('cadastro');
+
     }
 
 }

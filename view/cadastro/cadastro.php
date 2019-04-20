@@ -1,9 +1,9 @@
 <?php
-require_once('../view/includes/header.php');
+require_once('view/includes/header.php');
 ?>
 <body>
 <nav class="navbar navbar-dark bd-navbar bg-dark" style="padding: 30px" xmlns="">
-    <a class="btn btn-link" id="btnHome" style="margin-right: 20px;" href='../public/home'>Sair</a>
+    <a class="btn btn-link" id="btnHome" style="margin-right: 20px;" href=''>Sair</a>
 </nav>
 
 <div class="container">
@@ -32,7 +32,7 @@ require_once('../view/includes/header.php');
     </div>
 </div>
 
-<script src="js/cadastro.js"></script>
+<script src="../../public/js/registerForm.js"></script>
 
 </body>
 </html>

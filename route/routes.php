@@ -1,19 +1,18 @@
 <?php
-
-require_once('../model/Route.php');
+require_once('model/Route.php');
 
 Route::set('home', function () {
-    UsuarioController::home();
+    UserController::home();
 });
 
 Route::set('cadastro', function () {
-    UsuarioController::cadastrar();
+    UserController::cadastrar();
 });
 
 Route::set('login', function () {
-    UsuarioController::login();
+    UserController::login();
 });
 
 Route::set('dashboard', function () {
-    UsuarioController::createView('dashboard');
+    UserController::createView('dashboard');
 });

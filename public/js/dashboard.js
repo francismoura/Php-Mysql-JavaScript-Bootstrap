@@ -3,7 +3,7 @@
     loadTable();
 
     function loadTable() {
-        fetch('../controller/tabela.php')
+        fetch('../controller/table.php')
             .then(response => response.text()
                 .then(function (data) {
                     $('#div-table').html(data);

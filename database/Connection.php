@@ -1,12 +1,12 @@
 <?php
-
-include '../config/config.php';
+$root = $_SERVER['DOCUMENT_ROOT'];
+include ($root . '/config/config.php');
 
 class DB
 {
     private static $pdo;
 
-    private static function getInstance()
+    public static function getInstance()
     {
         try {
             if (is_null(self::$pdo)) {

@@ -1,6 +1,7 @@
 <?php
 
-require_once('../config/config.php');
+$root = $_SERVER['DOCUMENT_ROOT'];
+require_once($root . '/config/config.php');
 
 class Route
 {
