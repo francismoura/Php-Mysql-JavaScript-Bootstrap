@@ -3,73 +3,29 @@
 
 class Solicitation
 {
-    public $id_solicitacao;
-    public $serv_solicitado;
-    public $data_solicitacao;
-    public $dados_solicitacao = [];
+    private $data_solicitation = [];
 
-    /**
-     * @return array
-     */
-    public function getDadosSolicitacao(): array
+
+    public function __construct()
     {
-        return $this->dados_solicitacao;
+
     }
 
-    /**
-     * @param array $dados_solicitacao
-     */
-    public function setDadosSolicitacao(array $dados_solicitacao): void
+    public function __set($name, $value)
     {
-        $this->dados_solicitacao = $dados_solicitacao;
+        $this->data_solicitation[$name] = $value;
+        // TODO: Implement __set() method.
     }
 
-    /**
-     * @return mixed
-     */
-    public function getIdSolicitacao()
+    public function __get($name)
     {
-        return $this->id_solicitacao;
+        // TODO: Implement __get() method.
     }
 
-    /**
-     * @param mixed $id_solicitacao
-     */
-    public function setIdSolicitacao($id_solicitacao): void
-    {
-        $this->id_solicitacao = $id_solicitacao;
-    }
 
-    /**
-     * @return mixed
-     */
-    public function getServSolicitado()
+    public function __isset($name)
     {
-        return $this->serv_solicitado;
-    }
-
-    /**
-     * @param mixed $serv_solicitado
-     */
-    public function setServSolicitado($serv_solicitado): void
-    {
-        $this->serv_solicitado = $serv_solicitado;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDataSolicitacao()
-    {
-        return $this->data_solicitacao;
-    }
-
-    /**
-     * @param mixed $data_solicitacao
-     */
-    public function setDataSolicitacao($data_solicitacao): void
-    {
-        $this->data_solicitacao = $data_solicitacao;
+        // TODO: Implement __isset() method.
     }
 
 

@@ -1,11 +1,13 @@
 <?php
-include 'view/includes/header.php';
+$root = $_SERVER['DOCUMENT_ROOT'];
+include $root . '/view/_includes/header.php';
 ?>
+
 <body>
 <nav class="navbar navbar-expand-lg sb-navbar bg-light navbar-light">
     <div class="container">
         <a class="navbar-brand" href="">
-            <img src="../../public/img/logo.png" width="60" height="60" class="img-nav" alt="logo">
+            <img src="/public/img/logo.png" width="60" height="60" class="img-nav" alt="logo">
             <span class="ml-1 nav-title"> <strong>Departamento de TI</strong></span>
         </a>
         <ul class="navbar-nav">
@@ -32,7 +34,7 @@ include 'view/includes/header.php';
 
 </main>
 
-<script src="../../public/js/home.js"></script>
+<script src="/public/js/home.js"></script>
 
 </body>
 </html>

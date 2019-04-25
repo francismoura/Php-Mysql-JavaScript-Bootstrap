@@ -1,10 +1,10 @@
 <?php
-
+//
 $root = $_SERVER['DOCUMENT_ROOT'];
+require_once($root . '/model/CrudUser.php');
 
-require_once ($root . '/model/CrudUser.php');
-
-class User extends CrudUser {
+class User extends CrudUser
+{
 
     private $atributos = [];
 

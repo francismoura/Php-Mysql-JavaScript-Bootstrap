@@ -1,105 +1,137 @@
 (function () {
+        console.log("PRIMEIRO TESTE");
+        const form = document.getElementById('form_cadastro').addEventListener('submit', formSubmit);
+        const btnHome = document.getElementById('btnHome').addEventListener('click', redirectHome);
+        let action;
+        const URL = `/controller/fetch.php`;
 
-    console.log("PRIMEIRO TESTE");
-    const form = document.getElementById('form_cadastro').addEventListener('submit', formSubmit);
-    const btnHome = document.getElementById('btnHome').addEventListener('click', redirectHome);
-    const nome = document.getElementById('nome');
-    let textNome;
-    let output = ``;
+        loadTable();
 
-    loadTable();
+        function loadTable() {
+            fetch(URL + '?action=findAll')
+                .then(response => response.json()
+                    .then(function (data) {
+                        // console.log(data);
+                        let output = outputFindAll(data);
+                        $('#div-table').html(output);
+                        $('#nome').val('');
+                    })
+                ).catch(error => console.error(error))
+        }
 
-    function redirectHome(event) {
-        event.preventDefault();
-        window.location = "home";
-    }
+        function redirectHome(event) {
+            event.preventDefault();
+            window.location = "home";
+        }
 
-    function loadTable() {
-        fetch('../controller/fetch.php')
-            .then(response => response.json()
-                .then(function (data) {
+        function post(url, data, action) {
+            const config = {
+                method: 'POST',
+                body: data
+            };
 
-                    output =
-                        `
-                            <table id = "user_data" class= "table table-bordered table-striped">
-                                <thead> 
-                                    <tr>
-                                        <th width="1%"> id </th>
-                                        <th width = "15%"> Nome </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                        `;
+            (async () => {
+                    const rawResponse = await fetch(url + `?action=${action}`, config);
+                    const content = await rawResponse.text();
+                    let output;
 
-                    if (data.length !== 0) {
-                        data.forEach(field => {
-                            output +=
-                                `
-                                    <tr>
-                                        <td> ` + field.id + ` </td>
-                                        <td> ` + field.nome + ` </td>
-                                    </tr>
-                                 `;
-                        })
-                    } else {
-                        output +=
-                            `
-                                <td colspan = "4" align = "center"> Data not found </td>
-                            `;
+                    switch (action) {
+                        case 'insert':
+                            output = outputInsert(content);
+                            break;
+                        case 'findUnit':
                     }
 
-                    output +=
-                        `
-                                </tbody>
-                            </table>
-                        `;
+                    $('#respostaFetch').html(output);
+                    loadTable();
+                }
+            )();
+        }
 
-                    $('#div-table').html(output);
-                    $('#nome').val('');
-                })
-            ).catch(error => console.error(error))
-    }
+        function formSubmit(event) {
+            event.preventDefault();
 
-    function post(url, data) {
-        const config = {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json, text/plain, */*',
-                "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8" // otherwise $_POST is empty
-            },
-            body: data // Coordinate the body type with 'Content-Type'
-        };
+            const form_data = new FormData(this);
+            // validateFormData(form_data);
+            action = "insert";
+            post(URL, form_data, action);
+        }
 
-        (async () => {
-            const rawResponse = await fetch(url, config);
-            const content = await rawResponse.text();
-            $('#respostaFetch').html(content);
-            loadTable();
-        })();
-    }
+        function validateFormData($form_data) {
+            if (nome == null || nome.indexOf(" ") >= 0 || nome === "") {
+                document.getElementById('nome').setCustomValidity('Preencha este campo corretamente');
+            } else {
 
-    function formSubmit(event) {
-        event.preventDefault();
-
-        textNome = nome.value;
-
-        if (textNome.length === 0 || textNome.indexOf(" ") >= 0) {
-
-            output +=
-                `
-                    <div class="alert alert-danger alert-dismissible" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <strong> É necessário preencher todos os dados do formulário</strong> 
-                    </div>
-                `;
-
-            $('#respostaFetch').html(output);
-
-        } else {
-            post('../controller/fetch.php', ('nome=' + textNome));
+            }
         }
     }
+)(document);
 
-})(document);
+function outputInsert(content) {
+    let output;
+
+    if (content) {
+        output =
+            `
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <strong>OK!</strong> 
+                    Incluido com sucesso!!!
+                </div>
+            `;
+    } else {
+        output =
+            `
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <strong>OK!</strong> 
+                    Erro ao incluir dados!!!
+                </div>
+            `;
+    }
+    return output;
+}
+
+function outputFindAll(data) {
+    let output =
+            `
+                <table id = "user_data" class= "table table-bordered table-striped">
+                    <thead> 
+                        <tr>
+                            <th width="1%"> id </th>
+                            <th width = "15%"> Nome </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+    if (data.length !== 0) {
+        data.map(data => {
+            output +=
+                `
+                    <tr>
+                        <td> ` + data.id + ` </td>
+                        <td> ` + data.nome + ` </td>
+                    </tr>
+                `;
+        })
+    } else {
+        output +=
+            `
+                <td colspan = "4" align = "center"> Data not found </td>
+            `;
+    }
+
+    output +=
+        `
+                </tbody>
+            </table>
+        `;
+
+    return output;
+
+}

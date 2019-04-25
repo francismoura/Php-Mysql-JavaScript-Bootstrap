@@ -28,8 +28,8 @@ class View {
   public static function make($view) {
     if (Route::isRouteValid()) {
         // Create the view and the view controller.
-        require_once( './includes/controllers/'.$view.'.php' );
-        require_once( './includes/views/'.$view.'.php' );
+        require_once( './_includes/controllers/'.$view.'.php' );
+        require_once( './_includes/views/'.$view.'.php' );
         return 1;
     }
   }

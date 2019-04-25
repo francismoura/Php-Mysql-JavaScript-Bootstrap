@@ -1,43 +1,48 @@
 <?php
 
-$root = $_SERVER['DOCUMENT_ROOT'];
-require_once ($root . '/database/Connection.php');
-require_once ($root . '/model/User.php');
 
-abstract class CrudUser extends DB
+$root = $_SERVER['DOCUMENT_ROOT'];
+require_once($root . '/database/Connection.php');
+
+require_once 'ICRUD.php';
+
+abstract class CrudUser implements ICRUD
 {
 
-    protected $tabela = 'Usuario';
+    protected $tableDB = 'Usuario';
 
-//    protected function dbPrepare($sql)
-//    {
-//        $db = new DB();
-//        return $this->prepare($sql);
-//    }
+    abstract function __construct();
+
+    public function dbPrepare($sql)
+    {
+
+        return Connection::prepare($sql);
+    }
 
     /**
      * @param  [integer] $id
      * @return mixed []
      */
-    public function findUnit($id)
+    public function FindUnit($id)
     {
-        $sql = "SELECT * FROM $this->tabela WHERE id = :id";
-        $stm = $this->prepare($sql);
+        $sql = "SELECT * FROM $this->tableDB WHERE id = :id";
+        $stm = $this->dbPrepare($sql);
         $stm->bindValue(':id', $id, PDO::PARAM_INT);
         $stm->execute();
         return $stm->fetch();
     }
 
     /**
-     *
-     * @return array com dados de todos os usuários
+     * @return array
      */
-    public function findAll()
+    public function FindAll()
     {
-        $sql = "SELECT * FROM  $this->tabela";
-        $stm = self::prepare($sql);
+//      $result  = array();
+        $sql = "SELECT * FROM  $this->tableDB";
+        $stm = $this->dbPrepare($sql);
         $stm->execute();
         $result = $stm->fetchAll(PDO::FETCH_OBJ);
+
         return $result;
     }
 
@@ -45,67 +50,22 @@ abstract class CrudUser extends DB
      * Salvar o contato
      * @return boolean
      */
-    public function insert($user)
+    public function Insert($nome)
     {
-
-        var_dump($user->atributos);
-        $colunas = $this->preparar($user);
-        if (!isset($user->nome)) {
-            $query = "INSERT INTO $this->tabela (".
-                implode(', ', array_keys($colunas)).
-                ") VALUES (".
-                implode(', ', array_values($colunas)).");";
-        } else {
-            foreach ($colunas as $key => $value) {
-                if ($key !== 'nome') {
-                    $definir[] = "{$key}={$value}";
-                }
-            }
-            $query = "UPDATE $this->tabela SET ".implode(', ', $definir)." WHERE nome = :nome";
-        }
-        if (self::getInstance()) {
-            $stmt = self::prepare($query);
-             return $stmt->execute();
-        }
-        return false;
-    }
-
-    private function escapar($dados)
-    {
-        if (is_string($dados) & !empty($dados)) {
-            return "'".addslashes($dados)."'";
-        } elseif (is_bool($dados)) {
-            return $dados ? 'TRUE' : 'FALSE';
-        } elseif ($dados !== '') {
-            return $dados;
-        } else {
-            return 'NULL';
-        }
-    }
-    /**
-     * Verifica se dados são próprios para ser salvos
-     * @param array $dados
-     * @return array
-     */
-    private function preparar($dados)
-    {
-        $resultado = array();
-        foreach ($dados as $k => $v) {
-            if (is_scalar($v)) {
-                $resultado[$k] = $this->escapar($v);
-            }
-        }
-        return $resultado;
+        $sql = "INSERT INTO $this->tableDB (nome) VALUES (:nome)";
+        $stm = $this->dbPrepare($sql);
+        $stm->bindValue(':nome', $nome);
+        return $stm->execute();
     }
 
     /**
      * @param [integer] $id
      * @return bool
      */
-    public function update($id)
+    public function Update($id)
     {
-        $sql = "UPDATE $this->tabela SET nome = :nome WHERE id = :id";
-        $stm = $this->prepare($sql);
+        $sql = "UPDATE $this->tableDB SET nome = :nome WHERE id = :id";
+        $stm = $this->dbPrepare($sql);
         $stm->bindParam(':id', $id, PDO::PARAM_INT);
         $stm->bindParam(':nome', $id);
         return $stm->execute();
@@ -115,10 +75,10 @@ abstract class CrudUser extends DB
      * @param [integer] $id
      * @return bool
      */
-    public function delete($id)
+    public function Delete($id)
     {
-        $sql = "DELETE FROM $this->tabela WHERE id = :id";
-        $stm = $this->prepare($sql);
+        $sql = "DELETE FROM $this->tableDB WHERE id = :id";
+        $stm = $this->dbPrepare($sql);
         $stm->bindParam(':id', $id, PDO::PARAM_INT);
         return $stm->execute();
     }

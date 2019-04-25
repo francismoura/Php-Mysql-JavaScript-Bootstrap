@@ -2,7 +2,6 @@
 
 class Controller
 {
-
     public static function createView($viewName)
     {
         if (Route::isRouteValid()) {
@@ -10,7 +9,7 @@ class Controller
 
             $dirs = array(
                 'view/',
-                'view/'.$viewName.'/'
+                'view/' . $viewName . '/'
             );
 
             foreach ($dirs as $dir) {
