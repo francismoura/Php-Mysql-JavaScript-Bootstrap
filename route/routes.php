@@ -1,5 +1,6 @@
 <?php
 
+require_once('controller/UserController.php');
 require_once ('model/Route.php');
 
 

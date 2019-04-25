@@ -18,15 +18,15 @@ class UserController extends Controller
         }
     }
 
-    public static function findAll()
-    {
-        $user = new User();
-        return $user->FindAll();
-    }
-
     public static function home()
     {
 
+    }
+
+    public static function findAllSolicitation()
+    {
+        $user = new User();
+        return $user->FindAll();
     }
 
     public static function newSolicitation($nome)
@@ -37,7 +37,7 @@ class UserController extends Controller
 
     public static function show()
     {
-        //retornar todas solicitações selecionadas
+        //retornar todas solicitações
     }
 
 
@@ -58,34 +58,4 @@ class UserController extends Controller
         }
 
     }
-
-    public static function fetch()
-    {
-        $method = $_SERVER['REQUEST_METHOD'];
-
-        if ($method === "POST") {//recebeu post?
-            $action = $_GET['action'];
-            switch ($action) {
-                case 'insert':
-                    echo \UserController::newSolicitation($_POST['nome']);
-                    break;
-                case 'FIND_UNIT':
-                    //fazer alog
-                    break;
-                case 'UPDATE':
-                    //fazer algo
-                    break;
-                case 'DELETE':
-                    //fazer algo
-                    break;
-            }
-        } else if ($method === "GET") {
-            if ($_GET['action'] === 'findAll'){
-                $responseJSON = json_encode(UserController::findAll());
-                echo $responseJSON;
-            }
-        }
-    }
 }
-
-echo UserController::fetch();

@@ -7,7 +7,7 @@ include "view/_includes/header.php"
         <div class="card card-signin my-5">
             <div class="card-body">
 
-                <img class="mb-4 img-login" src="img/usuario.png" alt="">
+                <img class="mb-4 img-login" src="/public/img/usuario.png" alt="">
 
                 <h5 class="login-title text-center">Autenticação do Sistema</h5>
 

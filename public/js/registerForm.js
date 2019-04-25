@@ -2,13 +2,12 @@
         console.log("PRIMEIRO TESTE");
         const form = document.getElementById('form_cadastro').addEventListener('submit', formSubmit);
         const btnHome = document.getElementById('btnHome').addEventListener('click', redirectHome);
-        let action;
         const URL = `/controller/fetch.php`;
 
         loadTable();
 
         function loadTable() {
-            fetch(URL + '?action=findAll')
+            fetch(URL + `?controller=UserController&action=findAll`)
                 .then(response => response.json()
                     .then(function (data) {
                         // console.log(data);
@@ -27,12 +26,15 @@
         function post(url, data, action) {
             const config = {
                 method: 'POST',
+                header: {
+                    "Content-Type": "multipart/form-data"
+                },
                 body: data
             };
 
             (async () => {
-                    const rawResponse = await fetch(url + `?action=${action}`, config);
-                    const content = await rawResponse.text();
+                    const response = await fetch(url + `controller=UserController&action=${action}`, config);
+                    const content = await response.text();
                     let output;
 
                     switch (action) {
@@ -53,8 +55,7 @@
 
             const form_data = new FormData(this);
             // validateFormData(form_data);
-            action = "insert";
-            post(URL, form_data, action);
+            post(URL, form_data, "insert");
         }
 
         function validateFormData($form_data) {
@@ -98,7 +99,7 @@ function outputInsert(content) {
 
 function outputFindAll(data) {
     let output =
-            `
+        `
                 <table id = "user_data" class= "table table-bordered table-striped">
                     <thead> 
                         <tr>

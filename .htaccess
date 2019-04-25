@@ -2,14 +2,6 @@ RewriteEngine On
 RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^([^/]+)/? index.php?url=$1&nbsp; [QSA,L]
-
-# <ifModule mod_rewrite.c>
-#     RewriteEngine On
-
-#     RewriteCond %{REQUEST_URI} ^/$ [NC]
-#     RewriteRule ^(.*)$ ^([^/]+)/? /$1 [R=301,L]
-#</ifModule>
-#RewriteRule  ^(.*)$ public/index.php [QSA,L]
-
-#RewriteRule ^(.+)$ public/index.php?url=$1&nbsp; [QSA,L]
+#RewriteRule ^([^/]+)/? index.php?uri=$1&nbsp; [QSA,L]
+RewriteRule ^projeto/home$ index.php [QSA,L,NC]
+RewriteRule ^projeto/cadastro$ index.php [QSA,L,NC]

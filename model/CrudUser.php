@@ -1,9 +1,7 @@
 <?php
 
-
 $root = $_SERVER['DOCUMENT_ROOT'];
 require_once($root . '/database/Connection.php');
-
 require_once 'ICRUD.php';
 
 abstract class CrudUser implements ICRUD

@@ -1,6 +1,7 @@
 <?php
 $root = $_SERVER['DOCUMENT_ROOT'];
-require_once ($root . '/view/_includes/header.php');
+require_once($root . '/view/_includes/header.php');
+require_once($root . '/controller/UserController.php')
 ?>
 <body>
 <nav class="navbar navbar-dark bd-navbar bg-dark" style="padding: 30px" xmlns="">
