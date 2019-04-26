@@ -1,0 +1,7 @@
+RewriteEngine On
+RewriteBase /projeto
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^/]+)/? public/index.php?uri=$1&nbsp; [QSA,L]
+#RewriteRule ^projeto/public/home$ index.php [QSA,L,NC]
+#RewriteRule ^projeto/public/cadastro$ index.php [QSA,L,NC]

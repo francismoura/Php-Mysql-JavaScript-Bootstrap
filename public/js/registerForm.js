@@ -2,20 +2,23 @@
         console.log("PRIMEIRO TESTE");
         const form = document.getElementById('form_cadastro').addEventListener('submit', formSubmit);
         const btnHome = document.getElementById('btnHome').addEventListener('click', redirectHome);
-        const URL = `/controller/fetch.php`;
+        const URL = `../controller/fetch.php`;
 
         loadTable();
 
         function loadTable() {
-            fetch(URL + `?controller=UserController&action=findAll`)
-                .then(response => response.json()
-                    .then(function (data) {
-                        // console.log(data);
-                        let output = outputFindAll(data);
+            (async () => {
+                    try {
+                        const response = await fetch(URL + `?controller=UserController&action=findAll`);
+                        const content = await response.json();
+                        let output = outputFindAll(content);
                         $('#div-table').html(output);
                         $('#nome').val('');
-                    })
-                ).catch(error => console.error(error))
+                    }catch (error) {
+                        console.log(error);
+                    }
+                }
+            )();
         }
 
         function redirectHome(event) {
@@ -26,9 +29,6 @@
         function post(url, data, action) {
             const config = {
                 method: 'POST',
-                header: {
-                    "Content-Type": "multipart/form-data"
-                },
                 body: data
             };
 
@@ -66,7 +66,8 @@
             }
         }
     }
-)(document);
+)
+(document);
 
 function outputInsert(content) {
     let output;

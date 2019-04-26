@@ -1,7 +1,0 @@
-RewriteEngine On
-RewriteBase /
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
-#RewriteRule ^([^/]+)/? index.php?uri=$1&nbsp; [QSA,L]
-RewriteRule ^projeto/home$ index.php [QSA,L,NC]
-RewriteRule ^projeto/cadastro$ index.php [QSA,L,NC]

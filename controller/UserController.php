@@ -1,8 +1,8 @@
 <?php
 
-$root = $_SERVER['DOCUMENT_ROOT'];
-require_once($root . '/core/Controller.php');
-require_once($root . '/model/User.php');
+//$root = $_SERVER['DOCUMENT_ROOT'];
+require_once('../core/Controller.php');
+require_once('../model/User.php');
 
 class UserController extends Controller
 {
@@ -23,7 +23,7 @@ class UserController extends Controller
 
     }
 
-    public static function findAllSolicitation()
+    public static function getAllSolicitation()
     {
         $user = new User();
         return $user->FindAll();
@@ -33,11 +33,6 @@ class UserController extends Controller
     {
         $user = new User();
         return $user->Insert($nome);
-    }
-
-    public static function show()
-    {
-        //retornar todas solicitações
     }
 
 

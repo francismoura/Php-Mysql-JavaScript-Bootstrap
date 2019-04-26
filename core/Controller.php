@@ -8,8 +8,8 @@ class Controller
             // Create the view and the view controller.
 
             $dirs = array(
-                'view/',
-                'view/' . $viewName . '/'
+                '../view/',
+                '../view/' . $viewName . '/'
             );
 
             foreach ($dirs as $dir) {

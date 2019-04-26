@@ -1,8 +1,9 @@
 <?php
-$root = $_SERVER['DOCUMENT_ROOT'];
-require_once($root . '/view/_includes/header.php');
-require_once($root . '/controller/UserController.php')
+//$root = $_SERVER['DOCUMENT_ROOT'];
+include_once('../view/_includes/header.php');
+require_once('../controller/UserController.php')
 ?>
+
 <body>
 <nav class="navbar navbar-dark bd-navbar bg-dark" style="padding: 30px" xmlns="">
     <a class="btn btn-link" id="btnHome" style="margin-right: 20px;" href=''>Sair</a>
@@ -34,7 +35,7 @@ require_once($root . '/controller/UserController.php')
     </div>
 </div>
 
-<script src="/public/js/registerForm.js"></script>
+<script src="./js/registerForm.js"></script>
 
 </body>
 </html>

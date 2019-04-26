@@ -1,7 +1,7 @@
 <?php
-//
-$root = $_SERVER['DOCUMENT_ROOT'];
-require_once($root . '/model/CrudUser.php');
+
+//$root = $_SERVER['DOCUMENT_ROOT'];
+require_once('../model/CrudUser.php');
 
 class User extends CrudUser
 {
