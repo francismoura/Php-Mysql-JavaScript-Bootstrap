@@ -1,0 +1,202 @@
+:root {
+    --input-padding-x: 1.5rem;
+    --input-padding-y: .75rem;
+}
+
+a.nav-link {
+    font-weight: 400;
+    color: #cfcfcf;
+    text-decoration: none;
+}
+
+a.nav-link:hover {
+    color: orange;
+    text-decoration: underline;
+}
+
+a.nav-link:focus, a.nav-link.focus {
+    text-decoration: underline;
+    box-shadow: none;
+}
+
+a.nav-link:disabled, a.nav-link.disabled {
+    color: blue;
+    pointer-events: none;
+}
+
+
+
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-style: normal;
+    font-variant: normal;
+    text-align: center;
+    color: #cfcfcf;
+}
+
+#teste {
+    background: #007bff linear-gradient(to right, #0062E6, #33AEFF);
+}
+
+div.card-signin {
+    border: 0;
+    border-radius: 2rem;
+}
+
+.card-signin .card-title {
+    margin-bottom: 2rem;
+    font-weight: 300;
+    font-size: 1.5rem;
+}
+
+.card-signin .card-body {
+    padding: 2.5rem 2.5rem 4rem 2.5rem;
+}
+
+.centralized {
+    position: absolute;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+    text-align: center
+}
+
+.form-control {
+    background:transparent;
+    border: none;
+}
+
+.form-signin {
+    width: 100%;
+}
+
+.form-signin .btn {
+    font-size: 90%;
+    border-radius: 5rem;
+    letter-spacing: .1rem;
+    font-weight: bold;
+    padding: 1rem;
+    transition: all 0.2s;
+}
+
+.form-label-group {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.form-label-group input {
+    height: auto;
+    border-radius: 2rem;
+}
+
+.form-label-group>input,
+.form-label-group>label {
+    padding: var(--input-padding-y) var(--input-padding-x);
+}
+
+.form-label-group>label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    margin-bottom: 0;
+    /* Override default `<label>` margin */
+    line-height: 1.5;
+    color: #495057;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    transition: all .1s ease-in-out;
+}
+
+.form-label-group input::-webkit-input-placeholder {
+    color: transparent;
+}
+
+.form-label-group input:-ms-input-placeholder {
+    color: transparent;
+}
+
+.form-label-group input::-ms-input-placeholder {
+    color: transparent;
+}
+
+.form-label-group input::-moz-placeholder {
+    color: transparent;
+}
+
+.form-label-group input::placeholder {
+    color: transparent;
+}
+
+.form-label-group input:not(:placeholder-shown) {
+    padding-top: calc(var(--input-padding-y) + var(--input-padding-y) * (2 / 3));
+    padding-bottom: calc(var(--input-padding-y) / 3);
+}
+
+.form-label-group input:not(:placeholder-shown)~label {
+    padding-top: calc(var(--input-padding-y) / 3);
+    padding-bottom: calc(var(--input-padding-y) / 3);
+    font-size: 12px;
+    color: #777;
+}
+
+.h1{
+    margin: 0px;
+}
+
+.img-nav{
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+.img-login{
+    display: block;
+    width: 72px;
+    height: 72px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.itens-center-div {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    align-items: center;
+}
+
+.login-title{
+    margin-bottom: 2rem;
+}
+
+.nav-title {
+    color: black;
+}
+
+.sb-navbar .navbar-brand img{
+    height: 3.5rem;
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+@media (max-width: 62em) {
+    .navbar-nav {
+        padding-top: .425rem;
+        padding-left: 0.75rem;
+    }
+    .navbar-nav .nav-item {
+        float: none;
+    }
+    .navbar-brand {
+        float: right;
+    }
+    .navbar-brand,
+    .navbar-nav .nav-item {
+        display: block;
+    }
+    .navbar-nav .nav-item + .nav-item {
+        margin-left: 0;
+    }
+}
