@@ -14,7 +14,6 @@ class Solicitation
     public function __set($name, $value)
     {
         $this->data_solicitation[$name] = $value;
-        // TODO: Implement __set() method.
     }
 
     public function __get($name)

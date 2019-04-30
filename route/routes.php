@@ -1,14 +1,14 @@
 <?php
 
 require_once('../controller/UserController.php');
-require_once ('../model/Route.php');
+require_once('../core/Route.php');
 
 Route::set('home', function () {
     UserController::createView('home');
 });
 
-Route::set('cadastro', function () {
-    UserController::createView('cadastro');
+Route::set('form', function () {
+    UserController::createView('form');
 });
 
 Route::set('login', function () {

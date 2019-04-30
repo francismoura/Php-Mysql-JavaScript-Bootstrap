@@ -8,13 +8,16 @@ class Controller
             // Create the view and the view controller.
 
             $dirs = array(
-                '../view/',
-                '../view/' . $viewName . '/'
+                '../view/' . $viewName . '/',
+                '../view/admin/',
+                '../view/user/',
+                '../view/error/'
             );
 
             foreach ($dirs as $dir) {
                 if (file_exists($dir . $viewName . '.php')) {
                     require_once $dir . $viewName . '.php';
+                    break;
                 }
             }
         }

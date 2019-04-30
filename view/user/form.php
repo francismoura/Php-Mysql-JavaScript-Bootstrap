@@ -1,18 +1,18 @@
 <?php
-//$root = $_SERVER['DOCUMENT_ROOT'];
 include_once('../view/_includes/header.php');
 require_once('../controller/UserController.php')
 ?>
 
 <body>
 <nav class="navbar navbar-dark bd-navbar bg-dark" style="padding: 30px" xmlns="">
-    <a class="btn btn-link" id="btnHome" style="margin-right: 20px;" href=''>Sair</a>
+    <a class="btn btn-link" id="btnHome" style="margin-right: 20px; color: #ffffff;" href=''>Home</a>
 </nav>
 
 <div class="container">
     <div class="row justify-content-center">
         <legend style="text-align: center">FORMULÁRIO DE SOLICITAÇÃO DE SERVIÇO</legend>
-        <form name="form_cadastro" id="form_cadastro" style="margin: 30px 0">
+        <form name="form_cadastro" id="form_cadastro" method="post" action="../core/fetch.php"
+              style="margin: 30px 0">
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="nome">Nome</label>
@@ -24,18 +24,15 @@ require_once('../controller/UserController.php')
     </div>
 
     <div class="row justify-content-center" id="respostaFetch" type="hidden">
-
+        <!--Fetch API => return html-->
     </div>
 
-    <div class="row">
-        <div>
-            <h1 align="center">Solicitação</h1>
-        </div>
-        <div class="table-responsive" id="div-table"></div>
-    </div>
 </div>
 
-<script src="./js/registerForm.js"></script>
+<script src="./js/form.js">
+
+
+</script>
 
 </body>
 </html>

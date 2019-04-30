@@ -2,7 +2,7 @@
 
 require_once('../model/Crud.php');
 
-class User extends Crud
+class Admin extends Crud
 {
 
     private $atributos = [];
@@ -26,6 +26,4 @@ class User extends Crud
     {
         return isset($this->atributos[$atributo]);
     }
-
-
 }

@@ -1,7 +1,6 @@
 <?php
 
-//$root = $_SERVER['DOCUMENT_ROOT'];
-include_once ('../config/config.php');
+include_once "../config/config.php";
 
 class Route
 {

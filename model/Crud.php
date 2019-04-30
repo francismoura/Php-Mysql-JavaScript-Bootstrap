@@ -1,9 +1,9 @@
 <?php
 
-require_once('../database/Connection.php');
+require_once('../database/DB.php');
 require_once 'ICRUD.php';
 
-abstract class CrudUser implements ICRUD
+abstract class Crud implements ICRUD
 {
 
     protected $tableDB = 'Usuario';
@@ -12,8 +12,7 @@ abstract class CrudUser implements ICRUD
 
     public function dbPrepare($sql)
     {
-
-        return Connection::prepare($sql);
+        return DB::prepare($sql);
     }
 
     /**
@@ -45,10 +44,12 @@ abstract class CrudUser implements ICRUD
 
     /**
      * Salvar o contato
+     * @param $nome
      * @return boolean
      */
     public function Insert($nome)
     {
+        $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_STRING);
         $sql = "INSERT INTO $this->tableDB (nome) VALUES (:nome)";
         $stm = $this->dbPrepare($sql);
         $stm->bindValue(':nome', $nome);

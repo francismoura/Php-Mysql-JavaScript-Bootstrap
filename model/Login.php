@@ -12,7 +12,7 @@ class Login{
 
 //        define('DB_USER', $user->name);
 
-        //passar dados de login para classe Connection
+        //passar dados de login para classe DB
         //resolver a resposta de getIntance()/
         return true;
     }

@@ -2,6 +2,9 @@ RewriteEngine On
 RewriteBase /projeto
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^([^/]+)/? public/index.php?uri=$1&nbsp; [QSA,L]
-#RewriteRule ^projeto/public/home$ index.php [QSA,L,NC]
-#RewriteRule ^projeto/public/cadastro$ index.php [QSA,L,NC]
+#RewriteRule ^([^/]+)/? public/index.php?uri=$1&nbsp; [QSA,L]
+RewriteRule ^home$ public/index.php?uri=$1&nbsp; [QSA,L,NC]
+RewriteRule ^form$ public/index.php?uri=$1&nbsp; [QSA,L,NC]
+RewriteRule ^login$ public/index.php?uri=$1&nbsp; [QSA,L,NC]
+RewriteRule ^dashboard$ public/index.php?controlller=$1&action=$1nbsp; [QSA,L,NC]
+

@@ -9,7 +9,7 @@
     document.getElementById('acessoForm')
         .addEventListener("click", function (event) {
             event.preventDefault();
-            window.location = "cadastro";
+            window.location = "form";
 
         });
 
