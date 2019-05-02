@@ -1,6 +1,6 @@
 <?php
 
-interface ICRUD
+interface DAO
 {
 
     public function Insert($data);

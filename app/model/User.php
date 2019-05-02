@@ -1,8 +1,8 @@
 <?php
 
-require_once('../model/Crud.php');
+require_once('../dao/BaseDao.php');
 
-class Admin extends Crud
+class User extends baseDao
 {
 
     private $atributos = [];
@@ -26,4 +26,6 @@ class Admin extends Crud
     {
         return isset($this->atributos[$atributo]);
     }
+
+
 }

@@ -1,7 +1,7 @@
 <?php
 
-require_once('../core/Controller.php');
-require_once('../model/User.php');
+require_once('../config/Controller.php');
+require_once('../app/model/User.php');
 
 
 class UserController extends Controller
@@ -20,19 +20,9 @@ class UserController extends Controller
         $this->user=  $user;
     }
 
-    /**
-     * @param $nome
-     * @return bool
-     */
     function newSolicitation($nome)
     {
         return $this->user->Insert($nome);
-    }
-
-    function cadastrar()
-    {
-        //view com form de form
-        self::createView('form');
     }
 
 }

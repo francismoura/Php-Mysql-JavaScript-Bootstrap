@@ -1,9 +1,9 @@
 <?php
 
-require_once('../database/DB.php');
-require_once 'ICRUD.php';
+require_once('../app/model/Connection.php');
+require_once 'DAO.php';
 
-abstract class Crud implements ICRUD
+abstract class BaseDao implements DAO
 {
 
     protected $tableDB = 'Usuario';
@@ -12,7 +12,7 @@ abstract class Crud implements ICRUD
 
     public function dbPrepare($sql)
     {
-        return DB::prepare($sql);
+        return Connection::prepare($sql);
     }
 
     /**

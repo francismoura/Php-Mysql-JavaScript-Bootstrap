@@ -1,6 +1,6 @@
 <?php
-include_once('../view/_includes/header.php');
-require_once('../controller/UserController.php')?>
+include_once('../app/view/_includes/header.php');
+require_once('../app/controller/FormController.php')?>
 <body>
 <nav class="navbar navbar-dark bd-navbar bg-dark" style="padding: 30px" xmlns="">
     <a class="btn btn-link" id="btnHome" style="margin-right: 20px; color: #ffffff;" href=''>Home</a>

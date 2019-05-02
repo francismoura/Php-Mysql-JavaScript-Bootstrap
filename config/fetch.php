@@ -15,13 +15,13 @@ $actionName = substr(current($urlParams), strlen('action='));
  * $actionName = $_GET['action'];
  */
 
-require_once("../controller/".$controllerName.".php");
+require_once("../app/controller/".$controllerName.".php");
 
 if ($requestMethod === "POST") {
     if (isset($_POST['nome'])) {
         switch ($actionName) {
             case 'insert':
-                require_once('../model/User.php');
+                require_once('../app/model/User.php');
                 $controller = new UserController(new User());
                 echo $controller->newSolicitation($_POST['nome']);
                 break;
@@ -40,9 +40,9 @@ if ($requestMethod === "POST") {
     }
 } else if ($requestMethod === "GET") {//será sempre de acesso do Admin
     if ($actionName === "findAll") {
-        require_once("../model/Admin.php");
-        $admin = new Admin();
-        $controller = new AdminController($admin);//passando a model para controller
+//        require_once("../model/Form.php");
+        $form = new Form();
+        $controller = new FormController($form);//passando a model para controller
         $response = json_encode($controller->getAllSolicitation());
         echo $response;
     }

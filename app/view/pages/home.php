@@ -1,5 +1,5 @@
 <?php
-include_once '../view/_includes/header.php';
+include_once '../app/view/_includes/header.php';
 ?>
 
 <body>

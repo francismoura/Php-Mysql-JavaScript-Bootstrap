@@ -2,7 +2,7 @@
         console.log("PRIMEIRO TESTE");
         const form = document.getElementById('form_cadastro').addEventListener('submit', submitForm);
         const btnHome = document.getElementById('btnHome').addEventListener('click', redirectHome);
-        const URL = `../core/fetch.php`;
+        const URL = `../config/fetch.php`;
 
         //redirect home
         function redirectHome(event) {

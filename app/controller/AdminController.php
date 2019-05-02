@@ -1,41 +1,37 @@
 <?php
 
-require_once('../core/Controller.php');
-require_once('../model/User.php');
+require_once('../config/Controller.php');
+require_once('../app/model/User.php');
+require_once('../app/model/View.php');
 
 class AdminController extends Controller
 {
 
     protected $admin;
 
-    function __construct(Admin $admin)
+    public function __construct(Admin $admin)
     {
         $this->admin = $admin;
     }
 
-    function getAllSolicitation()
-    {
-        return $this->admin->FindAll();
-    }
-
-    function login(User $admin)
+    public function login(User $admin)
     {
         $login = new Login();
         if ($login->isUserValid($admin)) {
-            self::dashboard($admin);
+            //apos login deve abrir a view dashboard e carregar a table
+            $this->dashboard();
             return true;
         } else {
             return false;
         }
     }
 
-    function dashboard(User $userLogado)
+    public function dashboard()
     {
         //após verificar os dados de login redirecionar para dashboard
         //pedir para model todos os dados dos usuários fetchAll
-        if ($userLogado === "root") {
-            self::createView('dashboard');
-        }
+//        if ($userLogado === "root") {
+            View::make('dashboard');
+//        }
     }
-
 }

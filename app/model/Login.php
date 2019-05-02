@@ -1,7 +1,5 @@
 <?php
 
-//$root = $_SERVER['DOCUMENT_ROOT'];
-//include ($root . '/config/config.php');
 
 class Login{
 
@@ -12,7 +10,7 @@ class Login{
 
 //        define('DB_USER', $user->name);
 
-        //passar dados de login para classe DB
+        //passar dados de login para classe Connection
         //resolver a resposta de getIntance()/
         return true;
     }

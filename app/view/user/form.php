@@ -1,6 +1,6 @@
 <?php
-include_once('../view/_includes/header.php');
-require_once('../controller/UserController.php')
+include_once('../app/view/_includes/header.php');
+require_once('../app/controller/UserController.php')
 ?>
 
 <body>
@@ -11,7 +11,7 @@ require_once('../controller/UserController.php')
 <div class="container">
     <div class="row justify-content-center">
         <legend style="text-align: center">FORMULÁRIO DE SOLICITAÇÃO DE SERVIÇO</legend>
-        <form name="form_cadastro" id="form_cadastro" method="post" action="../core/fetch.php"
+        <form name="form_cadastro" id="form_cadastro" method="post" action="../config/fetch.php"
               style="margin: 30px 0">
             <div class="form-row">
                 <div class="form-group col-md-6">

@@ -1,8 +1,8 @@
 <?php
 
-include_once ('../config/config.php');
+include_once('../config/config.php');
 
-class DB
+class Connection
 {
     private static $pdo;
 

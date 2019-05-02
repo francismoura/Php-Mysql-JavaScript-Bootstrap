@@ -1,5 +1,5 @@
 <?php
-include "../view/_includes/header.php"
+include "../app/view/_includes/header.php"
 ?>
 <body id="teste">
 <div class="container">

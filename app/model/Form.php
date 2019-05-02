@@ -1,12 +1,17 @@
 <?php
 
 
-//Usuário deve ser identificado junto com
+require_once('../dao/BaseDao.php');
 
-class Form {
+class Form extends BaseDao
+{
 
     public $cod_usuario;
     public $id_solicitacao;
+
+    public function __construct()
+    {
+    }
 
     /**
      * @return mixed

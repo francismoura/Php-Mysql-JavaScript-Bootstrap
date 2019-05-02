@@ -1,6 +1,6 @@
 (function () {
 
-        const URL = `../core/fetch.php`;
+        const URL = `../config/fetch.php`;
         const btnHome = document.getElementById('btnHome').addEventListener('click', redirectHome);
 
         //incializa a tabela de solicitações do dashboard
@@ -16,7 +16,7 @@
         }
 
         async function loadTable() {
-            const response = await fetch(URL + `?controller=AdminController&action=findAll`);
+            const response = await fetch(URL + `?controller=FormController&action=findAll`);
             const jsonData = await response.json();
             if (response.ok) {
                 if (jsonData.length > 0) {
