@@ -16,7 +16,7 @@
         }
 
         async function loadTable() {
-            const response = await fetch(URL + `?controller=FormController&action=findAll`);
+            const response = await fetch(URL + `?controller=Form&action=findAll`);
             const jsonData = await response.json();
             if (response.ok) {
                 if (jsonData.length > 0) {

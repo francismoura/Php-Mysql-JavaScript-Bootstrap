@@ -1,6 +1,6 @@
 <?php
 
-require_once('../app/model/Connection.php');
+require_once('../database/Connection.php');
 require_once 'DAO.php';
 
 abstract class BaseDao implements DAO

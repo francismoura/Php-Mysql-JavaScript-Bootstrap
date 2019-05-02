@@ -2,20 +2,21 @@
 
 class View {
   /*
-   * If the route is valid create the view and the view controller.
-   * If the route is invalid do nothing and if something goes wrong
-   * checking the route return 0;
+   * Se a rota for válida, crie a visualização e o controlador de visualização.
+   * Se a rota é inválida, não faça nada e se algo der errado
+   * verificar o retorno da rota 0;
   */
-  public static function make($viewName) {
+  public static function build($viewName) {
 
       if (Route::isRouteValid()) {
-          // Create the view and the view controller.
+          // criar as views e os controllers
 
           $dirs = array(
               '../app/view/pages/',
               '../app/view/admin/',
               '../app/view/user/',
-              '../app/view/error/'
+              '../app/view/error/',
+              '../app/controller/',
           );
 
           foreach ($dirs as $dir) {

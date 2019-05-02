@@ -5,8 +5,8 @@ require_once('../config/routes.php');
 spl_autoload_register(function ($class_name) {
 
     $dirs = [
-        '../app/controller/',
-        '../app/model/'
+        '../app/model/',
+        '../app/core/'
     ];
 
     foreach ($dirs as $dir) {

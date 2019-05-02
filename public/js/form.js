@@ -16,7 +16,7 @@
             const formData = new FormData(this);
             // validateFormData(formData); //validação em javaScript
 
-            fetch(URL + `?controller=UserController&action=insert`,
+            fetch(URL + `?controller=User&action=insert`,
                 {
                     method: 'POST',
                     body: formData

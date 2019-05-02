@@ -1,20 +1,20 @@
 <?php
 
-require_once('../app/model/View.php');
-require_once('../app/model/Route.php');
+require_once('../app/core/View.php');
+require_once('../app/core/Route.php');
 
 Route::set('home', function () {
-    View::make('home');
+    View::build('home');
 });
 
 Route::set('form', function () {
-    View::make('form');
+    View::build('form');
 });
 
 Route::set('login', function () {
-    View::make('login');
+    View::build('login');
 });
 
 Route::set('dashboard', function () {
-    View::make('dashboard');
+    View::build('dashboard');
 });
