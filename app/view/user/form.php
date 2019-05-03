@@ -1,6 +1,6 @@
 <?php
 include_once('../app/view/_includes/header.php');
-require_once('../app/controller/UserController.php')
+require_once('../app/controller/UserController.php');
 ?>
 
 <body>

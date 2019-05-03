@@ -3,7 +3,7 @@
 $requestMethod = $_SERVER['REQUEST_METHOD'];//Contém o método de request: 'GET', 'HEAD', 'POST' ou 'PUT'.
 $className = $_GET['controller'];
 $actionName = $_GET['action'];
-$controllerName = $className . "Controller";
+$controllerName = $className . 'Controller';
 
 require_once('../app/controller/' . $controllerName . '.php');
 

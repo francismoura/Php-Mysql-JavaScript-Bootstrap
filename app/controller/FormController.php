@@ -1,8 +1,7 @@
 <?php
 
-
-require_once "../app/core/Controller.php";
-require_once "../app/model/Form.php";
+require_once('../app/core/Controller.php');
+require_once('../app/model/Form.php');
 
 class FormController extends Controller
 {

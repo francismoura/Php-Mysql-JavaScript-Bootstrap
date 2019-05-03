@@ -1,6 +1,6 @@
 <?php
 
-require_once('../config/routes.php');
+require_once ('../config/routes.php');
 
 spl_autoload_register(function ($class_name) {
 

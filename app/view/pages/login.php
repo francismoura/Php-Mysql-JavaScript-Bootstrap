@@ -1,5 +1,5 @@
 <?php
-include "../app/view/_includes/header.php"
+include('../app/view/_includes/header.php');
 ?>
 <body id="teste">
 <div class="container">
@@ -35,7 +35,6 @@ include "../app/view/_includes/header.php"
             </div>
         </div>
     </div>
-
 </div>
 
 <script src="./js/login.js"></script>
