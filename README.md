@@ -40,7 +40,7 @@ de um CRUD. Os critérios de aceitação são:
             
         b. Administração de solicitações:
         
-            ▪ Neste teste não será necessário criar área de login ou boas práticas de controle de perfil e acesso. 
+            ▪ Não será necessário criar área de login ou boas práticas de controle de perfil e acesso. 
             ▪ Ao acessar o link do sistema/administracao, este deve exibir a lista das solicitações identificando os 
               usuários, identificador da solicitação, data da inclusão, tipo de usuário, telefone e e-mail.
             ▪ Deve permitir a visualização da demanda.
@@ -52,8 +52,7 @@ de um CRUD. Os critérios de aceitação são:
     3. Todas as ações de CRUD devem ser realizadas utilizando Ajax, evitando o refresh das páginas. 
     4. O sistema deve possuir validações em PHP e JavaScript.
     5. Para estilização do sistema deve-se adotar Bootstrap, MaterializeCSS ou algum similar.
-    6. Para o desenvolvimento JavaScript deve-se adotar o JQuery.
-    7. Para o desenvolvimento PHP, codifique da forma desejada, porém sem utilização de frameworks.
-    8. O sistema deve ser visionado no Github ou Bitbucket com instruções claras para implementação posterior em ambiente
+    6. Para o desenvolvimento PHP, codifique da forma desejada, porém sem utilização de frameworks.
+    7. O sistema deve ser visionado no Github ou Bitbucket com instruções claras para implementação posterior em ambiente
        local, devendo o link de acesso ser enviado para um e-mail pessoal.
 

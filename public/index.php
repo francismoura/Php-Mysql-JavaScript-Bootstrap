@@ -1,12 +1,12 @@
 <?php
 
-require_once('../route/routes.php');
+require_once ('../config/routes.php');
 
 spl_autoload_register(function ($class_name) {
 
     $dirs = [
-        '../controller/',
-        '../core/'
+        '../app/model/',
+        '../app/core/'
     ];
 
     foreach ($dirs as $dir) {
