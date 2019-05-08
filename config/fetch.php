@@ -1,17 +1,17 @@
 <?php
 
 $requestMethod = $_SERVER['REQUEST_METHOD'];//Contém o método de request: 'GET', 'HEAD', 'POST' ou 'PUT'.
-$className = $_GET['controller'];
+$controllerName = $_GET['controller'];
 $actionName = $_GET['action'];
-$controllerName = $className . 'Controller';
 
 require_once('../app/controller/' . $controllerName . '.php');
+
+$model = new BaseModel();
 
 if ($requestMethod === "POST") {
     if (isset($_POST['nome'])) {
         switch ($actionName) {
             case 'insert':
-                $model = new $className();
                 $controller = new $controllerName($model);
                 echo $controller->newSolicitation($_POST['nome']);
                 break;
@@ -30,8 +30,7 @@ if ($requestMethod === "POST") {
     }
 } else if ($requestMethod === "GET") {//será sempre de acesso do Admin
     if ($actionName === "findAll") {
-        $form = new $className();
-        $controller = new $controllerName($form);//passando a model para controller
+        $controller = new $controllerName($model);//passando a model para controller
         $response = json_encode($controller->getAllSolicitation());
         echo $response;
     }

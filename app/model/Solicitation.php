@@ -1,7 +1,8 @@
 <?php
 
+require_once('../dao/BaseDao.php');
 
-class Solicitation
+class Solicitation extends BaseDao
 {
     private $data_solicitation = [];
 

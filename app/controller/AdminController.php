@@ -1,15 +1,14 @@
 <?php
 
 require_once('../config/Controller.php');
-require_once('../app/model/User.php');
-require_once('../app/model/View.php');
+require_once('../app/model/BaseModel.php');
 
 class AdminController extends Controller
 {
 
     protected $admin;
 
-    public function __construct(Admin $admin)
+    public function __construct(BaseModel $admin)
     {
         $this->admin = $admin;
     }

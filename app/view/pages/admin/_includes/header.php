@@ -2,8 +2,8 @@
 <html lang="pt-BR">
 <head>
 	<meta name="charset" content="UTF-8" />
-	<meta name="description" content="Para portifólio">
-	<meta name="keywords" content="HTML,CSS,XML,JavaScript">
+	<meta name="description" content="Framework PHP para portifólio">
+	<meta name="keywords" content="framework">
 	<meta name="author" content="Francis Moura">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
@@ -19,9 +19,11 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 
-    <link href="./css/style.css" rel="stylesheet" type="text/css"/>
-    <link href="./css/normalize.css" rel="stylesheet" type="text/css"/>
-    <link href="./css/libs/bootstrap.css" rel="stylesheet" type="text/css"/>
-    <script src="./js/libs/jquery-3.3.1.min.js" type="text/javascript"></script>
-    <script src="./js/libs/bootstrap.min.js" type="text/javascript" ></script>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="../app/view/assets/css/table.css" rel="stylesheet" type="text/css"/>
+    <link href="../app/view/assets/css/normalize.css" rel="stylesheet" type="text/css"/>
+    <link href="./css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <script src="./js/jquery-3.3.1.min.js" type="text/javascript"></script>
+    <script src="./js/bootstrap.min.js" type="text/javascript" ></script>
 </head>

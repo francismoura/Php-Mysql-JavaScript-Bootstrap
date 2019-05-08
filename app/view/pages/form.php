@@ -1,5 +1,5 @@
 <?php
-include_once('../app/view/_includes/header.php');
+include_once('../app/view/pages/_includes/header.php');
 require_once('../app/controller/UserController.php');
 ?>
 
@@ -23,13 +23,13 @@ require_once('../app/controller/UserController.php');
         </form>
     </div>
 
-    <div class="row justify-content-center" id="respostaFetch" type="hidden">
+    <div class="row justify-content-center" id="outputCheck" type="hidden">
         <!--Fetch API => return html-->
     </div>
 
 </div>
 
-<script src="./js/form.js">
+<script src="../app/view/assets/js/form.js">
 
 
 </script>

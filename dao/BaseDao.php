@@ -6,7 +6,7 @@ require_once ('DAO.php');
 abstract class BaseDao implements DAO
 {
 
-    protected $tableDB = 'Usuario';
+    protected $tableDB = 'Usuario';//cada controller deve enviar ou conter o nome da sua tabela
 
     abstract function __construct();
 
@@ -21,7 +21,7 @@ abstract class BaseDao implements DAO
      */
     public function FindUnit($id)
     {
-        $sql = "SELECT * FROM $this->tableDB WHERE id = :id";
+        $sql = "SELECT * FROM " . $this->tableDB . " WHERE id = :id";
         $stm = $this->dbPrepare($sql);
         $stm->bindValue(':id', $id, PDO::PARAM_INT);
         $stm->execute();

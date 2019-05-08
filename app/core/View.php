@@ -13,10 +13,9 @@ class View {
 
           $dirs = array(
               '../app/view/pages/',
-              '../app/view/admin/',
-              '../app/view/user/',
-              '../app/view/error/',
-              '../app/controller/',
+              '../app/view/pages/admin/',
+              '../app/view/errors/',
+              '../app/controller/'
           );
 
           foreach ($dirs as $dir) {

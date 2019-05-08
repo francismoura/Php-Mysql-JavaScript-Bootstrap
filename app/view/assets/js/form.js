@@ -1,6 +1,5 @@
 (function () {
         console.log("PRIMEIRO TESTE");
-        const form = document.getElementById('form_cadastro').addEventListener('submit', submitForm);
         const btnHome = document.getElementById('btnHome').addEventListener('click', redirectHome);
         const URL = `../config/fetch.php`;
 
@@ -16,7 +15,7 @@
             const formData = new FormData(this);
             // validateFormData(formData); //validação em javaScript
 
-            fetch(URL + `?controller=User&action=insert`,
+            fetch(URL + `?controller=UserController&action=insert`,
                 {
                     method: 'POST',
                     body: formData
@@ -69,8 +68,9 @@
                  `;
             }
 
-            $('#respostaFetch').html(output);
-            $('#nome').val('');
+
+            document.getElementById('outputCheck').innerHTML = output;
+            document.getElementById('nome').value = "";
         }
     }
 )(document);

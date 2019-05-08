@@ -1,5 +1,5 @@
 <?php
-include('../app/view/_includes/header.php');
+require_once('../app/view/pages/_includes/header.php');
 ?>
 <body id="teste">
 <div class="container">
@@ -7,7 +7,7 @@ include('../app/view/_includes/header.php');
         <div class="card card-signin my-5">
             <div class="card-body">
 
-                <img class="mb-4 img-login" src="/public/img/usuario.png" alt="">
+                <img class="mb-4 img-login" src="/app/view/assets/img/usuario.png" alt="">
 
                 <h5 class="login-title text-center">Autenticação do Sistema</h5>
 
@@ -37,7 +37,7 @@ include('../app/view/_includes/header.php');
     </div>
 </div>
 
-<script src="./js/login.js"></script>
+<script src="../app/view/assets/js/login.js"></script>
 
 </body>
 </html>

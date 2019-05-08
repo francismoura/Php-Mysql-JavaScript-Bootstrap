@@ -2,14 +2,14 @@
 
 require_once('../dao/BaseDao.php');
 
-class Admin extends BaseDao
+class BaseModel extends BaseDao
 {
 
     private $atributos = [];
 
     public function __construct()
     {
-//        parent::__construct();
+
     }
 
     public function __set($atributo, $valor)
@@ -26,4 +26,5 @@ class Admin extends BaseDao
     {
         return isset($this->atributos[$atributo]);
     }
+
 }

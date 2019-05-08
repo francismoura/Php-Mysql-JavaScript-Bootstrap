@@ -1,10 +1,21 @@
 <?php
 
 
-class Login{
+class Login {
 
     private $senha;
     private $login;
+
+    /**
+     * Login constructor.
+     * @param $senha
+     * @param $login
+     */
+    public function __construct($senha, $login)
+    {
+        $this->senha = $senha;
+        $this->login = $login;
+    }
 
     public function isUserValid($user){
 
