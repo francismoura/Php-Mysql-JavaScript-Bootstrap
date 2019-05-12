@@ -6,7 +6,7 @@ require_once('../app/view/pages/_includes/header.php');
 <nav class="navbar navbar-expand-lg sb-navbar bg-light navbar-light">
     <div class="container">
         <a class="navbar-brand" href="">
-            <img src="../app/view/assets/img/logo.png" width="60" height="60" class="img-nav" alt="logo">
+            <img src="../app/view/resources/img/logo.png" width="60" height="60" class="img-nav" alt="logo">
             <span class="ml-1 nav-title"> <strong>Departamento de TI</strong></span>
         </a>
         <ul class="navbar-nav">
@@ -51,6 +51,6 @@ require_once('../app/view/pages/_includes/header.php');
     <!--Fetch API => return html-->
 </div>
 
-<script src="../app/view/assets/js/home.js"></script>
+<script src="../app/view/resources/js/home.js"></script>
 
 </body>

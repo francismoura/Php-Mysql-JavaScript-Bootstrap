@@ -2,21 +2,20 @@
 
 require_once('../app/core/Controller.php');
 require_once('../app/model/BaseModel.php');
+require_once '../app/core/SolicitationFactory.php';
 
 class FormController extends Controller
 {
-    protected $form;
+    protected $basemodel;
 
-    public function __construct(BaseModel $form)
+    public function __construct()
     {
-        $this->form = $form;
+        $parser = new SolicitationFactory();
+        $this->basemodel= $parser->createBaseModel();
     }
-
 
     public function getAllSolicitation()
     {
-        return $this->form->FindAll();
+        return $this->basemodel->FindAll();
     }
-
-
 }

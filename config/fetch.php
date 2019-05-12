@@ -6,13 +6,11 @@ $actionName = $_GET['action'];
 
 require_once('../app/controller/' . $controllerName . '.php');
 
-$model = new BaseModel();
-
 if ($requestMethod === "POST") {
     if (isset($_POST['nome'])) {
         switch ($actionName) {
             case 'insert':
-                $controller = new $controllerName($model);
+                $controller = new $controllerName();
                 echo $controller->newSolicitation($_POST['nome']);
                 break;
             case 'findUnit':
@@ -30,7 +28,7 @@ if ($requestMethod === "POST") {
     }
 } else if ($requestMethod === "GET") {//será sempre de acesso do Admin
     if ($actionName === "findAll") {
-        $controller = new $controllerName($model);//passando a model para controller
+        $controller = new $controllerName();//passando a model para controller
         $response = json_encode($controller->getAllSolicitation());
         echo $response;
     }

@@ -30,7 +30,7 @@ class AdminController extends Controller
         //após verificar os dados de login redirecionar para dashboard
         //pedir para model todos os dados dos usuários fetchAll
 //        if ($userLogado === "root") {
-            View::make('dashboard');
+            View::build('dashboard');
 //        }
     }
 }
