@@ -1,21 +1,43 @@
 <?php
 
-require_once('../app/core/Controller.php');
-require_once('../app/model/BaseModel.php');
-require_once '../app/core/SolicitationFactory.php';
+require_once '../app/core/Controller.php';
+require_once '../app/core/ModelFactory.php';
 
 class FormController extends Controller
 {
-    protected $basemodel;
+    protected $userData;//Dados do usuário
+    protected $solicitationData;//Dados referente a solicitação
 
     public function __construct()
     {
-        $parser = new SolicitationFactory();
-        $this->basemodel= $parser->createBaseModel();
+        $modelBase = new ModelFactory();
+        $this->solicitationData = $modelBase->createSolicitationAluno();
+        $this->userData = $modelBase->createAluno();
+    }
+
+    public function getById(int $num){
     }
 
     public function getAllSolicitation()
     {
-        return $this->basemodel->FindAll();
+        return $this->solicitationData->FindAll();
     }
+
+    public function newSolicitation($data)
+    {
+        $userData = $this->userData;
+        $solicitationData = $this->solicitationData;
+
+        foreach ($data['dataUser'] as $key => $value) {
+            $userData->$key = $value;
+        }
+
+        foreach ($data['dataSolicitation'] as $key => $value){
+            $solicitationData->$key = $value;
+        }
+
+        return ($this->userData->post($userData->getAtributes())
+            && $this->solicitationData->post($solicitationData->getAtributes()));
+    }
+
 }

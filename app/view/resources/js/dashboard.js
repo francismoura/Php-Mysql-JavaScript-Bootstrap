@@ -7,8 +7,6 @@
             window.location = "home";
         });
 
-
-
         //incializa a tabela de solicitações do dashboard
         loadTable()
             .then(table)

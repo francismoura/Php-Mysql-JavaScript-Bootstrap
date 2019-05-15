@@ -1,35 +1,40 @@
 <?php
 
-$requestMethod = $_SERVER['REQUEST_METHOD'];//Contém o método de request: 'GET', 'HEAD', 'POST' ou 'PUT'.
-$controllerName = $_GET['controller'];
-$actionName = $_GET['action'];
+require_once('../app/controller/FormController.php');
 
-require_once('../app/controller/' . $controllerName . '.php');
+$requestMethod = $_SERVER['REQUEST_METHOD'];//Contém o método de request: 'GET', 'HEAD', 'POST' ou 'PUT'.
 
 if ($requestMethod === "POST") {
-    if (isset($_POST['nome'])) {
-        switch ($actionName) {
-            case 'insert':
-                $controller = new $controllerName();
-                echo $controller->newSolicitation($_POST['nome']);
-                break;
-            case 'findUnit':
-                //fazer alog
-                break;
-            case 'update':
-                //fazer algo
-                break;
-            case 'delete':
-                //fazer algo
-                break;
+    $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+    if ($contentType === "application/json") {
+        //Receive the RAW post data.
+        $content = trim(file_get_contents("php://input"));
+        $formData = json_decode($content, true);
+
+        //If json_decode failed, the JSON is invalid.
+        if (!is_array($formData)) {
+            echo 0;
+        } else {
+            $actionName = $formData['action'];
+            switch ($actionName) {
+                case 'insert':
+                    $controller = new FormController();
+                    echo $controller->newSolicitation($formData);
+                    break;
+                case 'findUnit':
+                    //fazer alog
+                    break;
+                case 'update':
+                    //fazer algo
+                    break;
+                case 'delete':
+                    //fazer algo
+                    break;
+            }
         }
-    } else {
-        echo 0;
     }
 } else if ($requestMethod === "GET") {//será sempre de acesso do Admin
-    if ($actionName === "findAll") {
-        $controller = new $controllerName();//passando a model para controller
-        $response = json_encode($controller->getAllSolicitation());
-        echo $response;
-    }
+    $controller = new FormController();
+    echo json_encode($controller->getAllSolicitation());
 }
+

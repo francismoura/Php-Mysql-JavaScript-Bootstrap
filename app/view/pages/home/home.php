@@ -34,15 +34,24 @@ require_once('../app/view/pages/_includes/header.php');
 <div class="container justify-content-center" id="user_dialog" title="Add Data" style="width:400px; display: none">
     <form name="form_solicitation" id="form_solicitation" method="post" action="../config/fetch.php">
         <div class="form-group">
-            <label>Enter Name</label> nome
+            <label for="cod_cliente"></label>
+            <input type="text" class="form-control" id="cod_cliente" name="cod_cliente" placeholder="Código Identificador">
+            <span id="error_code" class="text-danger"></span>
+        </div>
+        <div class="form-group">
             <label for="nome"></label>
             <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome">
             <span id="error_name" class="text-danger"></span>
         </div>
         <div class="form-group">
+            <label for="servico"></label>
+            <textarea type="text" class="form-control" id="servico" name="servico"
+                      placeholder="Descrição do Serviço" rows="3"> </textarea>
+        </div>
+        <div class="form-group">
             <input type="hidden" name="action" id="action" value="insert"/>
-            <input type="hidden" name="hidden_id" id="hidden_id"/>
-            <input type="submit" name="form_action" id="form_action" class="btn btn-info" value="Send">
+<!--            <input type="hidden" name="hidden_id" id="hidden_id"/>-->
+            <input type="submit" name="form_action" id="form_action" class="btn btn-info" value="Enviar">
         </div>
     </form>
 </div>
