@@ -1,27 +1,43 @@
 body {
-    /*font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;*/
+    font-family: 'Varela Round', sans-serif; !important;
     font-style: normal;
     font-variant: normal;
     text-align: center;
     /*color: #cfcfcf;*/
     color: #566787;
-    background: #f5f5f5;
-    font-family: 'Varela Round', sans-serif;
+    background: #cfcfcf;
     font-size: 13px;
 }
+
+.container.position-absolute{
+    top: 5%;
+    left: 0;
+    right: 0;"
+}
+
+.navbar .container .itemNav{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .table-wrapper {
     background: #fff;
     padding: 20px 25px;
     margin: 30px 0;
-    border-radius: 3px;
-    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    border-radius: 5px;
+    box-shadow: 0 1px 1px rgba(0,0,0,.30);
 }
 .table-title {
-    background: #435d7d;
+    background: #007bff linear-gradient(to right, #435d7d , #33AEFF);
     color: #fff;
     padding: 16px 30px 15px 30px;
-    margin: -20px -25px 10px;
+    /*margin: -20px -25px 10px;*/
     border-radius: 3px 3px 0 0;
+}
+.table-title .consulta{
+    margin-top: 0;
+    margin-bottom: 0;
 }
 .table-title h2 {
     margin: 5px 0 0;
@@ -40,6 +56,7 @@ body {
     outline: none !important;
     margin-left: 10px;
 }
+
 .table-title .btn i {
     float: left;
     font-size: 21px;
@@ -137,12 +154,67 @@ table.table .avatar {
     margin-top: 10px;
     font-size: 13px;
 }
+.hint-logout {
+    margin-top: 10px;
+    font-size: 13px;
+}
+
+/* Custom checkbox */
+.custom-checkbox {
+    position: relative;
+}
+.custom-checkbox input[type="checkbox"] {
+    opacity: 0;
+    position: absolute;
+    margin: 5px 0 0 3px;
+    z-index: 9;
+}
+.custom-checkbox label:before{
+    width: 18px;
+    height: 18px;
+}
+.custom-checkbox label:before {
+    content: '';
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: text-top;
+    background: white;
+    border: 1px solid #bbb;
+    border-radius: 2px;
+    box-sizing: border-box;
+    z-index: 2;
+}
+.custom-checkbox input[type="checkbox"]:checked + label:after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 3px;
+    width: 6px;
+    height: 11px;
+    border: solid #000;
+    border-width: 0 3px 3px 0;
+    /*transform: inherit;*/
+    z-index: 3;
+    transform: rotateZ(45deg);
+}
+.custom-checkbox input[type="checkbox"]:checked + label:before {
+    border-color: #03A9F4;
+    background: #03A9F4;
+}
+.custom-checkbox input[type="checkbox"]:checked + label:after {
+    border-color: #fff;
+}
+.custom-checkbox input[type="checkbox"]:disabled + label:before {
+    color: #b8b8b8;
+    cursor: auto;
+    box-shadow: none;
+    background: #ddd;
+}
 
 /* Modal styles */
 .modal .modal-dialog {
     max-width: 700px;
 }
-
 .modal .modal-header, .modal .modal-body, .modal .modal-footer {
     padding: 20px 30px;
 }
@@ -170,4 +242,29 @@ table.table .avatar {
 }
 .modal form label {
     font-weight: normal;
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;  /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Support for IE. */
+    font-feature-settings: 'liga';
 }

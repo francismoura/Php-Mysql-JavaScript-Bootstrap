@@ -2,7 +2,6 @@
 
 interface DAO
 {
-
     public function Insert($data);
 
     public function FindUnit($id);

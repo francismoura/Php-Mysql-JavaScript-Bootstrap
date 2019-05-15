@@ -29,8 +29,7 @@ require_once('../app/controller/UserController.php');
 
 </div>
 
-<script src="../app/view/assets/js/form.js">
-
+<script src="../app/view/resources/js/form.js">
 
 </script>
 

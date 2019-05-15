@@ -1,27 +1,24 @@
 <?php
 
-require_once('../dao/BaseDao.php');
+require_once('../dao/AlunoDao.php');
 
-class User extends BaseDao
+class User extends AlunoDao
 {
 
-    private $atributos = [];
+    private $atributes = [];
 
     public function __construct()
     {
-
     }
 
-    public function __set($atributo, $valor)
+    public function __set($atribute, $value)
     {
-        $this->atributos[$atributo] = $valor;
-
-
+        $this->atributes[$atribute] = $value;
     }
 
-    public function __get($atributo)
+    public function __get($atribute)
     {
-        return $this->atributos[$atributo];
+        return $this->atributes[$atribute];
     }
 
     public function __isset($atributo)

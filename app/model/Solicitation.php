@@ -1,31 +1,62 @@
 <?php
 
-require_once('../dao/BaseDao.php');
+include_once('../dao/SolicitationDao.php');
 
-class Solicitation extends BaseDao
+class Solicitation extends SolicitationDao
 {
-    private $data_solicitation = [];
-
+    private $atributes = [];
 
     public function __construct()
     {
-
     }
 
-    public function __set($name, $value)
+    public function __set($atribute, $value)
     {
-        $this->data_solicitation[$name] = $value;
+        $this->atributes[$atribute] = $value;
     }
 
-    public function __get($name)
+    public function __get($atribute)
     {
-        // TODO: Implement __get() method.
+        return $this->atributes[$atribute];
+    }
+
+    public function getAtributes()
+    {
+        return $this->atributes;
+    }
+
+    public function __isset($atribute)
+    {
+        return isset($this->atributes[$atribute]);
     }
 
 
-    public function __isset($name)
+    public function getById($id)
     {
-        // TODO: Implement __isset() method.
+
+        return $this->FindUnit($id);
+    }
+
+    public function getAll()
+    {
+        return $this->FindAll();
+    }
+
+    public function post($data)
+    {
+        return $this->Insert($data);
+    }
+
+    public function edit($id)
+    {
+
+//        return $stm->execute();
+    }
+
+    public function delete($id)
+    {
+
+//        return $stm->execute();
     }
 
 

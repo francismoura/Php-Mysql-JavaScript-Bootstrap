@@ -5,7 +5,7 @@ require_once('../dao/BaseDao.php');
 class Form extends BaseDao
 {
 
-    public $cod_usuario;
+    private $cod_usuario;
     public $id_solicitacao;
 
     public function __construct()

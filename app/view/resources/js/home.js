@@ -1,11 +1,15 @@
 (function () {
 
-    const form = document.getElementById('form_solicitation').addEventListener('submit', addSolicitation);
+    const form = document.getElementById('form_solicitation')
+        .addEventListener('submit', addSolicitation);
     const user_dialog = document.getElementById('user_dialog');
     const btn_add = document.getElementById('add');
     const btn_submit = document.getElementById('form_action');
-    const URL = `../config/fetch.php`;
     const fieldName = document.getElementById('nome');
+    const fieldCodClient = document.getElementById('cod_cliente');
+    const fieldService = document.getElementById('servico');
+
+    const URL = `../config/fetch.php`;
 
     document.getElementById('loginAccess')
         .addEventListener("click", function (event) {
@@ -20,26 +24,53 @@
     });
 
     //recupera os dados enviados através do formulário e envia para controller
-    function addSolicitation(event) {
+    async function addSolicitation(event) {
         event.preventDefault();
         const formData = new FormData(this);
-        // validateFormData(formData); //validação em javaScript
-
-        fetch(URL + `?controller=UserController&action=insert`,
+        const data = formatFormData(formData);
+        const response = await fetch(URL,
             {
                 method: 'POST',
-                body: formData
-            })
-            .then(response => {
-                if (response.status === 200) {
-                    outputForm(response.text());
-                } else if (response.status === 403)
-                    console.log('Access denied');
-                else if (response.status === 404)
-                    console.log('Page not found');
-                else if (response.status === 503)
-                    console.log('Be right back');
-            }).catch(error => error.message);//receber validação da model!!!!!!!!!!!!
+                headers: {
+                    'Accept': 'application/json, text/plain, */*',
+                    'Content-Type': 'application/json'
+                },
+                body:JSON.stringify(data)
+            });
+
+        if (response.status === 200) {
+            // console.log(response.text());
+            await outputForm(response.text());
+        } else if (response.status === 403)
+            console.log('Access denied');
+        else if (response.status === 404)
+            console.log('Page not found');
+        else if (response.status === 503)
+            console.log('Be right back');
+    }
+
+    function formatFormData(formData) {
+        const data = {};
+        const dataClient = {};
+        const dataSolicitation = {};
+
+        formData.forEach((value, key) => {
+            if (key === 'servico') {
+                dataSolicitation[key] = value;
+            } else if (key === 'cod_cliente') {
+                dataClient[key] = value;
+                dataSolicitation[key] = value;
+            } else if (key === 'action'){
+                data[key] = value;
+            } else {
+                dataClient[key] = value
+            }
+        });
+
+        data['dataUser'] = dataClient;
+        data['dataSolicitation'] = dataSolicitation;
+
+        return data;
     }
 
     //modifica o estado do display
@@ -85,10 +116,11 @@
         }
 
         document.getElementById('outputCheck').innerHTML = output;
+        fieldCodClient.value = "";
         fieldName.value = "";
+        fieldService.value = "";
         changeState(btn_submit);
         changeState(user_dialog);
         changeState(btn_add);
-
     }
 })(document);

@@ -1,12 +1,12 @@
 <?php
 
-require_once('../database/Connection.php');
-require_once ('DAO.php');
+require_once'../database/Connection.php';
+require_once '../app/model/Solicitation.php';
+require_once 'DAO.php';
 
-abstract class BaseDao implements DAO
+abstract class SolicitationDao implements DAO
 {
-
-    protected $tableDB = 'Usuario';
+    protected $tableDB = 'SolicitacaoAluno';
 
     abstract public function __construct();
 
@@ -34,12 +34,14 @@ abstract class BaseDao implements DAO
         return $result;
     }
 
-    public function Insert($nome)
+    public function Insert($data)
     {
-        $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_STRING);
-        $sql = "INSERT INTO $this->tableDB (nome) VALUES (:nome)";
+//        $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_STRING);
+        $sql = "INSERT INTO $this->tableDB (cod_aluno, servico) VALUES (:cod_aluno, :servico)";
         $stm = $this->dbPrepare($sql);
-        $stm->bindValue(':nome', $nome);
+        $stm->bindParam(':cod_aluno', $data['cod_cliente'], PDO::PARAM_INT);
+        $stm->bindParam(':servico', $data['servico']);
+
         return $stm->execute();
     }
 

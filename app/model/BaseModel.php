@@ -9,7 +9,6 @@ class BaseModel extends BaseDao
 
     public function __construct()
     {
-
     }
 
     public function __set($atributo, $valor)

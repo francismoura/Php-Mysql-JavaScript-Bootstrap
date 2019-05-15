@@ -20,10 +20,9 @@
     <meta name="theme-color" content="#ffffff">
 
 
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="../app/view/assets/css/style.css" rel="stylesheet" type="text/css"/>
-    <link href="../app/view/assets/css/normalize.css" rel="stylesheet" type="text/css"/>
+    <link href="../app/view/resources/css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="../app/view/resources/css/normalize.css" rel="stylesheet" type="text/css"/>
     <link href="./css/bootstrap.css" rel="stylesheet" type="text/css"/>
-    <script src="./js/jquery-3.3.1.min.js" type="text/javascript"></script>
+    <script src="./js/jquery-3.4.1.min.js" type="text/javascript"></script>
     <script src="./js/bootstrap.min.js" type="text/javascript" ></script>
 </head>

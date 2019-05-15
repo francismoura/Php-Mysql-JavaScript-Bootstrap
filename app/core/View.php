@@ -10,9 +10,8 @@ class View {
 
       if (Route::isRouteValid()) {
           // criar as views e os controllers
-
           $dirs = array(
-              '../app/view/pages/',
+              '../app/view/pages/'. $viewName . '/',
               '../app/view/pages/admin/',
               '../app/view/errors/',
               '../app/controller/'
@@ -24,8 +23,11 @@ class View {
                   break;
               }
           }
+
           return 1;
       }
+
       return 0;
   }
+
 }
