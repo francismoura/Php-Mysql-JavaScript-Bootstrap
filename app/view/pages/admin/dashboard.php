@@ -1,21 +1,20 @@
 <?php
+require_once '../config/function.php';
 
-require_once ('../config/function.php');
+getHeaderAdmin();//cabeçaho do <html>
 
-getHeaderAdmin();//inclui a header do admin
+getNavbar();//<body>
 
-getNavbar();//inclui o menu de navegação do admin e inicia o corpo(<body>) do html
-
-getRequestManagerTable();//inclui a tabela para gerenciar as solicitações
+getRequestManagerTable();
 
 /* Modais para CRUD*/
-    getAddModal();
+getAddModal();
 
-    getEditModal();
+getEditModal();
 
-    getDeleteModal();
+getDeleteModal();
 
-    getShowModal();
+getShowModal();
 /*Fim Modal */
 
 getFooterAdmin();//importa o javascript e finaliza html (</body> </html>)

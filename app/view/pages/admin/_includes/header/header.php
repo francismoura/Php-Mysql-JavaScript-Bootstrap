@@ -1,4 +1,4 @@
-<!--Header do Admin -->
+<!--Head do Admin -->
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -16,16 +16,23 @@
     <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="./img/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon-16x16.png">
-    <link rel= "icon" media="all" type="image/vnd.microsoft.icon" href="/img/favicon.ico"/>
+    <link rel= "icon" media="all" type="image/vnd.microsoft.icon" href="./img/favicon.ico"/>
     <link rel="mask-icon" href="./img/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 
     <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="../app/view/resources/css/dashboard.css" rel="stylesheet" type="text/css"/>
-    <link href="../app/view/resources/css/normalize.css" rel="stylesheet" type="text/css"/>
     <link href="./css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <link href="../app/view/resources/css/normalize.css" rel="stylesheet" type="text/css"/>
+    <link href="../app/view/resources/css/styleDashboard.css" rel="stylesheet" type="text/css"/>
+    <link href="../app/view/resources/css/styleModal.css" rel="stylesheet" type="text/css"/>
     <script src="./js/jquery-3.4.1.min.js" type="text/javascript"></script>
     <script src="./js/bootstrap.min.js" type="text/javascript" ></script>
+    <style type="text/css">
+        body {
+            font-family: 'Varela Round', sans-serif;
+            background: #f5f5f5;
+        }
+    </style>
 </head>

@@ -3,7 +3,7 @@
     document.getElementById('login')
         .addEventListener("click", function(event){
             event.preventDefault();
-            window.location = ("dashboard");
+            window.location = ("admin");
         });
 
     //fetch com estrutura php para login:

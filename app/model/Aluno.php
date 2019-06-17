@@ -31,27 +31,27 @@ class Aluno extends AlunoDao
 
     public function getById($id)
     {
-        return $this->FindUnit($id);
+        return $this->findUnit($id);
     }
 
     public function getAll()
     {
-        return $this->FindAll();
+        return $this->findAll();
     }
 
     public function post($dataAluno)
     {
-        return $this->Insert($dataAluno);
+        return $this->insert($dataAluno);
     }
 
     public function edit($id)
     {
-        return $this->Update($id);
+        return $this->update($id);
     }
 
     public function remove($id)
     {
-        return $this->Delete($id);
+        return $this->delete($id);
     }
 
 }

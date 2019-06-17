@@ -13,7 +13,7 @@ class View {
           $dirs = array(
               '../app/view/pages/'. $viewName . '/',
               '../app/view/pages/admin/',
-              '../app/view/errors/',
+              '../app/view/error/',
               '../app/controller/'
           );
 

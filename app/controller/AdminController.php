@@ -17,7 +17,7 @@ class AdminController extends Controller
     {
         $login = new Login();
         if ($login->isUserValid($admin)) {
-            //apos login deve abrir a view dashboard e carregar a table
+            //apos login deve abrir a view admin e carregar a table
             $this->dashboard();
             return true;
         } else {
@@ -27,10 +27,10 @@ class AdminController extends Controller
 
     public function dashboard()
     {
-        //após verificar os dados de login redirecionar para dashboard
+        //após verificar os dados de login redirecionar para admin
         //pedir para model todos os dados dos usuários fetchAll
 //        if ($userLogado === "root") {
-            View::build('dashboard');
+            View::build('admin');
 //        }
     }
 }

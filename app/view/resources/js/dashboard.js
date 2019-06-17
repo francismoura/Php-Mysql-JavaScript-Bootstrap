@@ -7,7 +7,7 @@
             window.location = "home";
         });
 
-        //incializa a tabela de solicitações do dashboard
+        //incializa a tabela de solicitações do admin
         loadTable()
             .then(table)
             .catch(error => {
@@ -22,7 +22,7 @@
                     return jsonData;
                 }
             } else {//ERRO 404, 500
-                throw 'Network response was not ok or syntax errors';
+                throw 'Network response was not ok or syntax error';
 
             }
         }
@@ -30,7 +30,7 @@
         function table(data) {
             let output =
                 `
-                    <table id = "user_data" class= "table responsive-table table-bordered table-striped">
+                    <table id = "user_data" class= "table responsive-table table-hover table-striped">
                         <thead>
                             <tr>
                                 <th>

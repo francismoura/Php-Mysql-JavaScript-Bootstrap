@@ -1,14 +1,9 @@
 <!--Tabela do painel do Admin-->
-<hr>
-<div class="container position-absolute">
-    <div class="table-wrapper">
-        <section class="content-area">
-            <div class="table-area">
-                <div id="div-table">
-                    <!--table(response fetch)-->
-                </div>
-            </div>
-        </section>
+
+<div class="container">
+    <div class="table-wrapper" id="div-table">
+
+            <!--table(response fetch)-->
 
         <div class="clearfix">
             <div class="hint-text">Exibindo <b>X</b> de <b>Y</b> resultados</div>
@@ -24,7 +19,7 @@
         </div>
     </div>
 </div>
-</div>
+
 
 
 

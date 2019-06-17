@@ -1,66 +1,91 @@
 (function () {
 
-    const form = document.getElementById('form_solicitation')
-        .addEventListener('submit', addSolicitation);
+    const form = document.getElementById('form_solicitation');
     const user_dialog = document.getElementById('user_dialog');
     const btn_add = document.getElementById('add');
     const btn_submit = document.getElementById('form_action');
+    const btn_login = document.getElementById('loginAccess');
     const fieldName = document.getElementById('nome');
     const fieldCodClient = document.getElementById('cod_cliente');
     const fieldService = document.getElementById('servico');
-
+    const mainHome = document.getElementById('header');
     const URL = `../config/fetch.php`;
+    let output = ``;
 
-    document.getElementById('loginAccess')
-        .addEventListener("click", function (event) {
-            event.preventDefault();
-            window.location = "login";
-        });
-
-    btn_add.addEventListener("click", function (event) {
+    /**
+     * Login de acesso ao painel do admin
+     */
+    btn_login.addEventListener("click", function (event) {
         event.preventDefault();
-        this.style.display = "none";
-        user_dialog.style.display = "block";
+        window.location = "dashboard";
     });
 
-    //recupera os dados enviados através do formulário e envia para controller
-    async function addSolicitation(event) {
+    /**
+     * Aciona formulário e recolhe o atributo <header> da home.php
+     */
+    btn_add.addEventListener("click", function (event) {
         event.preventDefault();
-        const formData = new FormData(this);
-        const data = formatFormData(formData);
-        const response = await fetch(URL,
-            {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json, text/plain, */*',
-                    'Content-Type': 'application/json'
-                },
-                body:JSON.stringify(data)
-            });
+        setDisplayValue(mainHome);
+        setDisplayValue(user_dialog);
+        // const teste = mainHome.nextElementSibling.toggleAttribute('centralized');
+        // const div = mainHome.id;
+        // console.log(div);
+        // // console.log(teste);
+        // const hide = ($('.mainHome').hide());
+        // hide.next().toggle('slow, 1000');
+    });
 
-        if (response.status === 200) {
-            // console.log(response.text());
-            await outputForm(response.text());
-        } else if (response.status === 403)
-            console.log('Access denied');
-        else if (response.status === 404)
-            console.log('Page not found');
-        else if (response.status === 503)
-            console.log('Be right back');
-    }
+    /**
+     * Executa método post com os dados da solicitação de serviço
+     */
+    form.addEventListener('submit', function () {
+        (async () => {
+            event.preventDefault();
+            const formData = new FormData(this);//armazena todos os dados do form num objeto tipo FormData
+            const data = formatFormData(formData);
+            const response = await fetch(URL,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json, text/plain, */*',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
 
+            if (response.status === 200) {
+                const content = response.text();
+                await outputForm(content);
+            } else if (response.status === 403)
+                console.log('Access denied');
+            else if (response.status === 404)
+                console.log('Page not found');
+            else if (response.status === 503)
+                console.log('Be right back');
+        })();
+    });
+
+    /**
+     *Formatar o objeto FormData() em um objeto javascript válido.
+     *Subdivide os dados submtidos através do formulário em:
+     *(1)atributos  referentes ao cliente que está solicitando suporte
+     *(2)atributos sobre a solicitação de serviço em si
+     *(3)atributo que informa a ação para model
+     *Parameters: FormData com os dados enviados pelo cliente
+     *Return: Objeto com os dados formatados
+    */
     function formatFormData(formData) {
-        const data = {};
-        const dataClient = {};
-        const dataSolicitation = {};
+        const dataSolicitation = {};//inicializa dados da solicitação
+        const dataClient = {};//inicializa dados dos usuários
+        const data = {};//inicializa objeto que vai receber os dados formatados (dataSolicitation + dataClient)
 
         formData.forEach((value, key) => {
             if (key === 'servico') {
                 dataSolicitation[key] = value;
             } else if (key === 'cod_cliente') {
-                dataClient[key] = value;
+                dataClient['cod_aluno'] = value;
                 dataSolicitation[key] = value;
-            } else if (key === 'action'){
+            } else if (key === 'action') {
                 data[key] = value;
             } else {
                 dataClient[key] = value
@@ -73,9 +98,11 @@
         return data;
     }
 
-    //modifica o estado do display
-    function changeState(div) {
-        let disp = div.style.display;
+    /**
+     * Faz modificação do valor do atributo display de qualquer div
+     */
+    function setDisplayValue(div) {
+        const disp = div.style.display;
         div.style.display = disp === 'none' ? 'block' : 'none';
     }
 
@@ -87,31 +114,32 @@
         // }
     }
 
-    //confirma se os dados foram inseridos
+    /**
+     * Verifica se a solicitação post foi atendida e retorna um html como string
+     */
     function outputForm(content) {
-        let output;
-
+        output = ``;
         if (content) {
-            output =
+            output +=
                 `
-                        <div class="alert alert-success alert-dismissible" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            <strong>OK!</strong> 
-                            Incluido com sucesso!!!
-                        </div>
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <strong>OK!</strong> 
+                        Incluido com sucesso!!!
+                    </div>
                 `;
         } else {
-            output =
+            output +=
                 `
-                        <div class="alert alert-success alert-dismissible" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            <strong>OK!</strong> 
-                            Erro ao incluir dados!!!
-                        </div>
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <strong>OK!</strong> 
+                        Erro ao incluir dados!!!
+                    </div>
                  `;
         }
 
@@ -119,8 +147,8 @@
         fieldCodClient.value = "";
         fieldName.value = "";
         fieldService.value = "";
-        changeState(btn_submit);
-        changeState(user_dialog);
-        changeState(btn_add);
+        setDisplayValue(btn_submit);
+        setDisplayValue(user_dialog);
+        setDisplayValue(btn_add);
     }
 })(document);

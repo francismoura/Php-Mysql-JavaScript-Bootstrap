@@ -4,7 +4,7 @@
         <div class="modal-content">
             <form>
                 <div class="modal-header">
-                    <h4 class="modal-title">Add Employee</h4>
+                    <h4 class="modal-title">Adicionar Serviço</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 </div>
                 <div class="modal-body">
@@ -15,7 +15,6 @@
                         </label>
                     </div>
                     <div class="form-group">
-                        <label>Email</label>
                         <label>
                             Email
                             <input type="email" class="form-control" required="">
@@ -35,8 +34,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                    <input type="submit" class="btn btn-success" value="Add">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                    <input type="submit" class="btn btn-success" value="Enviar">
                 </div>
             </form>
         </div>
