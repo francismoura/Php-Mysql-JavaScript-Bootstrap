@@ -39,9 +39,9 @@ class Aluno extends AlunoDao
         return $this->findAll();
     }
 
-    public function post($dataAluno)
+    public function post()
     {
-        return $this->insert($dataAluno);
+        return $this->insert($this->getAtributes());
     }
 
     public function edit($id)

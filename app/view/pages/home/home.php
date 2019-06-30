@@ -1,5 +1,5 @@
 <?php
-require_once '../app/view/pages/_includes/header.php';
+require_once '../app/view/pages/home/_includes/header.php';
 ?>
 
     <body>
@@ -37,64 +37,124 @@ require_once '../app/view/pages/_includes/header.php';
                         </p>
                     </div>
                     <div class="col-sm-4 content-center">
-                        <span>
-                            <a href="#addModal" class="btn btn-outline-light btn-lg" id="add" name="Add"
-                               data-toggle="modal">
-                                <span>
-                                    Solicitar Serviço
-                                </span>
-                            </a>
-                        </span>
+                        <button class="btn btn-outline-light btn-lg" id="add" name="Add"
+                                data-toggle="modal" data-target="#addModal">
+                            <span>
+                                Solicitar Serviço
+                            </span>
+                        </button>
                     </div>
                 </div>
             </div>
         </header><!-- /header -->
     </div>
 
-    <div class="container div-form" id="user_dialog" style="display: none;">
-        <div>
-            <h3>Formulário de solicitação de serviços</h3>
-            <p>*Todos os campos devem ser preenchidos</p>
 
-            <form name="form_solicitation" id="form_solicitation" method="post" action="">
-                <div class="form-group">
-                    <label for="cod_cliente">Código Identificador</label>
-                    <input type="text" class="form-control" id="cod_cliente" name="cod_cliente"
-                           placeholder="Ex: 123456">
-                    <span id="error_code" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label for="nome">Nome completo</label>
-                    <input type="text" class="form-control" id="nome" name="nome"
-                           placeholder="Ex: João Antônio da Silva">
-                    <span id="error_name" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label for="servico">Serviço</label>
-                    <textarea type="text" class="form-control" id="servico" name="servico" rows="3"
-                              placeholder="Cadastro de email, bugs, cabeamentos, formatação, etc">
-                    </textarea>
-                </div>
-                <div class="form-group">
-                    <input type="hidden" name="action" id="action" value="insert"/>
-                    <!--            <input type="hidden" name="hidden_id" id="hidden_id"/>-->
-                    <input class="btn btn-outline-info" role="button" type="submit" id="form_action"
-                           name="form_action"
-                           value="Enviar">
-                    <a href="#" class="btn btn-outline-secondary" role="button" aria-disabled="true">Limpar</a>
-                    <a href="" class="btn btn-outline-dark" role="button" aria-disabled="true">Cancel</a>
-                </div>
-            </form>
+    <div class="row justify-content-center" id="outputCheck" type="hidden">
+        <!--Fetch API => return html-->
+    </div>
+
+    <!--Add Modal-->
+    <div id="addModal" class="modal fade" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document" id="modal-dialog" style="display: block">
+            <div class="modal-content" id="modal-content" style="display: block">
+                <form name="form-solicitation" id="form-solicitation" method="post">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-title">Adicionar Serviço</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+                    <div class="modal-body" id="modal-body-solicitation">
+                        <div class="form-group">
+                            <label for="cod_cliente">
+                                Código Identificador
+                                <input type="text" class="form-control" id="cod_cliente" name="cod_cliente" required="">
+                            </label>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nome">
+                                Nome completo
+                                <input type="text" class="form-control" id="nome" name="nome" required="">
+                            </label>
+                        </div>
+                        <!--                        <div class="form-group">-->
+                        <!--                            <label for="email">-->
+                        <!--                                Email-->
+                        <!--                                <input type="email" class="form-control" required="">-->
+                        <!--                            </label>-->
+                        <!--                        </div>-->
+                        <div class="form-group">
+                            <label for="servico">
+                                Serviço
+                                <textarea class="form-control" id="servico" name="servico" rows="3"
+                                          required=""></textarea>
+                            </label>
+                        </div>
+                        <!--                        <div class="form-group">-->
+                        <!--                            <label>-->
+                        <!--                                Phone-->
+                        <!--                                <input type="text" class="form-control" required="">-->
+                        <!--                            </label>-->
+                        <!--                        </div>-->
+                    </div>
+                    <div class="modal-footer">
+                        <div class="form-group">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                            <input type="hidden" name="action" id="action" value="insert"/>
+                            <!--            <input type="hidden" name="hidden_id" id="hidden_id"/>-->
+                            <input type="submit" class="btn btn-outline-info" name="form_action" id="input_action"
+                                   value="Enviar">
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
-    <div class="justify-content-center" id="outputCheck" type="hidden">
-        <!--Fetch API => return html-->
-        <!--Isso precisa ser um modal de confirmação-->
+    <!--Edit Modal-->
+    <div id="editModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form>
+                    <div class="modal-header">
+                        <h4 class="modal-title">Edit Employee</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>
+                                Name
+                                <input type="text" class="form-control" required="">
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                Email
+                                <input type="email" class="form-control" required="">
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                Address
+                                <textarea class="form-control" required=""></textarea>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                Phone
+                                <input type="text" class="form-control" required="">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                        <input type="submit" class="btn btn-info" value="Save">
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 
-    <script src="../app/view/resources/js/home.js"></script>
-
 <?php
-require_once('../app/view/pages/_includes/footer.php');
+require_once('../app/view/pages/home/_includes/footer.php');
 ?>

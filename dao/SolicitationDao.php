@@ -1,6 +1,6 @@
 <?php
 
-require_once'../database/Connection.php';
+require_once '../database/Connection.php';
 require_once '../app/model/Solicitation.php';
 require_once 'DAO.php';
 
@@ -41,9 +41,13 @@ abstract class SolicitationDao implements DAO
         $sql = "INSERT INTO $this->tableDB (cod_aluno, servico) VALUES (:cod_aluno, :servico)";
         $stm = $this->dbPrepare($sql);
 
-        foreach ($data as $key => &$value){
-            $stm->bindParam($key, $value);
-        }
+
+        $stm->bindParam(':cod_aluno', $data['cod_cliente'], PDO::PARAM_INT);
+        $stm->bindParam(':servico', $data['servico']);
+
+//        foreach ($data as $key => &$value) {
+//            $stm->bindParam($key, $value);
+//        }
 
         return $stm->execute();
     }

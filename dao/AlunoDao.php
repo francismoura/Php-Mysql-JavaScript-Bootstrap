@@ -15,7 +15,7 @@ abstract class AlunoDao implements DAO
         return Connection::prepare($sql);
     }
 
-     public function findUnit($id)
+    public function findUnit($id)
     {
         $sql = "SELECT * FROM " . $this->tableDB . " WHERE id = :id";
         $stm = $this->dbPrepare($sql);
@@ -34,17 +34,13 @@ abstract class AlunoDao implements DAO
         return $result;
     }
 
-    public function insert($data)
+    public function insert($user)
     {
         $sql = "INSERT INTO $this->tableDB (cod_aluno, nome) VALUES (:cod_aluno, :nome)";
         $stm = $this->dbPrepare($sql);
 
-
-//        $stm->bindParam(':cod_aluno', $userData['cod_cliente'], PDO::PARAM_INT);
-//        $stm->bindParam(':nome', $userData['nome']);
-//
-        foreach ($data as $key => &$value){
-            $stm->bindParam($key, $value);
+        foreach ($user as $data => &$value) {
+            $stm->bindParam($data, $value);
         }
 
         return $stm->execute();

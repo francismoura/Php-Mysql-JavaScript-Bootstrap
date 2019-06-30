@@ -1,9 +1,12 @@
 (function () {
 
-    const form = document.getElementById('form_solicitation');
-    const user_dialog = document.getElementById('user_dialog');
+    const form = document.getElementById('form-solicitation');
+    const modalContent = document.getElementById('modal-content');
+    const modalDialog = document.getElementById('modal-dialog');
+    const modalTitle = document.getElementById('modal-title');
+    const addModal = document.getElementById('addModal');
     const btn_add = document.getElementById('add');
-    const btn_submit = document.getElementById('form_action');
+    const btn_submit = document.getElementById('input_action');
     const btn_login = document.getElementById('loginAccess');
     const fieldName = document.getElementById('nome');
     const fieldCodClient = document.getElementById('cod_cliente');
@@ -11,69 +14,76 @@
     const mainHome = document.getElementById('header');
     const URL = `../config/fetch.php`;
     let output = ``;
+    let table = ``;
 
-    /**
-     * Login de acesso ao painel do admin
-     */
+    // acesso ao painel do admin
     btn_login.addEventListener("click", function (event) {
         event.preventDefault();
         window.location = "dashboard";
     });
 
-    /**
-     * Aciona formulário e recolhe o atributo <header> da home.php
-     */
-    btn_add.addEventListener("click", function (event) {
+    //Executa método post com os dados da solicitação de serviço
+    form.addEventListener('submit', function (event) {
         event.preventDefault();
-        setDisplayValue(mainHome);
-        setDisplayValue(user_dialog);
-        // const teste = mainHome.nextElementSibling.toggleAttribute('centralized');
-        // const div = mainHome.id;
-        // console.log(div);
-        // // console.log(teste);
-        // const hide = ($('.mainHome').hide());
-        // hide.next().toggle('slow, 1000');
+        submit(this)
+            .then(data => {
+                document.getElementById('confirmation')
+                    .addEventListener('click', function () {
+                        fetch(URL,
+                            {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/x-www-form-urlencoded'
+                                },
+                                body: 'json=' + JSON.stringify(data)
+                            })
+                            .then(response => {
+                                if (response.status === 200) {
+                                    $('#addModal').modal('hide');
+                                    const element = document.getElementById('modal-dialog-teste');
+                                    addModal.removeChild(element);
+                                    setDisplayValue(modalDialog);
+                                    form.reset();
+                                    outputForm(response.text());
+                                } else if (response.status === 403)
+                                    console.log('Access denied');
+                                else if (response.status === 404)
+                                    console.log('Page not found');
+                                else if (response.status === 503)
+                                    console.log('Be right back');
+                            });
+
+                    });
+
+                document.getElementById('toBack')
+                    .addEventListener('click', function () {
+                        const element = document.getElementById('modal-dialog-teste');
+                        addModal.removeChild(element);
+                        setDisplayValue(modalDialog);
+                    })
+            }).catch(error => console.error(error));
     });
 
-    /**
-     * Executa método post com os dados da solicitação de serviço
-     */
-    form.addEventListener('submit', function () {
-        (async () => {
-            event.preventDefault();
-            const formData = new FormData(this);//armazena todos os dados do form num objeto tipo FormData
-            const data = formatFormData(formData);
-            const response = await fetch(URL,
-                {
-                    method: 'POST',
-                    headers: {
-                        'Accept': 'application/json, text/plain, */*',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(data)
-                });
+    async function submit(context) {
+        const formData = new FormData(context);
+        const data = formatFormData(formData);
+        changeContentModal(data);
+        const modalTeste = document.getElementById('modal-dialog-teste');
+        setDisplayValue(modalDialog);
+        setDisplayValue(modalTeste);
 
-            if (response.status === 200) {
-                const content = response.text();
-                await outputForm(content);
-            } else if (response.status === 403)
-                console.log('Access denied');
-            else if (response.status === 404)
-                console.log('Page not found');
-            else if (response.status === 503)
-                console.log('Be right back');
-        })();
-    });
+        return data;
+    }
 
     /**
      *Formatar o objeto FormData() em um objeto javascript válido.
-     *Subdivide os dados submtidos através do formulário em:
+     *O Objeto deve conter os seguintes atributos a serem enviados pelo formulário:
      *(1)atributos  referentes ao cliente que está solicitando suporte
      *(2)atributos sobre a solicitação de serviço em si
      *(3)atributo que informa a ação para model
      *Parameters: FormData com os dados enviados pelo cliente
      *Return: Objeto com os dados formatados
-    */
+     */
     function formatFormData(formData) {
         const dataSolicitation = {};//inicializa dados da solicitação
         const dataClient = {};//inicializa dados dos usuários
@@ -117,38 +127,80 @@
     /**
      * Verifica se a solicitação post foi atendida e retorna um html como string
      */
+    function changeContentModal(data) {
+        table =
+            `<div class="modal-dialog" role="document" id="modal-dialog-teste" style="display: none">
+                <div class="modal-content" id="form-solicitation">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-title">Confirmar Dados</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+                    <div class="modal-body" id="modal-body-solicitation">
+                        <table id="user_data" class="table responsive-table table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <span class="custom-checkbox">
+                                        <input type="checkbox" id="selectAll">
+                                            <label for="selectAll"/>
+                                        </span>
+                                    </th>
+                                    <th> Código </th>
+                                    <th> Nome </th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="position-relative">
+                                    <td>
+                                        <a class="icone" href="#">
+                                            <span class="glyphicon glyphicon-open" aria-hidden="true"/>
+                                            <u>` + data.dataUser.cod_client + `</u>
+                                        </a>
+                                    </td>
+                                    <td>` + data.dataUser.nome + `</td>
+                                    <td>` + data.dataSolicitation.servico + `</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-warning"  id="toBack" value="Voltar">
+                        <input type="click" class="btn btn-outline-info" name="save" id="confirmation" value="Confirmar">
+                    </div>
+                </div>
+            </div>`;
+
+        addModal.children[0].insertAdjacentHTML('afterend', table);
+    }
+
     function outputForm(content) {
-        output = ``;
         if (content) {
             output +=
                 `
-                    <div class="alert alert-success alert-dismissible" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <strong>OK!</strong> 
-                        Incluido com sucesso!!!
-                    </div>
-                `;
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <strong>OK!</strong>
+                Incluido com sucesso!!!
+            </div>
+        `;
         } else {
             output +=
                 `
-                    <div class="alert alert-success alert-dismissible" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <strong>OK!</strong> 
-                        Erro ao incluir dados!!!
-                    </div>
-                 `;
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <strong>OK!</strong>
+                Erro ao incluir dados!!!
+            </div>
+         `;
         }
 
         document.getElementById('outputCheck').innerHTML = output;
-        fieldCodClient.value = "";
-        fieldName.value = "";
-        fieldService.value = "";
-        setDisplayValue(btn_submit);
-        setDisplayValue(user_dialog);
-        setDisplayValue(btn_add);
+
     }
+
 })(document);

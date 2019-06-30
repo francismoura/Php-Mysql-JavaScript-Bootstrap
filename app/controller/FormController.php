@@ -37,7 +37,7 @@ class FormController extends Controller
             $solicitationData->$key = $value;
         }
 
-        return ($this->userData->post($userData->getAtributes())
+        return ($this->userData->post()
             && $this->solicitationData->post($solicitationData->getAtributes()));
     }
 
