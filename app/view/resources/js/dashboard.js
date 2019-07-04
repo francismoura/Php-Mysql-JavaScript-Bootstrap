@@ -1,27 +1,5 @@
 (function () {
 
-        // Activate tooltip
-        $('[data-toggle="tooltip"]').tooltip();
-
-        // Select/Deselect checkboxes
-        const checkbox = $('table tbody input[type="checkbox"]');
-        $("#selectAll").click(function () {
-            if (this.checked) {
-                checkbox.each(function () {
-                    this.checked = true;
-                });
-            } else {
-                checkbox.each(function () {
-                    this.checked = false;
-                });
-            }
-        });
-        checkbox.click(function () {
-            if (!this.checked) {
-                $("#selectAll").prop("checked", false);
-            }
-        });
-
         const URL = `../config/fetch.php`;
 
         document.getElementById('logout').addEventListener('click', function () {
@@ -29,10 +7,9 @@
             window.location = "home";
         });
 
-
         //incializa a tabela de solicitações do admin
         loadTable()
-            .then(table)
+            .then(outputTable)
             .catch(error => {
                 console.log('There has been a problem with your fetch operation: ' + error.message)
             });
@@ -50,7 +27,7 @@
             }
         }
 
-        function table(data) {
+        function outputTable(data) {
             let output =
                 `
                     <table id = "user_data" class= "table responsive-table table-hover table-striped">
@@ -88,7 +65,7 @@
                                         <u>` + data.id + `</u>
                                     </a>                                    
                                 </td>
-                                <td> ` + data.nome + ` </td>
+                                <td> ` + data.name + ` </td>
                                 <td>
                                     <a href="#editModal" class="edit" data-toggle="modal">
                                          <i class="material-icons" data-toggle="tooltip" title="" 

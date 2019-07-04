@@ -15,7 +15,7 @@ require_once '../app/view/pages/home/_includes/header.php';
                 </a>
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="hint-log" href="" id="loginAccess" style="color: white">
+                        <a class="hint-log" href="" id="login-access" style="color: white">
                             Sign in
                         </a>
                     </li>
@@ -37,11 +37,9 @@ require_once '../app/view/pages/home/_includes/header.php';
                         </p>
                     </div>
                     <div class="col-sm-4 content-center">
-                        <button class="btn btn-outline-light btn-lg" id="add" name="Add"
-                                data-toggle="modal" data-target="#addModal">
-                            <span>
-                                Solicitar Serviço
-                            </span>
+                        <button class="btn btn-outline-light btn-lg" id="btn-add-solicitation" name="Add"
+                                data-toggle="modal" data-target="#add-modal">
+                            Solicitar Serviço
                         </button>
                     </div>
                 </div>
@@ -55,13 +53,15 @@ require_once '../app/view/pages/home/_includes/header.php';
     </div>
 
     <!--Add Modal-->
-    <div id="addModal" class="modal fade" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" role="document" id="modal-dialog" style="display: block">
-            <div class="modal-content" id="modal-content" style="display: block">
-                <form name="form-solicitation" id="form-solicitation" method="post">
+    <div id="add-modal" class="modal fade" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document" id="modal-dialog-submit" style="display: block">
+            <div class="modal-content">
+                <form name="form-solicitation" id="form" method="post">
                     <div class="modal-header">
                         <h4 class="modal-title" id="modal-title">Adicionar Serviço</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <button type="button" class="close" id="btn-close-modal" data-dismiss="modal" aria-hidden="true">
+                            ×
+                        </button>
                     </div>
                     <div class="modal-body" id="modal-body-solicitation">
                         <div class="form-group">
@@ -97,58 +97,16 @@ require_once '../app/view/pages/home/_includes/header.php';
                         <!--                            </label>-->
                         <!--                        </div>-->
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer" id="modal-footer">
                         <div class="form-group">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-                            <input type="hidden" name="action" id="action" value="insert"/>
-                            <!--            <input type="hidden" name="hidden_id" id="hidden_id"/>-->
-                            <input type="submit" class="btn btn-outline-info" name="form_action" id="input_action"
-                                   value="Enviar">
+                            <input type="hidden" name="action" id="action" value="insert">
+                            <button type="button" class="btn btn-default" id="btn-cancel" data-dismiss="modal">
+                                Cancelar
+                            </button>
+                            <button type="submit" class="btn btn-outline-info" name="form_action" id="btn-submit">
+                                Próximo
+                            </button>
                         </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!--Edit Modal-->
-    <div id="editModal" class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <form>
-                    <div class="modal-header">
-                        <h4 class="modal-title">Edit Employee</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label>
-                                Name
-                                <input type="text" class="form-control" required="">
-                            </label>
-                        </div>
-                        <div class="form-group">
-                            <label>
-                                Email
-                                <input type="email" class="form-control" required="">
-                            </label>
-                        </div>
-                        <div class="form-group">
-                            <label>
-                                Address
-                                <textarea class="form-control" required=""></textarea>
-                            </label>
-                        </div>
-                        <div class="form-group">
-                            <label>
-                                Phone
-                                <input type="text" class="form-control" required="">
-                            </label>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                        <input type="submit" class="btn btn-info" value="Save">
                     </div>
                 </form>
             </div>

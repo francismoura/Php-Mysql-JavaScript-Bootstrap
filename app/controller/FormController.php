@@ -24,7 +24,7 @@ class FormController extends Controller
         return $this->solicitationData->findAll();
     }
 
-    public function newSolicitation($data)
+    public function newSolicitation(array $data)
     {
         $userData = $this->userData;
         $solicitationData = $this->solicitationData;
