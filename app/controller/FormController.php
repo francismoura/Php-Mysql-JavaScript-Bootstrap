@@ -6,7 +6,7 @@ require_once '../app/core/ModelFactory.php';
 class FormController extends Controller
 {
     private $userData;//Dados do usuário
-    private $solicitationData;//Dados referente a solicitação
+    private $solicitationData;
 
     public function __construct()
     {
@@ -29,17 +29,25 @@ class FormController extends Controller
         $userData = $this->userData;
         $solicitationData = $this->solicitationData;
 
-        foreach ($data['dataUser'] as $key => $value) {
-            $userData->$key = $value;
-        }
-
         foreach ($data['dataSolicitation'] as $key => $value) {
             $solicitationData->$key = $value;
+        }
+
+        foreach ($data['dataUser'] as $key => $value) {
+            $userData->$key = $value;
         }
 
         return ($this->userData->post()
             && $this->solicitationData->post($solicitationData->getAtributes()));
     }
+
+    /**
+     * @return Solicitation
+     */
+    public function getSolicitationData(): Solicitation
+    {
+        return $this->solicitationData;
+    }//Dados referente a solicitação
 
     /**
      * @return Aluno

@@ -4,7 +4,6 @@ require_once '../database/Connection.php';
 require_once '../app/model/Solicitation.php';
 require_once 'DAO.php';
 
-
 abstract class SolicitationDao implements DAO
 {
     protected $tableDB = 'SolicitacaoAluno';
@@ -40,7 +39,6 @@ abstract class SolicitationDao implements DAO
 //        $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_STRING);
         $sql = "INSERT INTO $this->tableDB (cod_aluno, servico) VALUES (:cod_aluno, :servico)";
         $stm = $this->dbPrepare($sql);
-
 
         $stm->bindParam(':cod_aluno', $data['cod_cliente'], PDO::PARAM_INT);
         $stm->bindParam(':servico', $data['servico']);

@@ -3,6 +3,17 @@
     max-width: 700px;
 }
 
+.modal-header{
+    background: #566787;
+
+}
+
+
+
+.modal-header, .modal-header button{
+    color: #F4F7F5;
+}
+
 .modal .modal-header, .modal .modal-body, .modal .modal-footer {
     padding: 20px 30px;
 }
