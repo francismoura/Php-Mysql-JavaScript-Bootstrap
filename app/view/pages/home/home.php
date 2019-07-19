@@ -57,7 +57,7 @@ require_once '../app/view/pages/home/_includes/header.php';
             <div class="modal-content">
                 <form name="form-solicitation" id="form" method="post">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="modal-title">Adicionar Serviço</h4>
+                        <h4 class="modal-title" id="modal-title">Etapa 1: (Definir Usuário)</h4>
                         <button type="button" class="close" id="btn-close-modal" data-dismiss="modal"
                                 aria-hidden="true">×
                         </button>
@@ -135,14 +135,30 @@ require_once '../app/view/pages/home/_includes/header.php';
                     </div>
 
                     <div class="modal-footer" id="modal-footer">
-                        <div class="form-group" id="group-step-control">
-                            <button type="button" class="btn btn-default" id="btn-cancel" name="cancel"
-                                    data-dismiss="modal">
-                                Cancelar
-                                <button type="button" class="btn btn-outline-info" id="btn-next" name="next">
-                                    Próximo
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <button type="button" class="btn btn-secondary" id="btn-cancel" name="cancel"
+                                            data-dismiss="modal">
+                                        Cancelar
+                                    </button>
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="button" class="btn btn-warning" id="btn-toBack"
+                                            value="Voltar" role="button" style="margin: 0">
+                                        Voltar
+                                    </button>
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="submit" class="btn btn-primary" name="submit"
+                                            id="btn-submit" value="Send" role="button">
+                                        Próximo
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
                 </form>
             </div>
         </div>

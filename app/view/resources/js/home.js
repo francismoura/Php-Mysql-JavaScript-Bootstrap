@@ -2,21 +2,22 @@
 
         const URL = `../config/fetch.php`;
         const form = document.getElementById('form');
-        const btn_next = document.getElementById('btn-next');
+        const btn_toBack = document.getElementById('btn-toBack');
         const btn_Login = document.getElementById('login-access');
         const btn_cancel = document.getElementById('btn-cancel');
         const btn_closeModal = document.getElementById('btn-close-modal');
         const btn_addSolicitation = document.getElementById('btn-add-solicitation');
-        const modalBody = document.getElementById('modal-body-solicitation');
         const modalFooter = document.getElementById('modal-footer');
         const modalTitle = document.getElementById('modal-title');
         const steps = document.getElementsByClassName('step');
         const footerStepControl = document.getElementById('group-step-control');
+
         // console.log(footerStepControl);
 
         let currentStep;
         let nextStep;
         let count = 0;
+        let footerStepSubmit;
 
         // acessar painel do admin
         btn_Login.addEventListener("click", function (event) {
@@ -30,16 +31,38 @@
         //se cancelar modal, resetar campos do form
         btn_cancel.addEventListener('click', reload);
 
+        btn_toBack.addEventListener('click', function (event) {
+            event.preventDefault();
+            restartForm(currentStep);//lastStep
+
+        });
+
         btn_addSolicitation.addEventListener('click', function (event) {
             event.preventDefault();
             updateStep();
+            changeDisplayValue([btn_toBack]);
         });
 
         //Executa método post com os dados da solicitação de serviço
-        btn_next.addEventListener('click', function () {
+        form.addEventListener('submit', function () {
+            event.preventDefault();
             nextDisplay(currentStep, nextStep);
-            if (count === steps.length - 1) {
-                submit(form);
+            switch (currentStep.id) {
+                case 'step1':
+                    changeDisplayValue([btn_toBack]);
+                    break;
+                case 'step2':
+                    modalTitle.innerText = 'Etapa 2:   (Informe seus dados pessoais)';
+                    changeDisplayValue([btn_toBack]);
+                    break;
+                case 'step3':
+                    modalTitle.innerText = 'Etapa 3:   (Faça seu pedido de suporte)';
+                    break;
+                case 'step4':
+                    submit(this)//recuperar dados enviados
+                        .then(checkSolicitation)//enviar ou cancelar?
+                        .catch(error => console.error(error));
+                    break;
             }
         });
 
@@ -62,7 +85,8 @@
             count = 0;
             updateStep();
             form.reset();
-            changeDisplayValue([currentStep, lastStep]);
+            changeDisplayValue([currentStep, lastStep, footerStepControl, footerStepSubmit]);
+            modalFooter.removeChild(footerStepSubmit);
         }
 
         //altera o valor do display de um ou mais elementos [div1, div2,...]
@@ -73,39 +97,37 @@
             });
         }
 
-        function submit(form) {
-            getFormData(form)//recuperar dados enviados
-                .then(changeModalDialog)//mudar dialogo do modal
-                .then(checkSolicitation)//enviar ou cancelar?
-                .catch(error => console.error(error));
-        }
-
-        async function getFormData(context) {
+        async function submit(context) {
             const formData = new FormData(context);
             //validar data neste porto  !!!!!!!!!!!! importante
             return formatFormData(formData);
         }
 
-        function changeModalDialog(data) {
-            currentStep.innerHTML = getDivStepConfirmation(data);
-            modalTitle.innerHTML = "Confirmar Dados";
-            modalFooter.insertAdjacentHTML('beforeend', getDivModalFooter());
-            return data;
-        }
+        // function changeModalDialog(data) {
+        //     currentStep.innerHTML = getDivStepConfirmation(data);//step4
+        //
+        //
+        //     if (!modalFooter.contains(footerStepSubmit)) {//não criar caso já exista
+        //         modalFooter.insertAdjacentHTML('beforeend', getDivFooterSubmit());
+        //         footerStepSubmit = document.getElementById('group-submit');
+        //     }
+        //
+        //     changeDisplayValue([footerStepControl, footerStepSubmit]);
+        //     return data;
+        // }
 
         function checkSolicitation(solicitation) {
-            const inputs = document.getElementsByClassName('btn');
-            for (const input of inputs) {
-                input.addEventListener('click', function (event) {
+            currentStep.innerHTML = getDivStepConfirmation(solicitation);//step4
+            modalTitle.innerHTML = "Confirmar Dados";
+            document.getElementById('btn-submit').innerText = 'Enviar';
+            for (const button of modalFooter.children) {
+                button.addEventListener('click', function (event) {
                         switch (event.target.id) {
                             case 'btn-submit':
                                 post(solicitation);
                                 break;
                             case 'btn-toBack':
                                 restartForm(currentStep);//lastStep
-                                break;
-                            case 'btn-close':
-                                reload();
                                 break;
                         }
                     }
@@ -184,13 +206,18 @@
             // }
         }
 
-        function getDivModalFooter() {
-            return `<div class="form-group" id="group-submit">
-                    <input type="hidden" name="action" id="action" value="insert">
-                    <input type="button" class="btn btn-warning"  id="btn-toBack" value="Voltar">
-                    <input type="submit" class="btn btn-outline-info" data-dismiss="modal" name="form_action" id="btn-submit"
-                        value="Enviar">
-                </div>`;
+        function getDivFooterSubmit() {
+            return `<div class="form-group" id="group-submit" style="display: none">
+
+                        <input type="hidden" name="action" id="action" value="insert">
+                        <button type="button" class="btn btn-warning"  id="btn-toBack" value="Voltar">
+                            Voltar
+                        </button>
+                        <button type="submit" class="btn btn-outline-info" data-dismiss="modal" name="submit" id="btn-submit"
+                            value="Enviar">
+                            Enviar
+                        </button>
+                    </div>`;
         }
 
         function getDivStepConfirmation(data) {
