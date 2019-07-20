@@ -68,8 +68,8 @@ require_once '../app/view/pages/home/_includes/header.php';
                             <div class="form-group">
                                 <label for="inputTypeUser">
                                     Estudante/Professor/Técnico
-                                    <select id="inputTypeUser" class="form-control" required="">
-                                        <option selected>Escolher...</option>
+                                    <select required id="inputTypeUser" class="form-control">
+                                        <option value="">Selecione...</option>
                                         <option>Estudante</option>
                                         <option>Professor</option>
                                         <option>Técnico</option>
@@ -79,8 +79,8 @@ require_once '../app/view/pages/home/_includes/header.php';
                             <div class="form-group">
                                 <label for="inputCodeUser">
                                     Código Identificador
-                                    <input type="text" class="form-control" id="inputCodeUser" name="inputCodeUser"
-                                           required="">
+                                    <input type="text" class="form-control" id="inputCodeUser"
+                                           required>
                                 </label>
                             </div>
                         </div>
@@ -89,33 +89,43 @@ require_once '../app/view/pages/home/_includes/header.php';
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="inputEmail">Email</label>
-                                    <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                                    <input type="email" class="form-control" id="inputEmail" placeholder="Email" required>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputName">Nome</label>
-                                    <input type="text" class="form-control" id="inputName" placeholder="Nome">
+                                    <input type="text" class="form-control" id="inputName" placeholder="Nome" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="inputAddress">Endereço</label>
                                 <input type="text" class="form-control" id="inputAddress"
-                                       placeholder="Rua dos Bobos, nº 0">
+                                       placeholder="Rua dos Bobos, nº 0" required>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="inputCity">Cidade</label>
-                                    <input type="text" class="form-control" id="inputCity">
+                                    <input type="text" class="form-control" id="inputCity" required>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="inputEstate">Estado</label>
-                                    <select id="inputEstate" class="form-control">
-                                        <option selected>Escolher...</option>
+                                    <select required id="inputEstate" class="form-control">
+                                        <option value="">Escolher...</option>
+                                        <option>...</option>
+                                        <option>...</option>
+                                        <option>...</option>
+                                        <option>...</option>
+                                        <option>...</option>
+                                        <option>...</option>
+                                        <option>...</option>
+                                        <option>...</option>
+                                        <option>...</option>
+                                        <option>...</option>
                                         <option>...</option>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-2">
                                     <label for="inputCEP">CEP</label>
-                                    <input type="text" class="form-control" id="inputCEP">
+                                    <input type="text" class="form-control" id="inputCEP" required>
                                 </div>
                             </div>
                         </div>
@@ -130,30 +140,35 @@ require_once '../app/view/pages/home/_includes/header.php';
                         </div>
 
                         <div class="step" id="step4" style="display: none;">
-
                         </div>
+
                     </div>
 
                     <div class="modal-footer" id="modal-footer">
                         <div class="container">
                             <div class="row">
-                                <div class="col-md-8">
+                                <div class="col-sm-7">
+                                    <input type="hidden" name="action" value="inser" id="insert">
                                     <button type="button" class="btn btn-secondary" id="btn-cancel" name="cancel"
                                             data-dismiss="modal">
                                         Cancelar
                                     </button>
                                 </div>
-                                <div class="col-md-2">
-                                    <button type="button" class="btn btn-warning" id="btn-toBack"
-                                            value="Voltar" role="button" style="margin: 0">
-                                        Voltar
-                                    </button>
-                                </div>
-                                <div class="col-md-2">
-                                    <button type="submit" class="btn btn-primary" name="submit"
-                                            id="btn-submit" value="Send" role="button">
-                                        Próximo
-                                    </button>
+                                <div class="col-sm-5">
+                                    <div class="row">
+                                        <div class="col">
+                                            <button type="button" class="btn btn-warning" id="btn-toBack"
+                                                    value="Voltar" role="button" style="margin: 0">
+                                                Voltar
+                                            </button>
+                                        </div>
+                                        <div class="col">
+                                            <button type="submit" class="btn btn-primary" name="submit"
+                                                    id="btn-submit" value="Send" role="button">
+                                                Próximo
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
