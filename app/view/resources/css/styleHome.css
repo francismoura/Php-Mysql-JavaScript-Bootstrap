@@ -38,6 +38,11 @@ nav img {
     align-self: center;
     margin-right: 10px;
     vertical-align: middle;
+    width: 30px;
+}
+
+nav li a, nav li a:hover{
+    color: white;
 }
 
 .nav-title {
@@ -49,3 +54,5 @@ nav img {
     margin-top: 10px;
     font-size: 13px;
 }
+
+
