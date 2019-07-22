@@ -32,9 +32,13 @@
 
         btn_toBack.addEventListener('click', function (event) {
             event.preventDefault();
-            restartForm(currentStep);//lastStep
-            btn_submit.innerText = 'Próximo';
-            changeDisplayValue([btn_toBack]);
+            previousDisplay();
+            if (btn_submit.textContent === 'Enviar') {
+                btn_submit.innerText = 'Próximo';
+            }
+            if (currentStep.id === 'step1') {
+                changeDisplayValue([btn_toBack]);
+            }
         });
 
         btn_addSolicitation.addEventListener('click', function (event) {
@@ -46,8 +50,10 @@
         form.addEventListener('submit', function () {
             event.preventDefault();
             if (nextStep !== null) {//acabou as etapas?
-                nextDisplay(currentStep, nextStep);
+                nextDisplay();
                 switch (currentStep.id) {
+                    case 'step1':
+                        break;
                     case 'step2':
                         modalTitle.innerText = 'Etapa 2: (Informe seus dados pessoais)';
                         changeDisplayValue([btn_toBack]);
@@ -57,7 +63,7 @@
                         break;
                     case 'step4'://step submit
                         solicitation = getFormData(this);
-                        currentStep.innerHTML = getDivConfirmationStep(solicitation);//step4
+                        currentStep.innerHTML = setDivConfirmationStep(solicitation);//step4
                         modalTitle.innerHTML = "Etapa 4: (Confirmar Dados)";
                         btn_submit.innerText = 'Enviar';
                         break;
@@ -76,17 +82,16 @@
             nextStep = currentStep.nextElementSibling;
         }
 
-        function nextDisplay(current, next) {
-            changeDisplayValue([current, next]);
-            count++;
+        function previousDisplay() {
+            count--;
             updateStep();
+            changeDisplayValue([currentStep, nextStep]);
         }
 
-        function restartForm(lastStep) {
-            count = 0;
+        function nextDisplay() {
+            changeDisplayValue([currentStep, nextStep]);
+            count++;
             updateStep();
-            form.reset();
-            changeDisplayValue([currentStep, lastStep]);
         }
 
         //altera o valor do display de um ou mais elementos [div1, div2,...]
@@ -167,7 +172,7 @@
             return data;
         }
 
-        function validateFormData(form_data) {
+        function checkValidateFormData(form_data) {
             // if (nome == null || nome.indexOf(" ") >= 0 || nome === "") {
             //     document.getElementById('nome').setCustomValidity('Preencha este campo corretamente');
             // } else {
@@ -175,31 +180,28 @@
             // }
         }
 
-        function getDivConfirmationStep(data) {
-            return `
-                        <table id="user_data" class="table responsive-table table-hover table-striped">
-                            <thead>
-                                <tr>
-                                    <th> Código </th>
-                                    <th> Nome </th>
-                                    <th>Serviço</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="position-relative">
-                                    <td>
-                                        <a class="icone" href="#">
-                                            <span class="glyphicon glyphicon-open" aria-hidden="true"/>
-                                            <u>` + data.dataUser.cod_aluno + `</u>
-                                        </a>
-                                    </td>
-                                    <td>` + data.dataUser.nome + `</td>
-                                    <td>` + data.dataSolicitation.servico + `</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                   `;
+        function setDivConfirmationStep(solicitation) {
+            return `<table id="user_data" class="table responsive-table table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th> Código </th>
+                                <th> Nome </th>
+                                <th>Serviço</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="position-relative">
+                                <td>
+                                    <a class="icone" href="#">
+                                        <span class="glyphicon glyphicon-open" aria-hidden="true"/>
+                                        <u>` + solicitation.dataUser.cod_aluno + `</u>
+                                    </a>
+                                </td>
+                                <td>` + solicitation.dataUser.nome + `</td>
+                                <td>` + solicitation.dataSolicitation.servico + `</td>
+                            </tr>
+                        </tbody>
+                    </table>`;
         }
-
     }
 )(document);

@@ -6,16 +6,15 @@ require_once '../app/view/pages/home/_includes/header.php';
     <div class="body-header">
         <nav class="navbar navbar-expand-md" style="padding: 0;">
             <div class="container">
-                <a class="navbar-brand" href="">
-                    <img class="img-nav" src="../app/view/resources/img/logo.png" width="30px"
-                         style="vertical-align: middle" alt="logo">
+                <a class="navbar-brand">
+                    <img class="img-nav" src="../app/view/resources/img/logo.png" alt="logo">
                     <span class="nav-title">
                     Departamento de Tecnologia da Informação
                 </span>
                 </a>
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="hint-log" href="" id="login-access" style="color: white">
+                        <a class="hint-log" href="" id="login-access">
                             Sign in
                         </a>
                     </li>
@@ -52,8 +51,8 @@ require_once '../app/view/pages/home/_includes/header.php';
     </div>
 
     <!--Add Modal-->
-    <div id="add-modal" class="modal fade" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document" id="modal-dialog-submit" style="display: block">
+    <div id="add-modal" class="modal fade" role="dialog" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog modal-lg" role="document" id="modal-dialog-submit">
             <div class="modal-content">
                 <form name="form-solicitation" id="form" method="post">
                     <div class="modal-header">
@@ -68,8 +67,8 @@ require_once '../app/view/pages/home/_includes/header.php';
                             <div class="form-group">
                                 <label for="inputTypeUser">
                                     Estudante/Professor/Técnico
-                                    <select required id="inputTypeUser" class="form-control">
-                                        <option value="">Selecione...</option>
+                                    <select id="inputTypeUser" class="form-control" required>
+                                        <option selected value="">Escolher...</option>
                                         <option>Estudante</option>
                                         <option>Professor</option>
                                         <option>Técnico</option>
@@ -79,7 +78,7 @@ require_once '../app/view/pages/home/_includes/header.php';
                             <div class="form-group">
                                 <label for="inputCodeUser">
                                     Código Identificador
-                                    <input type="text" class="form-control" id="inputCodeUser"
+                                    <input type="text" class="form-control" id="inputCodeUser" name="inputCodeUser"
                                            required>
                                 </label>
                             </div>
@@ -89,43 +88,33 @@ require_once '../app/view/pages/home/_includes/header.php';
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="inputEmail">Email</label>
-                                    <input type="email" class="form-control" id="inputEmail" placeholder="Email" required>
+                                    <input type="email" class="form-control" id="inputEmail" placeholder="Email">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputName">Nome</label>
-                                    <input type="text" class="form-control" id="inputName" placeholder="Nome" required>
+                                    <input type="text" class="form-control" id="inputName" placeholder="Nome">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="inputAddress">Endereço</label>
                                 <input type="text" class="form-control" id="inputAddress"
-                                       placeholder="Rua dos Bobos, nº 0" required>
+                                       placeholder="Rua dos Bobos, nº 0">
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="inputCity">Cidade</label>
-                                    <input type="text" class="form-control" id="inputCity" required>
+                                    <input type="text" class="form-control" id="inputCity">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="inputEstate">Estado</label>
-                                    <select required id="inputEstate" class="form-control">
-                                        <option value="">Escolher...</option>
-                                        <option>...</option>
-                                        <option>...</option>
-                                        <option>...</option>
-                                        <option>...</option>
-                                        <option>...</option>
-                                        <option>...</option>
-                                        <option>...</option>
-                                        <option>...</option>
-                                        <option>...</option>
-                                        <option>...</option>
+                                    <select id="inputEstate" class="form-control">
+                                        <option selected>Escolher...</option>
                                         <option>...</option>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-2">
                                     <label for="inputCEP">CEP</label>
-                                    <input type="text" class="form-control" id="inputCEP" required>
+                                    <input type="text" class="form-control" id="inputCEP">
                                 </div>
                             </div>
                         </div>
@@ -133,13 +122,13 @@ require_once '../app/view/pages/home/_includes/header.php';
                         <div class="step" id="step3" style="display: none">
                             <div class="form-group">
                                 <label for="inputService">Serviço</label>
-                                <textarea class="form-control" id="inputService" name="inputService" rows="3"
-                                          required>
-                            </textarea>
+                                <textarea class="form-control" id="inputService" name="inputService"
+                                          rows="3"></textarea>
                             </div>
                         </div>
 
                         <div class="step" id="step4" style="display: none;">
+
                         </div>
 
                     </div>
