@@ -31,7 +31,7 @@ de um CRUD. Os critérios de aceitação são:
             ▪ O campo celular deve respeitar a quantidade de dígitos (99)99999-9999.
             ▪ O campo e-mail deve ser um e-mail válido.
             ▪ O campo cep deve respeitar os dígitos 999999-999.
-            ▪ Ao final do cadastro, o sistema deve armazenar o registro no banco e enviar um e-mail qualquer, informando
+            ▪ Ao final do cadastro, o sistema deve armazenar o registro no banco e enviar um e-mail para o suporte, informando
               sobre a nova solicitação e os respectivos dados preenchidos no formulário.
             ▪ Em caso de sucesso (inclusão no banco e envio de e-mail) o sistema deve retornar a mensagem: 
               “Sua solicitação foi enviada com sucesso! O setor de TI já está acompanhando sua demanda e em breve 

@@ -7,5 +7,3 @@ define('PROTOCOL_URL', 'http://');
 define('BASE_PATH', '/projeto/public/');
 define('URL_ROOT', PROTOCOL_URL . $_SERVER['HTTP_HOST'] . BASE_PATH);
 define('PATH_ROOT', $_SERVER['DOCUMENT_ROOT'] . BASE_PATH);
-
-

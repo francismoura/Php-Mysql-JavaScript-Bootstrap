@@ -34,17 +34,17 @@ class Solicitation extends SolicitationDao
     public function getById($id)
     {
 
-        return $this->FindUnit($id);
+        return $this->findUnit($id);
     }
 
     public function getAll()
     {
-        return $this->FindAll();
+        return $this->findAll();
     }
 
     public function post($data)
     {
-        return $this->Insert($data);
+        return $this->insert($data);
     }
 
     public function edit($id)

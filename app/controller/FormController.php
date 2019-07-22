@@ -5,39 +5,56 @@ require_once '../app/core/ModelFactory.php';
 
 class FormController extends Controller
 {
-    protected $userData;//Dados do usuário
-    protected $solicitationData;//Dados referente a solicitação
+    private $userData;//Dados do usuário
+    private $solicitationData;
 
     public function __construct()
     {
-        $modelBase = new ModelFactory();
-        $this->solicitationData = $modelBase->createSolicitationAluno();
-        $this->userData = $modelBase->createAluno();
+        $factory = new ModelFactory();
+        $this->solicitationData = $factory->createSolicitationAluno();
+        $this->userData = $factory->createAluno();
     }
 
-    public function getById(int $num){
+    public function getById(int $num)
+    {
     }
 
     public function getAllSolicitation()
     {
-        return $this->solicitationData->FindAll();
+        return $this->solicitationData->findAll();
     }
 
-    public function newSolicitation($data)
+    public function newSolicitation(array $data)
     {
         $userData = $this->userData;
         $solicitationData = $this->solicitationData;
+
+        foreach ($data['dataSolicitation'] as $key => $value) {
+            $solicitationData->$key = $value;
+        }
 
         foreach ($data['dataUser'] as $key => $value) {
             $userData->$key = $value;
         }
 
-        foreach ($data['dataSolicitation'] as $key => $value){
-            $solicitationData->$key = $value;
-        }
-
-        return ($this->userData->post($userData->getAtributes())
+        return ($this->userData->post()
             && $this->solicitationData->post($solicitationData->getAtributes()));
+    }
+
+    /**
+     * @return Solicitation
+     */
+    public function getSolicitationData(): Solicitation
+    {
+        return $this->solicitationData;
+    }//Dados referente a solicitação
+
+    /**
+     * @return Aluno
+     */
+    public function getUserData(): Aluno
+    {
+        return $this->userData;
     }
 
 }

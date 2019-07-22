@@ -22,7 +22,7 @@ class UserController extends Controller
 
     function newSolicitation($nome)
     {
-        return $this->user->Insert($nome);
+        return $this->user->insert($nome);
     }
 
 }

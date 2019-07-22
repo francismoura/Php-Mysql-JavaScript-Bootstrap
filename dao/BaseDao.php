@@ -15,7 +15,7 @@ abstract class BaseDao implements DAO
         return Connection::prepare($sql);
     }
 
-    public function FindUnit($id)
+    public function findUnit($id)
     {
         $sql = "SELECT * FROM " . $this->tableDB . " WHERE id = :id";
         $stm = $this->dbPrepare($sql);
@@ -24,7 +24,7 @@ abstract class BaseDao implements DAO
         return $stm->fetch();
     }
 
-    public function FindAll()
+    public function findAll()
     {
         $sql = "SELECT * FROM  $this->tableDB";
         $stm = $this->dbPrepare($sql);
@@ -34,7 +34,7 @@ abstract class BaseDao implements DAO
         return $result;
     }
 
-    public function Insert($nome)
+    public function insert($nome)
     {
         $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_STRING);
         $sql = "INSERT INTO $this->tableDB (nome) VALUES (:nome)";
@@ -43,7 +43,7 @@ abstract class BaseDao implements DAO
         return $stm->execute();
     }
 
-    public function Update($id)
+    public function update($id)
     {
         $sql = "UPDATE $this->tableDB SET nome = :nome WHERE id = :id";
         $stm = $this->dbPrepare($sql);
@@ -52,7 +52,7 @@ abstract class BaseDao implements DAO
         return $stm->execute();
     }
 
-    public function Delete($id)
+    public function delete($id)
     {
         $sql = "DELETE FROM $this->tableDB WHERE id = :id";
         $stm = $this->dbPrepare($sql);
