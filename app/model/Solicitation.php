@@ -4,30 +4,26 @@ include_once('../dao/SolicitationDao.php');
 
 class Solicitation extends SolicitationDao
 {
-    private $atributes = [];
+    private $attribute = [];
+
 
     public function __construct()
+	{
+	}
+
+	public function __set($name, $value)
     {
+        $this->attribute[$name] = $value;
     }
 
-    public function __set($atribute, $value)
+    public function __get($name)
     {
-        $this->atributes[$atribute] = $value;
+        return $this->attribute[$name];
     }
 
-    public function __get($atribute)
+    public function __isset($name)
     {
-        return $this->atributes[$atribute];
-    }
-
-    public function getAtributes()
-    {
-        return $this->atributes;
-    }
-
-    public function __isset($atribute)
-    {
-        return isset($this->atributes[$atribute]);
+        return isset($this->atribute[$name]);
     }
 
 
@@ -42,9 +38,11 @@ class Solicitation extends SolicitationDao
         return $this->findAll();
     }
 
-    public function post($data)
+    public function post()
     {
-        return $this->insert($data);
+    	$user = $this->attribute['user'];
+
+        return ($this->insert($this->attribute && $user->insert()));
     }
 
     public function edit($id)

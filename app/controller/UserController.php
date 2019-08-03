@@ -1,10 +1,9 @@
 <?php
 
-require_once('../app/core/Controller.php');
 require_once('../app/model/BaseModel.php');
 
 
-class UserController extends Controller
+class UserController
 {
     /**
      * @var User

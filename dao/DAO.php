@@ -2,13 +2,13 @@
 
 interface DAO
 {
-    public function insert($data);
+    public function Insert($data);
 
-    public function findUnit($id);
+    public function FindUnit($id);
 
-    public function findAll();
+    public function FindAll();
 
-    public function update($id);
+    public function Update($id);
 
-    public function delete($id);
+    public function Delete($id);
 }

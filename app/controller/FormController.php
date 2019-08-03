@@ -1,60 +1,62 @@
 <?php
 
-require_once '../app/core/Controller.php';
 require_once '../app/core/ModelFactory.php';
 
-class FormController extends Controller
+class FormController
 {
-    private $userData;//Dados do usuário
-    private $solicitationData;
+	private $user;//Dados do usuário
+	private $solicitation;
 
-    public function __construct()
-    {
-        $factory = new ModelFactory();
-        $this->solicitationData = $factory->createSolicitationAluno();
-        $this->userData = $factory->createAluno();
-    }
+	public function __construct()
+	{
+		try {
+			$factory = new ModelFactory();
+			$this->user = $factory->build('user');
+			$this->solicitation = $factory->build('solicitation');
+		} catch (Exception $e) {
+			var_dump($e->getMessage());
+		}
+	}
 
-    public function getById(int $num)
-    {
-    }
+	public function getById(int $num)
+	{
+	}
 
-    public function getAllSolicitation()
-    {
-        return $this->solicitationData->findAll();
-    }
+	public function getAllSolicitation()
+	{
+		return $this->user->getAll();
+	}
 
-    public function newSolicitation(array $data)
-    {
-        $userData = $this->userData;
-        $solicitationData = $this->solicitationData;
+	public function insert($data)
+	{
+		forEach ($data as $key => $value) {
+			switch ($key) {
+				case "inputService":
+					$this->solicitation["inputService"] = $value;
+					break;
+				default:
+					$this->user[$key]  = $value;
+					break;
+			}
+		};
+		$this->solicitation['user'] = $this->user;
+		return ($this->user->post() && $this->solicitation->post());
+	}
 
-        foreach ($data['dataSolicitation'] as $key => $value) {
-            $solicitationData->$key = $value;
-        }
+	/**
+	 * @return Solicitation
+	 */
+	public function getSolicitationData(): Solicitation
+	{
+		return $this->solicitation;
+	}//Dados referente a solicitação
 
-        foreach ($data['dataUser'] as $key => $value) {
-            $userData->$key = $value;
-        }
-
-        return ($this->userData->post()
-            && $this->solicitationData->post($solicitationData->getAtributes()));
-    }
-
-    /**
-     * @return Solicitation
-     */
-    public function getSolicitationData(): Solicitation
-    {
-        return $this->solicitationData;
-    }//Dados referente a solicitação
-
-    /**
-     * @return Aluno
-     */
-    public function getUserData(): Aluno
-    {
-        return $this->userData;
-    }
+	/**
+	 * @return User
+	 */
+	public function getUserData(): User
+	{
+		return $this->user;
+	}
 
 }

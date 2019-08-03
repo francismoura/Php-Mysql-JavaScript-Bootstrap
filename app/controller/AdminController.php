@@ -1,9 +1,8 @@
 <?php
 
-require_once('../config/Controller.php');
 require_once('../app/model/BaseModel.php');
 
-class AdminController extends Controller
+class AdminController
 {
 
     protected $admin;

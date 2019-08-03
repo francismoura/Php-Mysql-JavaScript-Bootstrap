@@ -3,52 +3,46 @@ require_once '../app/view/pages/home/_includes/header.php';
 ?>
 
     <body>
-    <div class="body-header">
-        <nav class="navbar navbar-expand-md" style="padding: 0;">
-            <div class="container">
-                <a class="navbar-brand">
-                    <img class="img-nav" src="../app/view/resources/img/logo.png" alt="logo">
-                    <span class="nav-title">
+    <nav class="navbar navbar-expand-md" style="padding: 0;">
+        <div class="container">
+            <a class="navbar-brand">
+                <img class="img-nav" src="../app/view/resources/img/logo.png" alt="logo">
+                <span class="nav-title">
                     Departamento de Tecnologia da Informação
                 </span>
-                </a>
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="hint-log" href="" id="login-access">
-                            Sign in
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+            </a>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="btn-signIn" id="btn-signIn">
+                        Sign in
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
-        <header class="mainHome" id="header">
-            <div class="container p-5">
-                <div class="row my-5">
-                    <div class="col-sm-8">
-                        <h1 class="display-4">
+    <header>
+        <div class="container p-5">
+            <div class="row my-5">
+                <div class="col-sm-8">
+                    <h1 class="display-4">
                         <span>
                             Como podemos ajudar?
                         </span>
-                        </h1>
-                        <p class="lead">
-                            Faça seu pedido de suporte!
-                        </p>
-                    </div>
-                    <div class="col-sm-4 content-center">
-                        <button class="btn btn-outline-light btn-lg" id="btn-add-solicitation" name="Add"
-                                data-toggle="modal" data-target="#add-modal">
-                            Solicitar Serviço
-                        </button>
-                    </div>
+                    </h1>
+                    <p class="lead">
+                        Faça seu pedido de suporte!
+                    </p>
+                </div>
+                <div class="col-sm-4 content-center">
+                    <button class="btn btn-outline-light btn-lg" id="btn-add-solicitation" name="Add"
+                            data-toggle="modal" data-target="#add-modal">
+                        Solicitar Serviço
+                    </button>
                 </div>
             </div>
-        </header><!-- /header -->
-    </div>
-
-    <div class="row justify-content-center" id="outputCheck" type="hidden">
-        <!--Fetch API => return html-->
-    </div>
+        </div>
+    </header><!-- /header -->
 
     <!--Add Modal-->
     <div id="add-modal" class="modal fade" role="dialog" aria-hidden="true" data-backdrop="static">
@@ -57,9 +51,7 @@ require_once '../app/view/pages/home/_includes/header.php';
                 <form name="form-solicitation" id="form" method="post">
                     <div class="modal-header">
                         <h4 class="modal-title" id="modal-title">Etapa 1: (Definir Usuário)</h4>
-                        <button type="button" class="close" id="btn-close-modal" data-dismiss="modal"
-                                aria-hidden="true">×
-                        </button>
+                        <a class="close" id="btn-close-modal" data-dismiss="modal" aria-hidden="true">×</a>
                     </div>
                     <div class="modal-body" id="modal-body-solicitation">
 
@@ -67,7 +59,7 @@ require_once '../app/view/pages/home/_includes/header.php';
                             <div class="form-group">
                                 <label for="inputTypeUser">
                                     Estudante/Professor/Técnico
-                                    <select id="inputTypeUser" class="form-control" required>
+                                    <select name="inputTypeUser" id="inputTypeUser" class="form-control">
                                         <option selected value="">Escolher...</option>
                                         <option>Estudante</option>
                                         <option>Professor</option>
@@ -78,8 +70,7 @@ require_once '../app/view/pages/home/_includes/header.php';
                             <div class="form-group">
                                 <label for="inputCodeUser">
                                     Código Identificador
-                                    <input type="text" class="form-control" id="inputCodeUser" name="inputCodeUser"
-                                           required>
+                                    <input type="text" class="form-control" id="inputCodeUser" name="inputCodeUser">
                                 </label>
                             </div>
                         </div>
@@ -88,16 +79,18 @@ require_once '../app/view/pages/home/_includes/header.php';
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="inputEmail">Email</label>
-                                    <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                                    <input type="email" class="form-control" id="inputEmail" name="inputEmail"
+                                           placeholder="Email">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputName">Nome</label>
-                                    <input type="text" class="form-control" id="inputName" placeholder="Nome">
+                                    <input type="text" class="form-control" id="inputName" name="inputName"
+                                           placeholder="Nome">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="inputAddress">Endereço</label>
-                                <input type="text" class="form-control" id="inputAddress"
+                                <input type="text" class="form-control" id="inputAddress" name="inputAddress"
                                        placeholder="Rua dos Bobos, nº 0">
                             </div>
                             <div class="form-row">
@@ -106,15 +99,78 @@ require_once '../app/view/pages/home/_includes/header.php';
                                     <input type="text" class="form-control" id="inputCity">
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label for="inputEstate">Estado</label>
-                                    <select id="inputEstate" class="form-control">
-                                        <option selected>Escolher...</option>
-                                        <option>...</option>
+                                    <label for="inputState">Estado</label>
+                                    <select name="inputState" id="inputState" class="form-control">
+                                        <option value="">Escolher...</option>
+                                        <option value="AC">Acre</option>
+                                        <option value="AL">Alagoas</option>
+                                        <option value="AP">Amapá</option>
+                                        <option value="AM">Amazonas</option>
+                                        <option value="BA">Bahia</option>
+                                        <option value="CE">Ceará</option>
+                                        <option value="DF">Distrito Federal</option>
+                                        <option value="ES">Espírito Santo</option>
+                                        <option value="GO">Goiás</option>
+                                        <option value="MA">Maranhão</option>
+                                        <option value="MT">Mato Grosso</option>
+                                        <option value="MS">Mato Grosso do Sul</option>
+                                        <option value="MG">Minas Gerais</option>
+                                        <option value="PA">Pará</option>
+                                        <option value="PB">Paraíba</option>
+                                        <option value="PR">Paraná</option>
+                                        <option value="PE">Pernambuco</option>
+                                        <option value="PI">Piauí</option>
+                                        <option value="RJ">Rio de Janeiro</option>
+                                        <option value="RN">Rio Grande do Norte</option>
+                                        <option value="RS">Rio Grande do Sul</option>
+                                        <option value="RO">Rondônia</option>
+                                        <option value="RR">Roraima</option>
+                                        <option value="SC">Santa Catarina</option>
+                                        <option value="SP">São Paulo</option>
+                                        <option value="SE">Sergipe</option>
+                                        <option value="TO">Tocantins</option>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-2">
                                     <label for="inputCEP">CEP</label>
-                                    <input type="text" class="form-control" id="inputCEP">
+                                    <input type="text" class="form-control" id="inputCEP" name="inputCEP">
+                                </div>
+                            </div>
+                            <div class="form-row">
+
+                                <div class="form-group col-md-6">
+                                    <label for="inputSector">Setor</label>
+                                    <select class="form-control" name="inputSector" id="inputSector">
+                                        <option value="">Escolher...</option>
+                                        <option value="DAD">Departamento Adminitração</option>
+                                        <option value="DAG">Departamento Agricultura</option>
+                                        <option value="DCC">Departamento Computação</option>
+                                        <option value="DCH">Departamento Ciências Humanas</option>
+                                        <option value="DEN">Departamento Engenharia</option>
+                                        <option value="DEX">Departamento Exatas</option>
+                                        <option value="DGTI">Departamento Gestão Tecnologia Informação</option>
+                                        <option value="DTRANS">Departamento Transporte</option>
+                                        <option value="PRG">Pró Reitoria Graduação</option>
+                                        <option value="PRPG">Pró Reitoria Pós Graduação</option>
+                                    </select>
+
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputSector">Setor</label>
+                                    <select class="form-control" name="inputSector" id="inputSector">
+                                        <option value="">Escolher...</option>
+                                        <option value="" selected>Nenhum</option>
+                                        <option value="ADM">Adminitração</option>
+                                        <option value="AGR">Agronomia</option>
+                                        <option value="CCO">Ciências da Computação</option>
+                                        <option value="ECV">Engenharia Civil</option>
+                                        <option value="EEL">Engenharia Elétrica</option>
+                                        <option value="CCO">Engenharia Mecânica</option>
+                                        <option value="MED">Medicina</option>
+                                        <option value="DTRANS">Departamento Transporte</option>
+                                        <option value="PRG">Pró Reitoria Graduação</option>
+                                        <option value="PRPG">Pró Reitoria Pós Graduação</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -137,7 +193,7 @@ require_once '../app/view/pages/home/_includes/header.php';
                         <div class="container">
                             <div class="row">
                                 <div class="col-sm-7">
-                                    <input type="hidden" name="action" value="inser" id="insert">
+                                    <input type="hidden" name="action" value="insert" id="insert">
                                     <button type="button" class="btn btn-secondary" id="btn-cancel" name="cancel"
                                             data-dismiss="modal">
                                         Cancelar
@@ -166,7 +222,7 @@ require_once '../app/view/pages/home/_includes/header.php';
                 </form>
             </div>
         </div>
-    </div>
+    </div><!-- end add-modal -->
 
 <?php
 require_once('../app/view/pages/home/_includes/footer.php');

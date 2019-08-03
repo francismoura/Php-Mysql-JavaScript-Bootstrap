@@ -31,7 +31,6 @@
     <style type="text/css">
         body {
             font-family: 'Varela Round', sans-serif;
-            height: 100%;
         }
     </style>
 </head>
