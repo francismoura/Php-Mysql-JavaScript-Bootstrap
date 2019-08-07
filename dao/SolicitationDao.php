@@ -1,18 +1,24 @@
 <?php
 
 require_once '../database/Connection.php';
-require_once '../app/model/Solicitation.php';
 require_once 'DAO.php';
+require_once '../app/model/Tecnico.php';
+
 
 abstract class SolicitationDao implements DAO
 {
-	protected $tableDB = 'SolicitacaoAluno';
+	protected $tableDB;
 
-	abstract public function __construct();
+	abstract public function __construct($typeUser);
 
 	public function dbPrepare($sql)
 	{
 		return Connection::prepare($sql);
+	}
+
+	public function setTableDB($typeUser)
+	{
+		$this->tableDB = $typeUser;
 	}
 
 	public function findUnit($id)
@@ -34,19 +40,15 @@ abstract class SolicitationDao implements DAO
 		return $result;
 	}
 
-	public function insert($data)
+	public function insert($solicitation)
 	{
-//        $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_STRING);
-		$sql = "INSERT INTO $this->tableDB (cod_aluno, servico) VALUES (:cod_aluno, :servico)";
+		$sql = "INSERT INTO $this->tableDB (cod_usuario, servico, dataSolicitacao) 
+				VALUES (:cod_usuario, :servico, :dataSolicitacao )";
 		$stm = $this->dbPrepare($sql);
-
-		$stm->bindParam(':cod_aluno', $data['cod_cliente'], PDO::PARAM_INT);
-		$stm->bindParam(':servico', $data['servico']);
-
-//        foreach ($data as $key => &$value) {
-//            $stm->bindParam($key, $value);
-//        }
-
+		$date = date("Y-m-d H:i:s", strtotime($solicitation['dataSolicitacao']));
+		$stm->bindParam(':cod_usuario', $solicitation['user']->cod_usuario);
+		$stm->bindParam(':servico', $solicitation['servico']);
+		$stm->bindParam(':dataSolicitacao', $date);
 		return $stm->execute();
 	}
 

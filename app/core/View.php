@@ -3,8 +3,8 @@
 class View {
   /*
    * Se a rota for válida, crie a visualização e o controlador de visualização.
-   * Se a rota é inválida, não faça nada e se algo der errado
-   * verificar o retorno da rota 0;
+   * Se a rota é inválida, não faça nada e
+   * se algo der errado verificar o retorno da rota 0;
   */
   public static function build($viewName) {
 

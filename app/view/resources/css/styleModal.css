@@ -1,13 +1,22 @@
 /* Modal styles */
+
 .modal .modal-dialog {
     max-width: 700px;
 }
 
-.modal-header{
-    background: #566787;
+.modal-header {
+    background: #667da5;
 }
 
-.modal-header, .modal-header button{
+.modal-header a:hover {
+    background: #8096bc;
+    border-radius: 50%;
+    color: #ffffff;
+    cursor: pointer;
+    outline: none;
+}
+
+.modal-header, .modal-header button {
     color: #F4F7F5;
 }
 
@@ -29,10 +38,10 @@
 }
 
 .modal .form-control {
-    margin: 0;
     border-radius: 2px;
     box-shadow: none;
     border-color: #dddddd;
+    margin: 0;
 }
 
 .modal textarea.form-control {
@@ -46,4 +55,10 @@
 
 .modal form label {
     font-weight: normal;
+}
+
+.modal-content {
+    -webkit-border-radius: 10px !important;
+    -moz-border-radius: 10px !important;
+    border-radius: 10px !important;
 }

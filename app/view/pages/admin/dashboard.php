@@ -3,27 +3,25 @@ require_once '../app/view/pages/admin/_includes/header.php';
 ?>
 
 <body>
-<div class="body-header">
-    <nav class="navbar navbar-expand-md" style="padding: 0;">
-        <div class="container">
-            <a class="navbar-brand" href="">
-                <img class="img-nav" src="../app/view/resources/img/logo.png" width="30px"
-                     style="vertical-align: middle"
-                     alt="logo">
-                <span class="nav-title">
+<nav class="navbar navbar-expand-md" style="padding: 0;">
+    <div class="container">
+        <a class="navbar-brand" href="">
+            <img class="img-nav" src="../app/view/resources/img/logo.png" width="30px"
+                 style="vertical-align: middle"
+                 alt="logo">
+            <span class="nav-title">
                 Departamento de Tecnologia da Informação
                 </span>
-            </a>
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a href="" id="logout" style="color: white">
-                        Sign out
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-</div>
+        </a>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a href="" id="logout" style="color: white">
+                    Sign out
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
 
 <div class="container" style="margin-top: 2em">
     <div class="table-wrapper" id="div-table">

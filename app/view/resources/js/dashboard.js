@@ -2,7 +2,7 @@
 
         const URL = `../config/fetch.php`;
 
-        document.getElementById('logout').addEventListener('click', function () {
+        document.getElementById("logout").addEventListener("click", function () {
             event.preventDefault();
             window.location = "home";
         });
@@ -11,11 +11,11 @@
         loadTable()
             .then(outputTable)
             .catch(error => {
-                console.log('There has been a problem with your fetch operation: ' + error.message)
+                console.log("There has been a problem with your fetch operation: " + error.message)
             });
 
         async function loadTable() {
-            const response = await fetch(URL + `?controller=FormController&action=findAll`);
+            const response = await fetch(URL + `?&action=findAll`);
             const jsonData = await response.json();
             console.log(jsonData);
             if (response.ok) {
@@ -23,7 +23,7 @@
                     return jsonData;
                 }
             } else {//ERRO 404, 500
-                throw 'Network response was not ok or syntax error';
+                throw "Network response was not ok or syntax error";
 
             }
         }
