@@ -57,50 +57,66 @@ require_once '../app/view/pages/home/_includes/header.php';
 
                         <div class="step" id="step1" style="display: block">
                             <div class="form-group">
-                                <label for="inputTypeUser">
+                                <label for="tipo_usuario">
                                     Estudante/Professor/Técnico
-                                    <select name="inputTypeUser" id="inputTypeUser" class="form-control">
+                                    <select name="tipo_usuario" id="tipo_usuario" class="form-control">
                                         <option selected value="">Escolher...</option>
-                                        <option>Estudante</option>
-                                        <option>Professor</option>
-                                        <option>Técnico</option>
+                                        <option value="Estudante">Estudante</option>
+                                        <option value="Professor">Professor</option>
+                                        <option value="Tecnico">Técnico</option>
                                     </select>
                                 </label>
                             </div>
                             <div class="form-group">
-                                <label for="inputCodeUser">
+                                <label for="cod_usuario">
                                     Código Identificador
-                                    <input type="text" class="form-control" id="inputCodeUser" name="inputCodeUser">
+                                    <input type="text" class="form-control" id="cod_usuario" name="cod_usuario">
                                 </label>
                             </div>
                         </div>
 
                         <div class="step" id="step2" style="display: none">
                             <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="inputEmail">Email</label>
-                                    <input type="email" class="form-control" id="inputEmail" name="inputEmail"
+                                <div class="form-group col-md-12">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" id="email" name="email"
                                            placeholder="Email">
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label for="inputName">Nome</label>
-                                    <input type="text" class="form-control" id="inputName" name="inputName"
-                                           placeholder="Nome">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputAddress">Endereço</label>
-                                <input type="text" class="form-control" id="inputAddress" name="inputAddress"
-                                       placeholder="Rua dos Bobos, nº 0">
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="inputCity">Cidade</label>
-                                    <input type="text" class="form-control" id="inputCity">
+                                    <label for="nome">Nome</label>
+                                    <input type="text" class="form-control" id="nome" name="nome"
+                                           placeholder="Nome">
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="ddd">DDD</label>
+                                    <input type="text" class="form-control" id="ddd" name="ddd" maxlength="2">
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label for="inputState">Estado</label>
-                                    <select name="inputState" id="inputState" class="form-control">
+                                    <label for="celular">Celular</label>
+                                    <input type="text" class="form-control" id="celular" name="celular" maxlength="9">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                            <div class="form-group col-md-8">
+                                <label for="endereco">Endereço</label>
+                                <input type="text" class="form-control" id="endereco" name="endereco"
+                                       placeholder="Rua dos Bobos, nº 0">
+                            </div>
+                                <div class="form-group col-md-4">
+                                    <label for="bairro">Bairro</label>
+                                    <input type="text" class="form-control" id="bairro" name="bairro">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-5">
+                                    <label for="cidade">Cidade</label>
+                                    <input type="text" class="form-control" id="cidade" name="cidade">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="estado">Estado</label>
+                                    <select class="form-control" id="estado" name="estado" >
                                         <option value="">Escolher...</option>
                                         <option value="AC">Acre</option>
                                         <option value="AL">Alagoas</option>
@@ -131,16 +147,15 @@ require_once '../app/view/pages/home/_includes/header.php';
                                         <option value="TO">Tocantins</option>
                                     </select>
                                 </div>
-                                <div class="form-group col-md-2">
-                                    <label for="inputCEP">CEP</label>
-                                    <input type="text" class="form-control" id="inputCEP" name="inputCEP">
+                                <div class="form-group col-md-3">
+                                    <label for="cep">CEP</label>
+                                    <input type="text" class="form-control" id="cep" name="cep">
                                 </div>
                             </div>
                             <div class="form-row">
-
                                 <div class="form-group col-md-6">
-                                    <label for="inputSector">Setor</label>
-                                    <select class="form-control" name="inputSector" id="inputSector">
+                                    <label for="setor">Setor</label>
+                                    <select class="form-control" id="setor" name="setor">
                                         <option value="">Escolher...</option>
                                         <option value="DAD">Departamento Adminitração</option>
                                         <option value="DAG">Departamento Agricultura</option>
@@ -153,23 +168,20 @@ require_once '../app/view/pages/home/_includes/header.php';
                                         <option value="PRG">Pró Reitoria Graduação</option>
                                         <option value="PRPG">Pró Reitoria Pós Graduação</option>
                                     </select>
-
                                 </div>
+
                                 <div class="form-group col-md-6">
-                                    <label for="inputSector">Setor</label>
-                                    <select class="form-control" name="inputSector" id="inputSector">
-                                        <option value="">Escolher...</option>
-                                        <option value="" selected>Nenhum</option>
+                                    <label for="curso">Curso</label>
+                                    <select class="form-control" id="curso"  name="curso">
+                                        <option value="NULL" selected>Nenhum</option>
                                         <option value="ADM">Adminitração</option>
                                         <option value="AGR">Agronomia</option>
                                         <option value="CCO">Ciências da Computação</option>
+                                        <option value="DIR">Direito</option>
                                         <option value="ECV">Engenharia Civil</option>
                                         <option value="EEL">Engenharia Elétrica</option>
                                         <option value="CCO">Engenharia Mecânica</option>
                                         <option value="MED">Medicina</option>
-                                        <option value="DTRANS">Departamento Transporte</option>
-                                        <option value="PRG">Pró Reitoria Graduação</option>
-                                        <option value="PRPG">Pró Reitoria Pós Graduação</option>
                                     </select>
                                 </div>
                             </div>
@@ -177,8 +189,8 @@ require_once '../app/view/pages/home/_includes/header.php';
 
                         <div class="step" id="step3" style="display: none">
                             <div class="form-group">
-                                <label for="inputService">Serviço</label>
-                                <textarea class="form-control" id="inputService" name="inputService"
+                                <label for="servico">Serviço</label>
+                                <textarea class="form-control" id="servico" name="servico"
                                           rows="3"></textarea>
                             </div>
                         </div>
@@ -193,7 +205,7 @@ require_once '../app/view/pages/home/_includes/header.php';
                         <div class="container">
                             <div class="row">
                                 <div class="col-sm-7">
-                                    <input type="hidden" name="action" value="insert" id="insert">
+                                    <input type="hidden" name="action" value="create" id="create">
                                     <button type="button" class="btn btn-secondary" id="btn-cancel" name="cancel"
                                             data-dismiss="modal">
                                         Cancelar

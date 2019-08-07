@@ -41,7 +41,17 @@
 
         form.addEventListener("submit", function (event) {
             event.preventDefault();
-            handleNextStep();
+            if (btn_submit.innerText === "Próximo") {//acabou as etapas?
+                nextDisplay();
+                setAttributeRequired();
+                handleNextStep(this);
+            } else {
+                const solicitation = JSON.parse(sessionStorage.getItem("formSolicitation"));
+                console.log(solicitation);
+                post(solicitation);
+                sessionStorage.clear();
+                reload();
+            }
         });
 
         function handlePreviousStep() {
@@ -55,7 +65,6 @@
                     break;
                 case "step2":
                     modalTitle.innerText = "Etapa 2: (Informe seus dados pessoais)";
-                    // changeDisplayValue([btn_toBack]);
                     break;
                 case "step3":
                     modalTitle.innerText = "Etapa 3: (Faça seu pedido de suporte)";
@@ -63,30 +72,21 @@
             }
         }
 
-        function handleNextStep() {
-            if (btn_submit.innerText === "Próximo") {//acabou as etapas?
-                nextDisplay();
-                setAttributeRequired();
-                switch (currentStep.id) {
-                    case "step2":
-                        modalTitle.innerText = "Etapa 2: (Informe seus dados pessoais)";
-                        changeDisplayValue([btn_toBack]);
-                        break;
-                    case "step3":
-                        modalTitle.innerText = "Etapa 3: (Faça seu pedido de suporte)";
-                        break;
-                    case "step4"://step
-                        currentStep.innerHTML = getDivConfirmationStep(getFormData(this));//step4
-                        modalTitle.innerHTML = "Etapa 4: (Confirmar Dados)";
-                        btn_submit.innerText = "Enviar";
-                        modal.setAttribute("dismiss-modal", "modal");
-                        break;
-                }
-            } else {
-                const solicitation = JSON.parse(sessionStorage.getItem("formSolicitation"));
-                post(solicitation);
-                sessionStorage.clear();
-                reload();
+        function handleNextStep(contextForm) {
+            switch (currentStep.id) {
+                case "step2":
+                    modalTitle.innerText = "Etapa 2: (Informe seus dados pessoais)";
+                    changeDisplayValue([btn_toBack]);
+                    break;
+                case "step3":
+                    modalTitle.innerText = "Etapa 3: (Faça seu pedido de suporte)";
+                    break;
+                case "step4"://step
+                    currentStep.innerHTML = getDivConfirmationStep(getFormData(contextForm));//step4
+                    modalTitle.innerHTML = "Etapa 4: (Confirmar Dados)";
+                    btn_submit.innerText = "Enviar";
+                    modal.setAttribute("dismiss-modal", "modal");
+                    break;
             }
         }
 
@@ -109,6 +109,14 @@
             changeDisplayValue([currentStep, nextStep]);
             count++;
             updateStep();
+        }
+
+        //altera o valor do display de um ou mais elementos [div1, div2,...]
+        function changeDisplayValue(div) {
+            div.forEach(div => {
+                const currentStyle = div.style.display;
+                div.style.display = currentStyle === "none" ? "block" : "none";
+            });
         }
 
         function setAttributeRequired() {
@@ -148,35 +156,22 @@
             };
         }
 
-        //altera o valor do display de um ou mais elementos [div1, div2,...]
-        function changeDisplayValue(div) {
-            div.forEach(div => {
-                const currentStyle = div.style.display;
-                div.style.display = currentStyle === "none" ? "block" : "none";
-            });
-        }
-
         function getFormData(contextForm) {
-            const formData = new FormData(contextForm).entries();
-            formData.append("date", time());
+            const formData = new FormData(contextForm);
+            formData.append("dataSolicitacao", dateTime());
             //converter formData em um objeto js válido
-            const data = Array.from(formData).reduce((memo, pair) => ({
-                ...memo,//spread
-                [pair[0]]: pair[1],
-            }), {});
+            const data = formatFormData(formData);
             sessionStorage.setItem("formSolicitation", JSON.stringify(data));
             return data;
         }
 
-        function time() {
+        function dateTime() {
             const today = new Date();
             const day = today.getDate();
             const year = today.getFullYear();
             const month = today.getMonth();
-            const hours = today.getHours();
-            const minutes = today.getMinutes();
-            const seconds = today.getSeconds();
-            return year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds;
+            const time = new Date().toLocaleTimeString();
+            return year + "-" + month + "-" + day + " " + time;
         }
 
         function post(solicitation) {
@@ -207,6 +202,50 @@
             }).catch(error => console.error(error));
         }
 
+        //Recebe um FormData e retorna um objeto js válido.
+        function formatFormData(formData) {
+            const dataSolicitation = {};//inicializa dados da solicitação
+            const dataUser = {};//inicializa dados dos usuários
+            const data = {};//inicializa objeto que vai receber os dados formatados (dataSolicitation + dataClient)
+            let ddd;
+
+            formData.forEach((value, key) => {
+                switch (key) {
+                    case "action":
+                        data[key] = value;
+                        break;
+                    case "celular":
+                        const num = value.substr(0,5)+"-"+ value.substr(5);
+                        dataUser[key] = "("+ ddd + ")" + num;
+                        break;
+                    case "cod_usuario":
+                        dataUser[key] = value;
+                        dataSolicitation[key] = value;
+                        break;
+                    case "dataSolicitacao":
+                        dataSolicitation[key] = value;
+                        break;
+                    case "ddd":
+                        ddd= value;
+                        break;
+                    case "servico":
+                        dataSolicitation[key] = value;
+                        break;
+                    case "tipo_usuario":
+                        data[key] = value;
+                        break;
+                    default:
+                        dataUser[key] = value;
+                        break;
+                }
+            });
+
+            data["dataUser"] = dataUser;
+            data["dataSolicitation"] = dataSolicitation;
+
+            return data;
+        }
+
         function checkValidateFormData(form_data) {
             // console.log(input.checkValidity());
             // console.log(input.reportValidity());
@@ -215,10 +254,20 @@
             // } else {
             //
             // }
+
+
+        //     if (condicao...)
+        //     {
+        //         document.getElementById('salvar').type = 'submit';
+        //     }
+        // else
+        //     {
+        //         document.getElementById('salvar').type = 'reset';
+        //     }
         }
 
         function getDivConfirmationStep(solicitation) {
-            return `<table id="user_data" class="table responsive-table table-hover table-striped">
+            return `<table class="table responsive-table table-hover table-striped"  id="user_data">
                         <thead>
                             <tr>
                                 <th> Código </th>
@@ -228,9 +277,9 @@
                         </thead>
                         <tbody>
                             <tr class="position-relative">
-                                <td>` + solicitation.inputCodeUser + `</td>
-                                <td>` + solicitation.inputName + `</td>
-                                <td>` + solicitation.inputService + `</td>
+                                <td>` + solicitation.dataUser.cod_usuario + `</td>
+                                <td>` + solicitation.dataUser.nome + `</td>
+                                <td>` + solicitation.dataSolicitation.servico + `</td>
                             </tr>
                         </tbody>
                     </table>`;

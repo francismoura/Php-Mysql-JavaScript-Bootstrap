@@ -1,13 +1,15 @@
 <?php
 
-include_once('../dao/SolicitationDao.php');
+include_once '../dao/SolicitationDao.php';
+require_once '../app/model/Professor.php';
 
-class Solicitation extends SolicitationDao
+class SolicitacaoProfessor extends SolicitationDao
 {
 	private $attribute = array();
 
-	public function __construct()
+	public function __construct($typeUser)
 	{
+		$this->attribute['user'] = new $typeUser();
 	}
 
 	public function __set($name, $value)
@@ -59,7 +61,7 @@ class Solicitation extends SolicitationDao
 		};
 	}
 
-	public function post()
+	public function create()
 	{
 		$user = $this->attribute['user'];
 		$typeUser = $user->tipo_usuario;
@@ -84,6 +86,5 @@ class Solicitation extends SolicitationDao
 
 //        return $stm->execute();
 	}
-
 
 }

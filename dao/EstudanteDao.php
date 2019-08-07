@@ -2,14 +2,12 @@
 
 require_once '../database/Connection.php';
 require_once 'DAO.php';
-require_once '../app/model/Tecnico.php';
 
-
-abstract class SolicitationDao implements DAO
+abstract class EstudanteDao implements DAO
 {
 	protected $tableDB;
 
-	abstract public function __construct($typeUser);
+	abstract public function __construct();
 
 	public function dbPrepare($sql)
 	{
@@ -18,19 +16,19 @@ abstract class SolicitationDao implements DAO
 
 	public function setTableDB($typeUser)
 	{
-		$this->tableDB = "Solicitacao" . ucfirst($typeUser);
+		$this->tableDB = ucfirst($typeUser);
 	}
 
-	public function findUnit($id)
+	public function FindUnit($id)
 	{
 		$sql = "SELECT * FROM " . $this->tableDB . " WHERE id = :id";
 		$stm = $this->dbPrepare($sql);
-		$stm->bindValue(':id', $id, PDO::PARAM_INT);
+		$stm->bindParam(':id', $id, PDO::PARAM_INT);
 		$stm->execute();
 		return $stm->fetch();
 	}
 
-	public function findAll()
+	public function FindAll()
 	{
 		$sql = "SELECT * FROM  $this->tableDB";
 		$stm = $this->dbPrepare($sql);
@@ -40,19 +38,20 @@ abstract class SolicitationDao implements DAO
 		return $result;
 	}
 
-	public function insert($solicitation)
+	public function Insert($user)
 	{
-		$sql = "INSERT INTO $this->tableDB (cod_usuario, servico, dataSolicitacao) 
-				VALUES (:cod_usuario, :servico, :dataSolicitacao )";
+		$sql = "INSERT INTO $this->tableDB 
+				(cod_usuario, email, nome, celular, endereco, bairro, cidade, estado, cep, setor, curso) 
+				VALUES
+				(:cod_usuario, :email, :nome, :celular, :endereco, :bairro, :cidade, :estado, :cep, :setor, :curso )";
 		$stm = $this->dbPrepare($sql);
-		$date = date("Y-m-d H:i:s", strtotime($solicitation['dataSolicitacao']));
-		$stm->bindParam(':cod_usuario', $solicitation['user']->cod_usuario);
-		$stm->bindParam(':servico', $solicitation['servico']);
-		$stm->bindParam(':dataSolicitacao', $date);
+		foreach ($user as $key => &$value) {
+			$stm->bindParam($key, $value);
+		}
 		return $stm->execute();
 	}
 
-	public function update($id)
+	public function Update($id)
 	{
 		$sql = "UPDATE $this->tableDB SET nome = :nome WHERE id = :id";
 		$stm = $this->dbPrepare($sql);
@@ -61,7 +60,7 @@ abstract class SolicitationDao implements DAO
 		return $stm->execute();
 	}
 
-	public function delete($id)
+	public function Delete($id)
 	{
 		$sql = "DELETE FROM $this->tableDB WHERE id = :id";
 		$stm = $this->dbPrepare($sql);

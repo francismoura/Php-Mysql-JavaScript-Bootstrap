@@ -29,7 +29,7 @@ class AdminController
         //após verificar os dados de login redirecionar para admin
         //pedir para model todos os dados dos usuários fetchAll
 //        if ($userLogado === "root") {
-            View::build('admin');
+            View::build('Estudante');
 //        }
     }
 }

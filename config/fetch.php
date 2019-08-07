@@ -1,36 +1,34 @@
 <?php
 
-require_once('../app/controller/FormController.php');
+include_once '../app/controller/SolicitationController.php';
 
-$requestMethod = $_SERVER['REQUEST_METHOD'];//Contém o método de request: 'GET', 'HEAD', 'POST' ou 'PUT'.
+$requestMethod = $_SERVER["REQUEST_METHOD"];
 
 if ($requestMethod === "POST") {
-	$request = $_POST['json'];
+	$request = $_POST["json"];
 	$data = json_decode($request, true);
 	//Se json_decode falhar, é um JSON invalido
 	if (!is_array($data)) {
 		echo 0;
 	} else {
-		$actionName = $data['action'];
-		$controller = new FormController();
-		switch ($actionName) {
-			case 'insert':
-				echo $controller->insert($data);
-				break;
-			case 'findUnit':
-				//fazer algo
-				break;
-			case 'update':
-				//fazer algo
-				break;
-			case 'delete':
-				//fazer algo
-				break;
-		}
+		$user = $data["tipo_usuario"];
+		$controller = requireController($user);
+		$controller->post($data);
 	}
-} else if ($requestMethod === "GET") {//será sempre de acesso do Admin
-	$controller = new FormController();
-	$solicitations = $controller->getAllSolicitation();
+} else if ($requestMethod === "GET") {
+	$className = ["Estudante", "Professor", "Tecnico"];
+	$solicitations = array();
+	foreach ($className as $user) {
+		$controller = requireController($user);
+		$controller->getAll();
+	}
 	echo json_encode($solicitations);
 }
 
+function requireController($user){
+	require_once '../app/model/' . $user . '.php';
+	require_once '../app/model/Solicitacao' . $user . '.php';
+	$className = 'Solicitacao' . $user;
+	$solicitation = new $className(new $user());
+	return new SolicitationController($solicitation);
+}

@@ -1,12 +1,11 @@
 <?php
 
 require_once '../dao/UserDao.php';
-require_once 'Solicitation.php';
 
 class User extends UserDao
 {
 
-	private $attribute = [];
+	private $attribute = array();
 
 	public function __construct()
 	{
@@ -27,37 +26,42 @@ class User extends UserDao
 		return isset($this->attributes[$attribute]);
 	}
 
+	public function __unset($nameAttr)
+	{
+		unset($this->attribute[$nameAttr]);
+	}
+
 	public function getById($id)
 	{
 		return $this->FindUnit($id);
 	}
-
-	public function getAll()
-	{
-		$data = $this->FindAll();
-		$userData = new User();
-
-		foreach ($data['dataUser'] as $key => $value) {
-			$userData->$key = $value;
-		}
-	}
-
-	public function post()
-	{
-		return $this->Insert($this->attribute);
-	}
-
-	public function edit($id)
-	{
-		return $this->Update($id);
-	}
-
-	public function remove($id)
-	{
-		return $this->Delete($id);
-	}
-
-	public function getUsers()
+//
+//	public function getAll()
+//	{
+//		$data = $this->FindAll();
+//		$userData = new User();
+//
+//		foreach ($data['dataUser'] as $key => $value) {
+//			$userData->$key = $value;
+//		}
+//	}
+//
+//	public function post()
+//	{
+//		return $this->Insert($this->attribute);
+//	}
+//
+//	public function edit($id)
+//	{
+//		return $this->Update($id);
+//	}
+//
+//	public function remove($id)
+//	{
+//		return $this->Delete($id);
+//	}
+//
+	public function getAttribute()
 	{
 		return $this->attribute;
 	}

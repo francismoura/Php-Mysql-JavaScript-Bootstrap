@@ -6,13 +6,18 @@ require_once 'DAO.php';
 
 abstract class UserDao implements DAO
 {
-	protected $tableDB = 'Aluno';
+	protected $tableDB;
 
-	abstract function __construct();
+	abstract public function __construct();
 
 	public function dbPrepare($sql)
 	{
 		return Connection::prepare($sql);
+	}
+
+	public function setTableDB($typeUser)
+	{
+		$this->tableDB = ucfirst($typeUser);
 	}
 
 	public function FindUnit($id)
@@ -34,21 +39,42 @@ abstract class UserDao implements DAO
 		return $result;
 	}
 
+	public function InsertEstudante($user)
+	{
+		$sql = "INSERT INTO $this->tableDB 
+				(cod_usuario, email, nome, celular, endereco, bairro, cidade, estado, cep, setor, curso) 
+				VALUES
+				(:cod_usuario, :email, :nome, :celular, :endereco, :bairro, :cidade, :estado, :cep, :setor, :curso )";
+		$stm = $this->dbPrepare($sql);
+		foreach ($user as $key => &$value) {
+			$stm->bindParam($key, $value);
+		}
+		return $stm->execute();
+	}
+
 	public function Insert($user)
 	{
-		$sql = "INSERT INTO 
-				$this->tableDB (cod_user, nome, email, celular, rua, num, bairro, cidade, cep, estado, setor, curso) 
-				VALUES (:insertCodeUser, :insertEmail, :insertName, :insert )";
+		$sql = "INSERT INTO $this->tableDB
+				(cod_usuario, email, nome, celular, endereco, bairro, cidade, estado, cep, setor) 
+				VALUES
+				(:cod_usuario, :email, :nome, :celular, :endereco, :bairro, :cidade, :estado, :cep, :setor )";
 		$stm = $this->dbPrepare($sql);
-
-		foreach ($user as $data => &$value) {
-			$stm->bindParam($data, $value);
+		foreach ($user as $key => &$value) {
+			$stm->bindParam($key, $value);
 		}
-
 		return $stm->execute();
 	}
 
 	public function Update($id)
+	{
+		$sql = "UPDATE $this->tableDB SET nome = :nome WHERE id = :id";
+		$stm = $this->dbPrepare($sql);
+		$stm->bindParam(':id', $id, PDO::PARAM_INT);
+		$stm->bindParam(':nome', $id);
+		return $stm->execute();
+	}
+
+	public function UpdateTecnico($id)
 	{
 		$sql = "UPDATE $this->tableDB SET nome = :nome WHERE id = :id";
 		$stm = $this->dbPrepare($sql);
