@@ -38,7 +38,7 @@ abstract class UserDao implements DAO
 		return $result;
 	}
 
-	public function InsertEstudante($user)
+	public function InsertStudent($user)
 	{
 		$sql = "INSERT INTO $this->tableDB 
 				(cod_usuario, email, nome, celular, endereco, bairro, cidade, estado, cep, setor, curso) 

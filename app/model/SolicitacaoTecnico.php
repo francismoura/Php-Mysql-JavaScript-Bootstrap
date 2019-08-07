@@ -12,6 +12,7 @@ class SolicitacaoTecnico extends SolicitationDao
 	public function __construct($typeUser)
 	{
 		$this->user = $typeUser();
+		$this->setTableDB(self::TYPEUSER);
 	}
 
 	public function __set($name, $value)

@@ -1,8 +1,8 @@
 <?php
 
-require_once '../dao/EstudanteDao.php';
+require_once '../dao/UserDao.php';
 
-class Estudante extends EstudanteDao
+class Estudante extends UserDao
 {
 	const TYPEUSER = "Estudante";
 	private $attribute = array();

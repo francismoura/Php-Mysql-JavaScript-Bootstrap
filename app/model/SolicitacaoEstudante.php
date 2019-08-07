@@ -38,7 +38,8 @@ class SolicitacaoEstudante extends SolicitationDao
 
 	public function create()
 	{
-		return $this->user->Insert($this->user->getAttribute()) && $this->Insert($this->attribute);
+		//insere dados do estudante e da solicitação em si
+		return $this->user->InsertStudent($this->user->getAttribute()) && $this->Insert($this->attribute);
 	}
 
 	public function getAll()

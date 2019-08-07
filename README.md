@@ -1,4 +1,19 @@
-Descrição do caso:
+# **Projeto CRUD com: PHP, Javascript, Bootstrap, PDO & MySQL*
+
+------------
+
+## Assuntos Abordados no Desenvolvimento do Projeto:
+Acesso a banco de dados com o MySql
+
+Otimização da conexão com o banco de dados através do PDO (PHP Data Object)
+
+Uso de linguagens: PHP, JavaScript,HTML e CSS
+
+Uso do framework Bootstrap para realização de um layout responsivo para o projeto.
+
+------------
+
+## **Descrição do caso:**
 
 Elaborar um sistema simples de cadastro e gestão de solicitações ao setor de TI no qual deve contemplar as rotinas
 de um CRUD. Os critérios de aceitação são:
