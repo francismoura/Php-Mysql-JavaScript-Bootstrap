@@ -4,10 +4,20 @@ require_once '../dao/EstudanteDao.php';
 
 class Estudante extends EstudanteDao
 {
+	const TYPEUSER = "Estudante";
 	private $attribute = array();
 
 	public function __construct()
 	{
+		$this->setTableDB(self::TYPEUSER);
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getAttribute(): array
+	{
+		return $this->attribute;
 	}
 
 	public function __set($nameAttr, $value)

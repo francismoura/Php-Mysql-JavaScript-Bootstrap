@@ -59,7 +59,7 @@ require_once '../app/view/pages/home/_includes/header.php';
                             <div class="form-group">
                                 <label for="tipo_usuario">
                                     Estudante/Professor/Técnico
-                                    <select name="tipo_usuario" id="tipo_usuario" class="form-control">
+                                    <select class="form-control" id="tipo_usuario" name="tipo_usuario">
                                         <option selected value="">Escolher...</option>
                                         <option value="Estudante">Estudante</option>
                                         <option value="Professor">Professor</option>

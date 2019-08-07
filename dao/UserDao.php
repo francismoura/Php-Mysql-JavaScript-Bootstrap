@@ -1,7 +1,6 @@
 <?php
 
 require_once '../database/Connection.php';
-require_once '../app/model/User.php';
 require_once 'DAO.php';
 
 abstract class UserDao implements DAO
@@ -17,7 +16,7 @@ abstract class UserDao implements DAO
 
 	public function setTableDB($typeUser)
 	{
-		$this->tableDB = ucfirst($typeUser);
+		$this->tableDB = $typeUser;
 	}
 
 	public function FindUnit($id)

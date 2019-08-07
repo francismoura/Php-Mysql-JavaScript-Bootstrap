@@ -16,7 +16,7 @@ abstract class EstudanteDao implements DAO
 
 	public function setTableDB($typeUser)
 	{
-		$this->tableDB = ucfirst($typeUser);
+		$this->tableDB = $typeUser;
 	}
 
 	public function FindUnit($id)

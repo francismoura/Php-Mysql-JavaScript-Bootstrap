@@ -5,10 +5,13 @@ require_once '../app/model/Professor.php';
 
 class Professor extends UserDao
 {
+	const TYPEUSER = "Professor";
 	private $attribute = array();
 
 	public function __construct()
 	{
+		$this->setTableDB(self::TYPEUSER);
+
 	}
 
 	public function __set($nameAttr, $value)

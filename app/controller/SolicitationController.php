@@ -7,43 +7,25 @@ class SolicitationController
 	public function __construct($solicitation)
 	{
 		$this->solicitation = $solicitation;
-
 	}
 
-	public function post($data)
+
+	public function create($data)
 	{
-		//cria uma solicitação com seu respectivo usuário
-		switch ($data["action"]) {
-			case "create":
-				$response = $this->solicitation->create($data);
-				echo $response;
-				break;
-			case "findUnit":
-				echo $this->solicitation->findUnit($data);
-				//fazer algo
-				break;
-			case "update":
-				echo $this->solicitation->update($data);
-				//fazer algo
-				break;
-			case "delete":
-				echo $this->solicitation->delete($data);
-				//fazer algo
-				break;
+		foreach ($data['dataSolicitation'] as $key => $value) {
+			$this->solicitation->$key = $value;
+		};
+
+		foreach ($data['dataUser'] as $key => $value) {
+			$this->solicitation->user->$key = $value;
 		}
-	}
 
-	private function create($data)
-	{
-		$this->solicitation->setAttributes($data);
-		return ($this->solicitation->post());
+		return $this->solicitation->create();
 	}
 
 	public function getAll()
 	{
-		$this->solicitation->user = $this->user;
-		$solicitations = $this->solicitation->getAll();
-		return true;
+		return $this->solicitation->getAll();;
 	}
 
 	public function findUnit($data)

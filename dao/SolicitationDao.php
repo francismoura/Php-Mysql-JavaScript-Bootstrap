@@ -18,7 +18,7 @@ abstract class SolicitationDao implements DAO
 
 	public function setTableDB($typeUser)
 	{
-		$this->tableDB = "Solicitacao" . ucfirst($typeUser);
+		$this->tableDB = $typeUser;
 	}
 
 	public function findUnit($id)

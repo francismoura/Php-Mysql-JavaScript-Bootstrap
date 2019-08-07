@@ -5,11 +5,13 @@ require_once '../app/model/Tecnico.php';
 
 class SolicitacaoTecnico extends SolicitationDao
 {
+	const TYPEUSER = "SolicitacaoTecnico";
+	private $user = array();
 	private $attribute = array();
 
 	public function __construct($typeUser)
 	{
-		$this->attribute['user'] = new $typeUser();
+		$this->user = $typeUser();
 	}
 
 	public function __set($name, $value)
@@ -35,27 +37,12 @@ class SolicitacaoTecnico extends SolicitationDao
 
 	public function getAll()
 	{
-		$solicitations = [];
-		$user = $this->attribute["user"];
-		$types = ["Estudante", "Professor", "Tecnico"];
-
-		foreach ($types as $type) {
-			$user->setTableDB($type);
-			$this->setTableDB($type);
-			foreach ($this->findAll() as $solicitation) {
-				//pegar todas as solicitações
-				//separar cod_usuario de cada solicitação e colocar como elemento único num array em ordem alfabética
-				//buscar o nome e o que mais representante de cod_usuario e insetir em solitações
-				//
-				$solicitations[$type] = $solicitation;
-				$teste = $solicitations['Estudante']->cod_usuario;
-
-			}
-		}
-		return true;
+		$this->setTable();
+		return $this->findAll();
 	}
 
-	public function setAttributes($data){
+	public function setAttributes($data)
+	{
 		forEach ($data["dataSolicitation"] as $key => $value) {
 			$this->attribute[$key] = $value;
 		};
@@ -63,16 +50,8 @@ class SolicitacaoTecnico extends SolicitationDao
 
 	public function create()
 	{
-		$user = $this->attribute['user'];
-		$typeUser = $user->tipo_usuario;
-		$user->setTableDB($typeUser);
-		$this->setTableDB($typeUser);
-		unset($user->tipo_usuario);
-		if (($typeUser == "Tecnico") || ($typeUser == "Professor")) {
-			unset($user->curso);
-			return $user->Insert($user->getAttribute()) && $this->Insert($this->attribute);
-		}
-		return $user->InsertEstudante($user->getAttribute()) && $this->Insert($this->attribute);
+		$this->setTable();
+		return $this->user->Insert($this->user->getAttribute()) && $this->Insert($this->attribute);
 	}
 
 	public function edit($id)
@@ -85,6 +64,12 @@ class SolicitacaoTecnico extends SolicitationDao
 	{
 
 //        return $stm->execute();
+	}
+
+	private function setTable()
+	{
+		$this->user->setTableDB(self::TYPEUSER);
+		$this->setTableDB(self::TYPEUSER);
 	}
 
 }

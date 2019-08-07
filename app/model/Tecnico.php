@@ -4,10 +4,12 @@ require_once '../dao/UserDao.php';
 
 class Tecnico extends UserDao
 {
+	const TYPEUSER = "Tecnico";
 	private $attribute = array();
 
 	public function __construct()
 	{
+		$this->setTableDB(self::TYPEUSER);
 	}
 
 	public function __set($nameAttr, $value)
