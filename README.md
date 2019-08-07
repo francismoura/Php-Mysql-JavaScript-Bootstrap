@@ -1,17 +1,11 @@
-# **Projeto CRUD com: PHP, Javascript, Bootstrap, PDO & MySQL*
-
-------------
+## **Projeto CRUD com: PHP, Javascript, Bootstrap, PDO & MySQL**
+Projeto que executa pedidos de solicitações, desenvolvido para estudos, utilizando como base acesso a banco de dados com o MySQL e linguagem PHP.
 
 ## Assuntos Abordados no Desenvolvimento do Projeto:
-Acesso a banco de dados com o MySql
-
-Otimização da conexão com o banco de dados através do PDO (PHP Data Object)
-
-Uso de linguagens: PHP, JavaScript,HTML e CSS
-
-Uso do framework Bootstrap para realização de um layout responsivo para o projeto.
-
-------------
+- Acesso a banco de dados com o MySql
+- Otimização da conexão com o banco de dados através do PDO (PHP Data Object)
+- Uso de linguagens: PHP, JavaScript e CSS
+- Uso do framework Bootstrap para realização de um layout responsivo para o projeto.
 
 ## **Descrição do caso:**
 
