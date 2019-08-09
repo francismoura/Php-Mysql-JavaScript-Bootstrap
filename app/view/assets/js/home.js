@@ -175,7 +175,7 @@
         }
 
         function post(solicitation) {
-            fetch(URL,
+            fetch(URL + "?&action=create",
                 {
                     method: "POST",
                     headers: {
@@ -184,6 +184,7 @@
                     body: "json=" + JSON.stringify(solicitation)
                 }
             ).then(response => {
+                console.log(response.text());
                 if (response.status === 200) {
                     if (response.text()) {
                         alert("Sua solicitação foi enviada com sucesso");

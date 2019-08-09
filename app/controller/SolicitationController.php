@@ -9,38 +9,40 @@ class SolicitationController
 		$this->solicitation = $solicitation;
 	}
 
-
 	public function create($data)
 	{
 		foreach ($data['dataSolicitation'] as $key => $value) {
 			$this->solicitation->$key = $value;
 		};
-
 		foreach ($data['dataUser'] as $key => $value) {
 			$this->solicitation->user->$key = $value;
 		}
-
 		return $this->solicitation->create();
+	}
+
+	public function getName(){
+
+		return $this->solicitation->getName();
 	}
 
 	public function getAll()
 	{
-		return $this->solicitation->getAll();;
+		return $this->solicitation->getAll();
 	}
 
-	public function findUnit($data)
+	public function getById($data)
 	{
-		return $this->user->findUnit($data);
+		return $this->solicitation->getById($data);
 	}
 
-	public function update($data)
+	public function edit($data)
 	{
 		return $this->solicitation->edit($data);
 	}
 
-	public function delete($data)
+	public function remove($id)
 	{
-		return true;
+		return $this->solicitation->remove($id);
 	}
 
 }

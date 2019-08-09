@@ -9,22 +9,37 @@
 
         //incializa a tabela de solicitações do admin
         loadTable()
+            .then(getName)
             .then(outputTable)
             .catch(error => {
                 console.log("There has been a problem with your fetch operation: " + error.message)
             });
 
         async function loadTable() {
-            const response = await fetch(URL + `?&action=findAll`);
+            const response = await fetch(URL + `?&action=getAll`);
             const jsonData = await response.json();
             console.log(jsonData);
             if (response.ok) {
                 if (jsonData.length > 0) {
+                    console.log("DATA", jsonData);
                     return jsonData;
+                } else {//ERRO 404, 500
+                    throw "Network response was not ok or syntax error";
                 }
-            } else {//ERRO 404, 500
-                throw "Network response was not ok or syntax error";
+            }
+        }
 
+        async function getName(allSolicitations) {
+            console.log("all", allSolicitations);
+            const response = await fetch(URL + `?&action=getName`);
+            const json = await response.json();
+            console.log("JSON", json);
+            if (response.ok) {
+                if (json.length > 0) {
+                     return [allSolicitations, json];
+                } else {//ERRO 404, 500
+                    throw "Network response was not ok or syntax error";
+                }
             }
         }
 
@@ -91,4 +106,5 @@
                 .insertAdjacentHTML('afterend', output);
         }
     }
+
 )(document);

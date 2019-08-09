@@ -7,7 +7,7 @@ require_once '../app/view/pages/_includes/header.php';
 <div class="col-sm-3 mx-auto">
     <div class="card card-signin my-5">
         <div class="card-body">
-            <img class="mb-4 img-login" src="../app/view/resources/img/usuario.png" alt="">
+            <img class="mb-4 img-login" src="../app/view/assets/img/usuario.png" alt="">
             <h5 class="login-title text-center">Login</h5>
             <form class="form-signin">
                 <div class="form-label-group">
@@ -29,7 +29,7 @@ require_once '../app/view/pages/_includes/header.php';
     </div>
 </div>
 
-<script src="../app/view/resources/js/login.js"></script>
+<script src="../app/view/assets/js/login.js"></script>
 
 </body>
 </html>

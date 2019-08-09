@@ -11,7 +11,14 @@ class Professor extends UserDao
 	public function __construct()
 	{
 		$this->setTableDB(self::TYPEUSER);
+	}
 
+	/**
+	 * @return array
+	 */
+	public function getAttribute(): array
+	{
+		return $this->attribute;
 	}
 
 	public function __set($nameAttr, $value)
@@ -32,11 +39,6 @@ class Professor extends UserDao
 	public function __unset($nameAttr)
 	{
 		unset($this->attribute[$nameAttr]);
-	}
-
-	public function getById($id)
-	{
-		return $this->FindUnit($id);
 	}
 
 }

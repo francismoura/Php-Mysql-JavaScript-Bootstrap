@@ -6,13 +6,18 @@ require_once '../app/model/Professor.php';
 class SolicitacaoProfessor extends SolicitationDao
 {
 	const TYPEUSER = "SolicitacaoProfessor";
-	private $user = array();
 	private $attribute = array();
 
-	public function __construct($typeUser)
+	public function __construct($professor)
 	{
-		$this->user = $typeUser;
+		parent::__construct($professor);
+		$this->attribute['user'] = $professor;
 		$this->setTableDB(self::TYPEUSER);
+	}
+
+	public function getAttribute(): array
+	{
+		return $this->attribute;
 	}
 
 	public function __set($name, $value)
@@ -25,49 +30,42 @@ class SolicitacaoProfessor extends SolicitationDao
 		return $this->attribute[$name];
 	}
 
-	public function __isset($name)
-	{
-		return isset($this->atribute[$name]);
-	}
-
-
-	public function getById($id)
-	{
-		return $this->findUnit($id);
-	}
-
 	public function create()
 	{
-		return $this->user->Insert($this->user->getAttribute()) && $this->Insert($this->attribute);
+		$user = $this->attribute['user'];
+		unset($user->curso);
+		return $user->Insert($user->getAttribute()) && $this->Insert($this->attribute);
+	}
+
+	public function getName(){
+		$users = array();
+		$user = $this->attribute['user'];
+		foreach ($this->FindAll() as $solicitation) {
+			$codUsuario = $solicitation->cod_usuario;
+			$users[] = $user->getName($codUsuario);
+		}
+		return $users ;
 	}
 
 	public function getAll()
 	{
-		return $this->findAll();
+		$this->FindAll();
+		return $this->attribute;
 	}
 
-//	public function setAttributes($data)
-//	{
-//		forEach ($data["dataSolicitation"] as $key => $value) {
-//			$this->attribute[$key] = $value;
-//		};
-//	}
+	public function getById($id)
+	{
+		return $this->FindUnit($id);
+	}
+
+	public function remove($id)
+	{
+        return $this->Delete($id);
+	}
 
 	public function edit($id)
 	{
-
-//        return $stm->execute();
-	}
-
-	public function delete($id)
-	{
-
-//        return $stm->execute();
-	}
-
-	private function setTable(){
-		$this->user->setTableDB(self::TYPEUSER);
-		$this->setTableDB(self::TYPEUSER);
+		return $this->Update($id);
 	}
 
 }

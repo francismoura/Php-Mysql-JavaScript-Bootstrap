@@ -6,7 +6,7 @@ require_once '../app/view/pages/admin/_includes/header.php';
 <nav class="navbar navbar-expand-md" style="padding: 0;">
     <div class="container">
         <a class="navbar-brand" href="">
-            <img class="img-nav" src="../app/view/resources/img/logo.png" width="30px"
+            <img class="img-nav" src="../app/view/assets/img/logo.png" width="30px"
                  style="vertical-align: middle"
                  alt="logo">
             <span class="nav-title">

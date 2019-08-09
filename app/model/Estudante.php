@@ -39,9 +39,4 @@ class Estudante extends UserDao
 	{
 		unset($this->attribute[$nameAttr]);
 	}
-
-	public function getById($id)
-	{
-		return $this->FindUnit($id);
-	}
 }

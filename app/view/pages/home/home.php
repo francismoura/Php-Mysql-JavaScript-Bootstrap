@@ -6,7 +6,7 @@ require_once '../app/view/pages/home/_includes/header.php';
     <nav class="navbar navbar-expand-md" style="padding: 0;">
         <div class="container">
             <a class="navbar-brand">
-                <img class="img-nav" src="../app/view/resources/img/logo.png" alt="logo">
+                <img class="img-nav" src="../app/view/assets/img/logo.png" alt="logo">
                 <span class="nav-title">
                     Departamento de Tecnologia da Informação
                 </span>

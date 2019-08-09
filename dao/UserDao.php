@@ -28,6 +28,21 @@ abstract class UserDao implements DAO
 		return $stm->fetch();
 	}
 
+	public function FindName($cod_usuario)
+	{
+		$tableSolicitacao = "Solicitacao".$this->tableDB;
+		$sql = "SELECT  nome 
+				FROM " . $this->tableDB . " U
+				JOIN " . $tableSolicitacao. " S
+				WHERE U.cod_usuario = S.cod_usuario";
+		$stm = $this->dbPrepare($sql);
+		$stm->bindParam(':cod_usuario', $cod_usuario, PDO::PARAM_INT);
+		$stm->execute();
+		$nameUser = $stm->fetch(PDO::FETCH_OBJ);
+		return $nameUser;
+	}
+
+
 	public function FindAll()
 	{
 		$sql = "SELECT * FROM  $this->tableDB";
@@ -73,7 +88,7 @@ abstract class UserDao implements DAO
 		return $stm->execute();
 	}
 
-	public function UpdateTecnico($id)
+	public function UpdateStudent($id)
 	{
 		$sql = "UPDATE $this->tableDB SET nome = :nome WHERE id = :id";
 		$stm = $this->dbPrepare($sql);

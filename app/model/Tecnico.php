@@ -12,6 +12,14 @@ class Tecnico extends UserDao
 		$this->setTableDB(self::TYPEUSER);
 	}
 
+	/**
+	 * @return array
+	 */
+	public function getAttribute(): array
+	{
+		return $this->attribute;
+	}
+
 	public function __set($nameAttr, $value)
 	{
 		$this->attribute[$nameAttr] = $value;
@@ -30,11 +38,6 @@ class Tecnico extends UserDao
 	public function __unset($nameAttr)
 	{
 		unset($this->attribute[$nameAttr]);
-	}
-
-	public function getById($id)
-	{
-		return $this->FindUnit($id);
 	}
 
 }

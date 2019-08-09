@@ -6,13 +6,18 @@ require_once '../app/model/Tecnico.php';
 class SolicitacaoTecnico extends SolicitationDao
 {
 	const TYPEUSER = "SolicitacaoTecnico";
-	private $user = array();
 	private $attribute = array();
 
-	public function __construct($typeUser)
+	public function __construct($tecnico)
 	{
-		$this->user = $typeUser();
+		parent::__construct($tecnico);
+		$this->attribute['user'] = $tecnico;
 		$this->setTableDB(self::TYPEUSER);
+	}
+
+	public function getAttribute(): array
+	{
+		return $this->attribute;
 	}
 
 	public function __set($name, $value)
@@ -25,52 +30,42 @@ class SolicitacaoTecnico extends SolicitationDao
 		return $this->attribute[$name];
 	}
 
-	public function __isset($name)
+	public function create()
 	{
-		return isset($this->atribute[$name]);
+		$user = $this->attribute['user'];
+		unset($user->curso);
+		return $user->Insert($user->getAttribute()) && $this->Insert($this->attribute);
 	}
 
-
-	public function getById($id)
-	{
-		return $this->findUnit($id);
+	public function getName(){
+		$users = array();
+		$user = $this->attribute['user'];
+		foreach ($this->FindAll() as $solicitation) {
+			$codUsuario = $solicitation->cod_usuario;
+			$users[] = $user->getName($codUsuario);
+		}
+		return $users ;
 	}
 
 	public function getAll()
 	{
-		$this->setTable();
-		return $this->findAll();
+		$this->FindAll();
+		return $this->attribute;
+	}
+	public function getById($id)
+	{
+		return $this->FindUnit($id);
 	}
 
-	public function setAttributes($data)
+	public function remove($id)
 	{
-		forEach ($data["dataSolicitation"] as $key => $value) {
-			$this->attribute[$key] = $value;
-		};
-	}
-
-	public function create()
-	{
-		$this->setTable();
-		return $this->user->Insert($this->user->getAttribute()) && $this->Insert($this->attribute);
+        return $this->Delete($id);
 	}
 
 	public function edit($id)
 	{
-
-//        return $stm->execute();
+		return $this->Update($id);
 	}
 
-	public function delete($id)
-	{
-
-//        return $stm->execute();
-	}
-
-	private function setTable()
-	{
-		$this->user->setTableDB(self::TYPEUSER);
-		$this->setTableDB(self::TYPEUSER);
-	}
 
 }
