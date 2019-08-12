@@ -1,6 +1,9 @@
 <?php
 
-include_once '../app/controller/SolicitationController.php';
+require_once '../app/controller/SolicitationController.php';
+require_once '../app/model/Solicitacao.php';
+require_once '../app/model/User.php';
+
 
 $requestMethod = $_SERVER["REQUEST_METHOD"];
 
@@ -10,7 +13,7 @@ if ($requestMethod === "POST") {
 	if (!is_array($data)) {
 		echo 0;
 	} else {
-		$controller = requireController($data["tipo_usuario"]);
+		$controller = new SolicitationController( new Solicitacao(new User($data['tipo_usuario'])));
 		$actionName = $_GET['action'];
 		echo $controller->$actionName($data);
 	}
@@ -19,17 +22,17 @@ if ($requestMethod === "POST") {
 	$solicitations = array();
 	$actionName = $_GET['action'];
 	$className = ["Estudante", "Professor", "Tecnico"];
-	foreach ($className as $user) {
-		$controller = requireController($user);
-		$solicitations[$user] = $controller->$actionName();
-	}
-	echo json_encode($solicitations);
+	foreach ($className as $userType) {
+		$controller = $controller = new SolicitationController( new Solicitacao(new User($userType)));
+		$response = $controller->$actionName();
+		if (sizeof($response) > 0){
+			foreach ($response as $item => $value){
+				$solicitations[$item] = $value;
+			}
 
-}
-function requireController($user){
-	require_once '../app/model/' . $user . '.php';
-	require_once '../app/model/Solicitacao' . $user . '.php';
-	$className = 'Solicitacao' . $user;
-	$solicitation = new $className(new $user());
-	return new SolicitationController($solicitation);
+		}
+	}
+	$teste =  json_encode($solicitations);
+	return $teste;
+
 }

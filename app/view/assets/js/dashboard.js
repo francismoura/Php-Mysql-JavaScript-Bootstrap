@@ -9,7 +9,6 @@
 
         //incializa a tabela de solicitações do admin
         loadTable()
-            .then(getName)
             .then(outputTable)
             .catch(error => {
                 console.log("There has been a problem with your fetch operation: " + error.message)
@@ -17,11 +16,11 @@
 
         async function loadTable() {
             const response = await fetch(URL + `?&action=getAll`);
+            console.log('RESPONSE', response.json());
             const jsonData = await response.json();
-            console.log(jsonData);
+            console.log('JSONTESTE', jsonData);
             if (response.ok) {
-                if (jsonData.length > 0) {
-                    console.log("DATA", jsonData);
+                if (Object.keys(jsonData).length > 0) {
                     return jsonData;
                 } else {//ERRO 404, 500
                     throw "Network response was not ok or syntax error";
@@ -29,21 +28,22 @@
             }
         }
 
-        async function getName(allSolicitations) {
-            console.log("all", allSolicitations);
-            const response = await fetch(URL + `?&action=getName`);
-            const json = await response.json();
-            console.log("JSON", json);
-            if (response.ok) {
-                if (json.length > 0) {
-                     return [allSolicitations, json];
-                } else {//ERRO 404, 500
-                    throw "Network response was not ok or syntax error";
-                }
-            }
-        }
+        // async function getName(allSolicitations) {
+        //     console.log("all", allSolicitations);
+        //     const response = await fetch(URL + `?&action=getName`);
+        //     const jsonData = await response.json();
+        //     console.log("JSON", jsonData);
+        //     if (response.ok) {
+        //         if (Object.keys(jsonData).length > 0) {
+        //              return [allSolicitations, jsonData];
+        //         } else {//ERRO 404, 500
+        //             throw "Network response was not ok or syntax error";
+        //         }
+        //     }
+        // }
 
         function outputTable(data) {
+            console.log(data);
             let output =
                 `<table id = "user_data" class= "table responsive-table table-hover table-striped">
                     <thead>

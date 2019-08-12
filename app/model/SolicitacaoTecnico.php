@@ -7,11 +7,11 @@ class SolicitacaoTecnico extends SolicitationDao
 {
 	const TYPEUSER = "SolicitacaoTecnico";
 	private $attribute = array();
+	private $user;
 
 	public function __construct($tecnico)
 	{
-		parent::__construct($tecnico);
-		$this->attribute['user'] = $tecnico;
+		$this->user = $tecnico;
 		$this->setTableDB(self::TYPEUSER);
 	}
 
@@ -49,9 +49,28 @@ class SolicitacaoTecnico extends SolicitationDao
 
 	public function getAll()
 	{
-		$this->FindAll();
-		return $this->attribute;
+		$solicitation = array();
+		$response = $this->FindAll();
+		if (empty($response)) {
+			//retorna um usuário vazio
+			return $this->attribute;
+		} else {
+			//retorna todos os usuario encontrados
+			foreach ($response as $key) {
+				foreach ((object)$key as $item => $value) {
+					if ($item == 'cod_usuario') {
+						$this->user->nome = $this->user->FindName($value);
+					}
+					$this->$item = $value;
+				}
+				unset($this->tableDB);
+				unset($this->user->tableDB);
+				$solicitation [] = $this;
+			}
+		}
+		return $solicitation;
 	}
+
 	public function getById($id)
 	{
 		return $this->FindUnit($id);

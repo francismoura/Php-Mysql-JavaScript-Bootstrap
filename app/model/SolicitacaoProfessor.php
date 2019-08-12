@@ -7,11 +7,11 @@ class SolicitacaoProfessor extends SolicitationDao
 {
 	const TYPEUSER = "SolicitacaoProfessor";
 	private $attribute = array();
+	private $user;
 
 	public function __construct($professor)
 	{
-		parent::__construct($professor);
-		$this->attribute['user'] = $professor;
+		$this->user = $professor;
 		$this->setTableDB(self::TYPEUSER);
 	}
 
@@ -49,8 +49,26 @@ class SolicitacaoProfessor extends SolicitationDao
 
 	public function getAll()
 	{
-		$this->FindAll();
-		return $this->attribute;
+		$solicitation = array();
+		$response = $this->FindAll();
+		if (empty($response)) {
+			//retorna um usuário vazio
+			return $this->attribute;
+		} else {
+			//retorna todos os usuario encontrados
+			foreach ($response as $key) {
+				foreach ((object)$key as $item => $value) {
+					if ($item == 'cod_usuario') {
+						$this->user->nome = $this->user->FindName($value);
+					}
+					$this->$item = $value;
+				}
+				unset($this->tableDB);
+				unset($this->user->tableDB);
+				$solicitation [] = $this;
+			}
+		}
+		return $solicitation;
 	}
 
 	public function getById($id)

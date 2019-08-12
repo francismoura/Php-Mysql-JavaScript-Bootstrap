@@ -7,7 +7,9 @@ abstract class UserDao implements DAO
 {
 	protected $tableDB;
 
-	abstract public function __construct();
+	public function __construct($typeUser){
+		$this->tableDB = $typeUser;
+	}
 
 	public function dbPrepare($sql)
 	{
@@ -17,6 +19,10 @@ abstract class UserDao implements DAO
 	public function setTableDB($typeUser)
 	{
 		$this->tableDB = $typeUser;
+	}
+
+	public function getTableDB(){
+		return $this->tableDB;
 	}
 
 	public function FindUnit($id)

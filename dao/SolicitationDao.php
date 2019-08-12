@@ -6,12 +6,8 @@ require_once 'DAO.php';
 abstract class SolicitationDao implements DAO
 {
 	protected $tableDB;
-	protected $user;
 
-	public function __construct(object $typeUser)
-	{
-		$this->user = $typeUser;
-	}
+	abstract public function __construct(object $typeUser);
 
 	public function dbPrepare($sql)
 	{

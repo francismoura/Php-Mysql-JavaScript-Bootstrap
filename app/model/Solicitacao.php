@@ -1,18 +1,16 @@
 <?php
 
 include_once '../dao/SolicitationDao.php';
-require_once '../app/model/Estudante.php';
 
-class SolicitacaoEstudante extends SolicitationDao
+class Solicitacao extends SolicitationDao
 {
-	const TYPEUSER = "SolicitacaoEstudante";
 	private $attribute = array();
 	private $user;
 
-	public function __construct($estudante)
+	public function __construct($user)
 	{
-		$this->user = $estudante;
-		$this->setTableDB(self::TYPEUSER);
+		$this->user = $user;
+		$this->setTableDB('Solicitacao'.$user->getTableDB());
 	}
 
 	public function getAttribute(): array
@@ -52,7 +50,7 @@ class SolicitacaoEstudante extends SolicitationDao
 		} else {
 			//retorna todos os usuario encontrados
 			foreach ($response as $key) {
-				foreach ((object)$key as $item => $value) {
+				foreach ((array)$key as $item => $value) {
 					if ($item == 'cod_usuario') {
 						$response = $this->user->FindName($value);
 						$sol['nome'] = $response->nome;
