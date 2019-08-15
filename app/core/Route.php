@@ -30,7 +30,7 @@ class Route
 		if ($_SERVER['REQUEST_URI'] == BASE_PATH . $route) {
 			self::registerRoute($route);
 			$closure->__invoke();
-		} else if (explode('?', $_SERVER['REQUEST_URI'])[0] == BASE_PATH . $route) {
+		} else if (explode('?', $_SERVER['REQUEST_URI'])[0] == BASE_PATH. $route) {
 			self::registerRoute($route);
 			$closure->__invoke();
 		}

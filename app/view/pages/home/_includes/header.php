@@ -21,8 +21,8 @@
 
     <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="../app/view/assets/css/styleHome.css" rel="stylesheet" type="text/css"/>
-    <link href="../app/view/assets/css/styleModal.css" rel="stylesheet" type="text/css"/>
+    <link href="../app/view/assets/css/homeStyle.css" rel="stylesheet" type="text/css"/>
+    <link href="../app/view/assets/css/modalStyle.css" rel="stylesheet" type="text/css"/>
     <link href="../app/view/assets/css/normalize.css" rel="stylesheet" type="text/css"/>
     <link href="./css/bootstrap.css" rel="stylesheet" type="text/css"/>
     <script src="./js/jquery-3.4.1.min.js" type="text/javascript"></script>

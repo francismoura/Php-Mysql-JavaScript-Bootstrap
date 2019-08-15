@@ -1,6 +1,6 @@
 <?php
 
-require_once '../dao/UserDao.php';
+include_once '../dao/UserDao.php';
 
 class User extends UserDao
 {
@@ -11,9 +11,6 @@ class User extends UserDao
 		parent::__construct($typeUser);
 	}
 
-	/**
-	 * @return array
-	 */
 	public function getAttribute(): array
 	{
 		return $this->attribute;

@@ -1,6 +1,6 @@
 
 
-<script src="../app/view/assets/js/dashboard.js"></script>
+<script src="../app/view/assets/js/admin.js"></script>
 
 </body>
 </html>

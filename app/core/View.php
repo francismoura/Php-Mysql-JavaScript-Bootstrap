@@ -2,30 +2,13 @@
 
 class View
 {
-	/*
-	 * Se a rota for válida, crie a visualização e o controlador de visualização.
-	 * Se a rota é inválida, não faça nada e
-	 * se algo der errado ao  verificar, o retorno da rota é 0;
-	*/
-	public static function build($viewName)
+
+	public static function CreateView($viewName)
 	{
 		if (Route::isRouteValid()) {
-			// criar as views e os controllers
-			$dirs = array(
-				'../app/view/pages/' . $viewName . '/',
-				'../app/view/pages/admin/',
-				'../app/view/error/',
-				'../app/controller/'
-			);
-			foreach ($dirs as $dir) {
-				if (file_exists($dir . $viewName . '.php')) {
-					require_once $dir . $viewName . '.php';
-					break;
-				}
+			if (file_exists('../app/view/pages/' . $viewName . '/' . $viewName . '.php')) {
+				require_once '../app/view/pages/' . $viewName . '/' . $viewName . '.php';
 			}
-			return 1;
 		}
-		return 0;
 	}
-
 }

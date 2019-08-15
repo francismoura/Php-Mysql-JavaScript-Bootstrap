@@ -2,15 +2,15 @@
 
 include_once '../dao/SolicitationDao.php';
 
-class Solicitacao extends SolicitationDao
+class Solicitation extends SolicitationDao
 {
 	private $attribute = array();
-	private $user;
+//	private $user;
 
-	public function __construct($user)
+	public function __construct(User $typeUser)
 	{
-		$this->user = $user;
-		$this->setTableDB('Solicitacao'.$user->getTableDB());
+		$this->attribute['user'] = $typeUser;
+		$this->setTableDB('Solicitacao' . $typeUser->getTableDB());
 	}
 
 	public function getAttribute(): array
@@ -30,34 +30,34 @@ class Solicitacao extends SolicitationDao
 
 	public function create()
 	{
+		$user = $this->attribute["user"];
 		//verificar se já existe usuário
-		if (empty($this->FindUnit($this->user->cod_usuario))) {
+		if (!$this->FindUnit($user->cod_usuario)) {
 			//inserir usuário e solicitação
-			return ($this->user->InsertStudent($this->user->getAttribute()) && $this->Insert($this->attribute));
+			if ($user->getTableDB == "Estudante") {
+				return $user->InsertStudent($user->getAttribute()) && $this->Insert($this->attribute);
+			}
+			return $user->Insert($user->getAttribute()) && $this->Insert($this->attribute);
 		}
 		//inserir apenas a solicitação
 		return $this->Insert($this->attribute);
 	}
 
-	public function getAll()
+	public function getDataToTable()
 	{
 		$solicitation = array();
-		$sol = array();
 		$response = $this->FindAll();
-		if (empty($response)) {
-			//retorna um usuário vazio
-			return $this->attribute;
-		} else {
-			//retorna todos os usuario encontrados
-			foreach ($response as $key) {
-				foreach ((array)$key as $item => $value) {
+		if ($response) {
+			foreach ($response as $key => $value) {
+				$solicitationUser = array();
+				foreach ($value as $item => $data) {
 					if ($item == 'cod_usuario') {
-						$response = $this->user->FindName($value);
-						$sol['nome'] = $response->nome;
+						$responseUser = $this->attribute['user']->FindName($data);
+						$solicitationUser ['nome'] = $responseUser->nome;
 					}
-					$sol[$item] = $value;
+					$solicitationUser[$item] = $data;
 				}
-				$solicitation [] = $sol;
+				$solicitation [$key] = $solicitationUser;
 			}
 		}
 		return $solicitation;

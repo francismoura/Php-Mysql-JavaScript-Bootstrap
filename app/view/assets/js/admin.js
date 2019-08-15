@@ -15,35 +15,22 @@
             });
 
         async function loadTable() {
-            const response = await fetch(URL + `?&action=getAll`);
-            console.log('RESPONSE', response.json());
+            const response = await fetch(URL + `?controller=AdminController&action=getDataToTable`);
             const jsonData = await response.json();
-            console.log('JSONTESTE', jsonData);
             if (response.ok) {
+                console.log('JSON', jsonData);
                 if (Object.keys(jsonData).length > 0) {
-                    return jsonData;
-                } else {//ERRO 404, 500
-                    throw "Network response was not ok or syntax error";
+                    return jsonData.sort(function compare(a, b) {
+                        return a.dataSolicitacao < b.dataSolicitacao ? -1 : a.dataSolicitacao > b.dataSolicitacao ? 1 : 0;
+                    });
                 }
+            } else {//ERRO 404, 500
+                throw "Network response was not ok or syntax error";
             }
         }
 
-        // async function getName(allSolicitations) {
-        //     console.log("all", allSolicitations);
-        //     const response = await fetch(URL + `?&action=getName`);
-        //     const jsonData = await response.json();
-        //     console.log("JSON", jsonData);
-        //     if (response.ok) {
-        //         if (Object.keys(jsonData).length > 0) {
-        //              return [allSolicitations, jsonData];
-        //         } else {//ERRO 404, 500
-        //             throw "Network response was not ok or syntax error";
-        //         }
-        //     }
-        // }
-
         function outputTable(data) {
-            console.log(data);
+            console.log("dados", data);
             let output =
                 `<table id = "user_data" class= "table responsive-table table-hover table-striped">
                     <thead>
@@ -54,9 +41,11 @@
                                     <label for="selectAll"></label>
                                 </span>
                             </th>
-                            <th> id </th>
-                            <th> Nome </th>
-                            <th>Actions</th>
+                            <th>Código</th>
+                            <th>Nome</th>
+                            <th>Solicitação</th>
+                            <th>Data</th>
+                            <th>Actions</th>                          
                         </tr>
                     </thead>
                     <tbody>`;
@@ -64,6 +53,7 @@
             let cont = 0;
             data.map(
                 data => {
+                    const newData = new Date(data.dataSolicitacao);
                     output +=
                         `<tr class="position-relative">
                             <td>
@@ -71,14 +61,15 @@
                                     <input type="checkbox" id="checkbox${cont++}" name="options[]" value="1">
                                      <label for="checkbox${cont++}"></label>
                                 </span>
-                            </td>
+                            </td>                           
                             <td> 
-                                <a class="icone" href="#">
-                                <span class="glyphicon glyphicon-open" aria-hidden="true"></span>
-                                    <u>` + data.id + `</u>
+                                <a href="#">
+                                    <u>` + data.cod_usuario + `</u>
                                 </a>                                    
                             </td>
                             <td>` + data.nome + `</td>
+                            <td>` + data.servico + `</td>
+                            <td>` + newData + `</td>
                             <td>
                                 <a href="#editModal" class="edit" data-toggle="modal">
                                      <i class="material-icons" data-toggle="tooltip" title="" 
@@ -106,5 +97,4 @@
                 .insertAdjacentHTML('afterend', output);
         }
     }
-
 )(document);

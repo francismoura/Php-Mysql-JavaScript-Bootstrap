@@ -36,18 +36,13 @@ abstract class UserDao implements DAO
 
 	public function FindName($cod_usuario)
 	{
-		$tableSolicitacao = "Solicitacao".$this->tableDB;
-		$sql = "SELECT  nome 
-				FROM " . $this->tableDB . " U
-				JOIN " . $tableSolicitacao. " S
-				WHERE U.cod_usuario = S.cod_usuario";
+		$sql = "SELECT  nome FROM " . $this->tableDB . " WHERE cod_usuario = :cod_usuario";
 		$stm = $this->dbPrepare($sql);
-		$stm->bindParam(':cod_usuario', $cod_usuario, PDO::PARAM_INT);
+		$stm->bindParam(':cod_usuario', $cod_usuario);
 		$stm->execute();
 		$nameUser = $stm->fetch(PDO::FETCH_OBJ);
 		return $nameUser;
 	}
-
 
 	public function FindAll()
 	{
@@ -55,7 +50,6 @@ abstract class UserDao implements DAO
 		$stm = $this->dbPrepare($sql);
 		$stm->execute();
 		$result = $stm->fetchAll(PDO::FETCH_OBJ);
-
 		return $result;
 	}
 
@@ -80,7 +74,7 @@ abstract class UserDao implements DAO
 				(:cod_usuario, :email, :nome, :celular, :endereco, :bairro, :cidade, :estado, :cep, :setor )";
 		$stm = $this->dbPrepare($sql);
 		foreach ($user as $key => &$value) {
-			$stm->bindParam($key, $value);
+				$stm->bindParam($key, $value);
 		}
 		return $stm->execute();
 	}

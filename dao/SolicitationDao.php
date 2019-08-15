@@ -7,7 +7,7 @@ abstract class SolicitationDao implements DAO
 {
 	protected $tableDB;
 
-	abstract public function __construct(object $typeUser);
+	abstract public function __construct(User $user);
 
 	public function dbPrepare($sql)
 	{
@@ -33,7 +33,7 @@ abstract class SolicitationDao implements DAO
 		$sql = "SELECT * FROM  $this->tableDB";
 		$stm = $this->dbPrepare($sql);
 		$stm->execute();
-		return  $stm->fetchAll(PDO::FETCH_OBJ);
+		return $stm->fetchAll(PDO::FETCH_OBJ);
 	}
 
 	public function Insert($solicitation)
@@ -42,7 +42,7 @@ abstract class SolicitationDao implements DAO
 				VALUES (:cod_usuario, :servico, :dataSolicitacao )";
 		$date = date("Y-m-d H:i:s", strtotime($solicitation['dataSolicitacao']));
 		$stm = $this->dbPrepare($sql);
-		$stm->bindParam(':cod_usuario', $solicitation['user']->cod_usuario);
+		$stm->bindParam(':cod_usuario', $solicitation['cod_usuario']);
 		$stm->bindParam(':servico', $solicitation['servico']);
 		$stm->bindParam(':dataSolicitacao', $date);
 		return $stm->execute();

@@ -1,38 +1,38 @@
 <?php
 
-require_once '../app/controller/SolicitationController.php';
-require_once '../app/model/Solicitacao.php';
-require_once '../app/model/User.php';
-
+require_once "../app/model/User.php";
+require_once "../app/model/Solicitation.php";
 
 $requestMethod = $_SERVER["REQUEST_METHOD"];
+$actionName = $_GET['action'];
 
 if ($requestMethod === "POST") {
 	$data = json_decode($_POST["json"], true);
-	//Se json_decode falhar, é um JSON invalido
-	if (!is_array($data)) {
-		echo 0;
-	} else {
-		$controller = new SolicitationController( new Solicitacao(new User($data['tipo_usuario'])));
-		$actionName = $_GET['action'];
-		echo $controller->$actionName($data);
-	}
-
+	$controller = requireController($data["tipo_usuario"]);
+	echo $controller->$actionName($data);
 } else if ($requestMethod === "GET") {
-	$solicitations = array();
-	$actionName = $_GET['action'];
-	$className = ["Estudante", "Professor", "Tecnico"];
-	foreach ($className as $userType) {
-		$controller = $controller = new SolicitationController( new Solicitacao(new User($userType)));
-		$response = $controller->$actionName();
-		if (sizeof($response) > 0){
-			foreach ($response as $item => $value){
-				$solicitations[$item] = $value;
+	$result = array();
+	$solicitation = array();
+	if ($actionName == "getDataToTable") {
+		$className = ["Estudante", "Professor", "Tecnico"];
+		foreach ($className as $userType) {
+			$controller = requireController($userType);
+			$response = $controller->$actionName();
+			if (sizeof($response) > 0) {
+				$result [] = $response;
 			}
-
+		}
+		foreach ($result as $item => $k) {
+			foreach ($k as $value) {
+				array_push($solicitation, $value);
+			}
 		}
 	}
-	$teste =  json_encode($solicitations);
-	return $teste;
+	echo json_encode($solicitation);
+}
 
+function requireController($typeUser){
+	$controller = $_GET['controller'];
+	require_once "../app/controller/" .$controller .".php";
+	return new $controller(new Solicitation(new User($typeUser)));
 }
