@@ -18,7 +18,7 @@
 
         // acessar painel do admin
         btn_Login.addEventListener("click", function () {
-            window.location = "dashboard";
+            window.location = "admin";
         });
 
         //se fechar modal, resetar campos do form
@@ -175,7 +175,7 @@
         }
 
         function post(solicitation) {
-            fetch(URL,
+            fetch(URL + "?controller=HomeController&action=create",
                 {
                     method: "POST",
                     headers: {
@@ -184,6 +184,7 @@
                     body: "json=" + JSON.stringify(solicitation)
                 }
             ).then(response => {
+                console.log(response.text());
                 if (response.status === 200) {
                     if (response.text()) {
                         alert("Sua solicitação foi enviada com sucesso");

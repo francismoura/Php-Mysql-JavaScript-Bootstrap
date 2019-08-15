@@ -1,15 +1,19 @@
 <?php
 
-require_once '../dao/UserDao.php';
+include_once '../dao/UserDao.php';
 
-class Tecnico extends UserDao
+class User extends UserDao
 {
-	const TYPEUSER = "Tecnico";
 	private $attribute = array();
 
-	public function __construct()
+	public function __construct($typeUser)
 	{
-		$this->setTableDB(self::TYPEUSER);
+		parent::__construct($typeUser);
+	}
+
+	public function getAttribute(): array
+	{
+		return $this->attribute;
 	}
 
 	public function __set($nameAttr, $value)
@@ -31,10 +35,4 @@ class Tecnico extends UserDao
 	{
 		unset($this->attribute[$nameAttr]);
 	}
-
-	public function getById($id)
-	{
-		return $this->FindUnit($id);
-	}
-
 }

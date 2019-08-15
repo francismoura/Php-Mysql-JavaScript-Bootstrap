@@ -7,7 +7,9 @@ abstract class UserDao implements DAO
 {
 	protected $tableDB;
 
-	abstract public function __construct();
+	public function __construct($typeUser){
+		$this->tableDB = $typeUser;
+	}
 
 	public function dbPrepare($sql)
 	{
@@ -19,6 +21,10 @@ abstract class UserDao implements DAO
 		$this->tableDB = $typeUser;
 	}
 
+	public function getTableDB(){
+		return $this->tableDB;
+	}
+
 	public function FindUnit($id)
 	{
 		$sql = "SELECT * FROM " . $this->tableDB . " WHERE id = :id";
@@ -28,13 +34,22 @@ abstract class UserDao implements DAO
 		return $stm->fetch();
 	}
 
+	public function FindName($cod_usuario)
+	{
+		$sql = "SELECT  nome FROM " . $this->tableDB . " WHERE cod_usuario = :cod_usuario";
+		$stm = $this->dbPrepare($sql);
+		$stm->bindParam(':cod_usuario', $cod_usuario);
+		$stm->execute();
+		$nameUser = $stm->fetch(PDO::FETCH_OBJ);
+		return $nameUser;
+	}
+
 	public function FindAll()
 	{
 		$sql = "SELECT * FROM  $this->tableDB";
 		$stm = $this->dbPrepare($sql);
 		$stm->execute();
 		$result = $stm->fetchAll(PDO::FETCH_OBJ);
-
 		return $result;
 	}
 
@@ -59,7 +74,7 @@ abstract class UserDao implements DAO
 				(:cod_usuario, :email, :nome, :celular, :endereco, :bairro, :cidade, :estado, :cep, :setor )";
 		$stm = $this->dbPrepare($sql);
 		foreach ($user as $key => &$value) {
-			$stm->bindParam($key, $value);
+				$stm->bindParam($key, $value);
 		}
 		return $stm->execute();
 	}
@@ -73,7 +88,7 @@ abstract class UserDao implements DAO
 		return $stm->execute();
 	}
 
-	public function UpdateTecnico($id)
+	public function UpdateStudent($id)
 	{
 		$sql = "UPDATE $this->tableDB SET nome = :nome WHERE id = :id";
 		$stm = $this->dbPrepare($sql);

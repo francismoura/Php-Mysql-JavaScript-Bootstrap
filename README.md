@@ -1,16 +1,24 @@
-## **Projeto CRUD com: PHP, Javascript, Bootstrap, PDO & MySQL**
-Projeto que executa pedidos de solicitações, desenvolvido para estudos, utilizando como base acesso a banco de dados com o MySQL e linguagem PHP.
+# **Projeto CRUD com: Bootstrap, JS, PHP & MySQL**
 
-## Assuntos Abordados no Desenvolvimento do Projeto:
-- Acesso a banco de dados com o MySql
-- Otimização da conexão com o banco de dados através do PDO (PHP Data Object)
-- Uso de linguagens: PHP, JavaScript e CSS
-- Uso do framework Bootstrap para realização de um layout responsivo para o projeto.
+### **Operações Básicas de Criação Leitura Exclusão Atualização usando requisições Ajax no JavaScript com API Fetch e backend PHP-PDO-MySQL**
 
+Este é um sistema simples de cadastro e gestão de solicitações ao "setor de TI", desenvolvido para estudos.
+
+
+## **Configuração do Projeto:**
+
+Executar a script /database/solicitacao.sql em uma ferramenta de banco de dados relacionais (Workbench, DBeaver, phpMyAdmin, etc).
+
+Editar o arquivo /config/config.php:
+    
+    define('DB_HOST', 'nomeDoDominioOuIP:Porta');
+    define('DB_NAME', 'nomeDaTabela');
+    define('DB_USER', 'usuarioDoMysql');
+    define('DB_PASS', 'senhaDoUsuario');    
+ 
 ## **Descrição do caso:**
 
-Elaborar um sistema simples de cadastro e gestão de solicitações ao setor de TI no qual deve contemplar as rotinas
-de um CRUD. Os critérios de aceitação são:
+Os critérios de aceitação são:
 
     1. Banco de dados: 
     
@@ -63,5 +71,4 @@ de um CRUD. Os critérios de aceitação são:
     5. Para estilização do sistema deve-se adotar Bootstrap, MaterializeCSS ou algum similar.
     6. Para o desenvolvimento PHP, codifique da forma desejada, porém sem utilização de frameworks.
     7. O sistema deve ser visionado no Github ou Bitbucket com instruções claras para implementação posterior em ambiente
-       local, devendo o link de acesso ser enviado para um e-mail pessoal.
-
+       local.

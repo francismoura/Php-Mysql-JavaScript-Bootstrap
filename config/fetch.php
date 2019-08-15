@@ -1,43 +1,38 @@
 <?php
 
-include_once '../app/controller/SolicitationController.php';
+require_once "../app/model/User.php";
+require_once "../app/model/SolicitationUser.php";
 
 $requestMethod = $_SERVER["REQUEST_METHOD"];
+$actionName = $_GET['action'];
 
 if ($requestMethod === "POST") {
-	//recupera os dados do form passados por requisição
-	$request = $_POST["json"];
-	//json to array
-	$data = json_decode($request, true);
-	//Se json_decode falhar, é um JSON invalido
-	if (!is_array($data)) {
-		echo 0;
-	} else {
-		//recebe uma controller com a solicitação do usuário
-		$controller = requireController($data["tipo_usuario"]);
-		//deixa a controller lidar com a ação pedida pelo request
-		$actionName = $data["action"];
-		echo $controller->$actionName($data);
-	}
+	$data = json_decode($_POST["json"], true);
+	$controller = requireController($data["tipo_usuario"]);
+	echo $controller->$actionName($data);
 } else if ($requestMethod === "GET") {
-	//inicializa solicitações
-	$solicitations = array();
-	//inicializa array com todas os tipos de usuários
-	$className = ["Estudante", "Professor", "Tecnico"];
-	//buscar solicitação(s) de cada usuário
-	foreach ($className as $user) {
-		$controller = requireController($user);
-		$solicitations[$user] = $controller->getAll();
+	$result = array();
+	$solicitation = array();
+	if ($actionName == "getDataToTable") {
+		$className = ["Estudante", "Professor", "Tecnico"];
+		foreach ($className as $userType) {
+			$controller = requireController($userType);
+			$response = $controller->$actionName();
+			if (sizeof($response) > 0) {
+				$result [] = $response;
+			}
+		}
+		foreach ($result as $item => $k) {
+			foreach ($k as $value) {
+				array_push($solicitation, $value);
+			}
+		}
 	}
-	echo json_encode($solicitations);
+	echo json_encode($solicitation);
 }
 
-function requireController($user){
-	require_once '../app/model/' . $user . '.php';
-	require_once '../app/model/Solicitacao' . $user . '.php';
-	$className = 'Solicitacao' . $user;
-	//inicializa a solicitação com o respectivo usuário que solicitou
-	$solicitation = new $className(new $user());
-	//inicializa a controller com a solicitação
-	return new SolicitationController($solicitation);
+function requireController($typeUser){
+	$controller = $_GET['controller'];
+	require_once "../app/controller/" .$controller .".php";
+	return new $controller(new SolicitationUser(new User($typeUser)));
 }
