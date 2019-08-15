@@ -18,10 +18,10 @@
             const response = await fetch(URL + `?controller=AdminController&action=getDataToTable`);
             const jsonData = await response.json();
             if (response.ok) {
-                console.log('JSON', jsonData);
+                console.log("JSON", jsonData);
                 if (Object.keys(jsonData).length > 0) {
                     return jsonData.sort(function compare(a, b) {
-                        return a.dataSolicitacao < b.dataSolicitacao ? -1 : a.dataSolicitacao > b.dataSolicitacao ? 1 : 0;
+                        return a.num_solcitacao < b.num_solicitacao ? -1 : a.num_solicitacao > b.num_solicitacao ? 1 : 0;
                     });
                 }
             } else {//ERRO 404, 500
@@ -41,10 +41,11 @@
                                     <label for="selectAll"></label>
                                 </span>
                             </th>
-                            <th>Código</th>
+                            <th title="Número da Solicitação">NS</th>
+                            <th title="Registro Acadêmico">RA</th>
                             <th>Nome</th>
                             <th>Solicitação</th>
-                            <th>Data</th>
+                            <th>Data/Hora</th>
                             <th>Actions</th>                          
                         </tr>
                     </thead>
@@ -53,7 +54,15 @@
             let cont = 0;
             data.map(
                 data => {
-                    const newData = new Date(data.dataSolicitacao);
+                    //adaptar data e hora
+                    const newData = ds => ((((ds.split(" ")[0])
+                            .replace("-", ""))
+                            .replace("-", ""))
+                            .replace(/(\d{4})(\d{2})(\d{2})/, "$3-$2-$1"))
+                        + " / " + ds.split(" ")[1];
+
+                    data.dataSolicitacao = newData(data.dataSolicitacao);
+
                     output +=
                         `<tr class="position-relative">
                             <td>
@@ -61,7 +70,8 @@
                                     <input type="checkbox" id="checkbox${cont++}" name="options[]" value="1">
                                      <label for="checkbox${cont++}"></label>
                                 </span>
-                            </td>                           
+                            </td>          
+                            <td>` + data.num_solicitacao + `</td>                 
                             <td> 
                                 <a href="#">
                                     <u>` + data.cod_usuario + `</u>
@@ -69,7 +79,7 @@
                             </td>
                             <td>` + data.nome + `</td>
                             <td>` + data.servico + `</td>
-                            <td>` + newData + `</td>
+                            <td>` + data.dataSolicitacao + `</td>
                             <td>
                                 <a href="#editModal" class="edit" data-toggle="modal">
                                      <i class="material-icons" data-toggle="tooltip" title="" 
@@ -93,8 +103,8 @@
                     </tbody>
                 </table>`;
 
-            document.getElementById('table-title')
-                .insertAdjacentHTML('afterend', output);
+            document.getElementById("table-title")
+                .insertAdjacentHTML("afterend", output);
         }
     }
 )(document);

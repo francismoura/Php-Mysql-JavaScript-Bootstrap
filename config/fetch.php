@@ -1,7 +1,7 @@
 <?php
 
 require_once "../app/model/User.php";
-require_once "../app/model/Solicitation.php";
+require_once "../app/model/SolicitationUser.php";
 
 $requestMethod = $_SERVER["REQUEST_METHOD"];
 $actionName = $_GET['action'];
@@ -34,5 +34,5 @@ if ($requestMethod === "POST") {
 function requireController($typeUser){
 	$controller = $_GET['controller'];
 	require_once "../app/controller/" .$controller .".php";
-	return new $controller(new Solicitation(new User($typeUser)));
+	return new $controller(new SolicitationUser(new User($typeUser)));
 }

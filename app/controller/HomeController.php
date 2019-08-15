@@ -2,22 +2,22 @@
 
 class HomeController
 {
-	private $solicitation;
+	private $solicitationUser;
 
-	public function __construct($solicitation)
+	public function __construct($solicitationUser)
 	{
-		$this->solicitation = $solicitation;
+		$this->solicitationUser = $solicitationUser;
 	}
 
 	public function create($data)
 	{
 		foreach ($data['dataSolicitation'] as $key => $value) {
-			$this->solicitation->$key = $value;
+			$this->solicitationUser->$key = $value;
 		};
 		foreach ($data['dataUser'] as $key => $value) {
-			$this->solicitation->getUser()->$key = $value;
+			$this->solicitationUser->user->$key = $value;
 		}
-		return $this->solicitation->create();
+		return $this->solicitationUser->create();
 	}
 
 

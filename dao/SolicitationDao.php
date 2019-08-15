@@ -5,25 +5,30 @@ require_once 'DAO.php';
 
 abstract class SolicitationDao implements DAO
 {
-	protected $tableDB;
 
-	abstract public function __construct(User $user);
+	protected $tableDB =  "Solicitacao";
+
+	abstract public function __construct();
 
 	public function dbPrepare($sql)
 	{
 		return Connection::prepare($sql);
 	}
 
-	public function setTableDB(string $typeUser)
+	public function Insert($num_solicitation)
 	{
-		$this->tableDB = $typeUser;
+		$sql = "INSERT INTO $this->tableDB (num_solicitacao) 
+				VALUES (:num_solicitacao)";
+		$stm = $this->dbPrepare($sql);
+		$stm->bindParam(':num_solicitacao', $num_solicitation, PDO::PARAM_INT);
+		return $stm->execute();
 	}
 
-	public function FindUnit($cod_usuario)
+	public function FindUnit($num_solicitacao)
 	{
-		$sql = "SELECT * FROM " . $this->tableDB . " WHERE cod_usuario = :cod_usuario";
+		$sql = "SELECT * FROM " . $this->tableDB . " WHERE num_solicitacao = :num_solicitacao";
 		$stm = $this->dbPrepare($sql);
-		$stm->bindValue(':cod_usuario', $cod_usuario, PDO::PARAM_INT);
+		$stm->bindValue(':cod_usuario', $num_solicitacao, PDO::PARAM_INT);
 		$stm->execute();
 		return $stm->fetch();
 	}
@@ -36,33 +41,13 @@ abstract class SolicitationDao implements DAO
 		return $stm->fetchAll(PDO::FETCH_OBJ);
 	}
 
-	public function Insert($solicitation)
+	public function Delete($id)
 	{
-		$sql = "INSERT INTO $this->tableDB (cod_usuario, servico, dataSolicitacao) 
-				VALUES (:cod_usuario, :servico, :dataSolicitacao )";
-		$date = date("Y-m-d H:i:s", strtotime($solicitation['dataSolicitacao']));
-		$stm = $this->dbPrepare($sql);
-		$stm->bindParam(':cod_usuario', $solicitation['cod_usuario']);
-		$stm->bindParam(':servico', $solicitation['servico']);
-		$stm->bindParam(':dataSolicitacao', $date);
-		return $stm->execute();
+		// TODO: Implement Delete() method.
 	}
 
 	public function Update($id)
 	{
-		$sql = "UPDATE $this->tableDB SET nome = :nome WHERE id = :id";
-		$stm = $this->dbPrepare($sql);
-		$stm->bindParam(':id', $id, PDO::PARAM_INT);
-		$stm->bindParam(':nome', $id);
-		return $stm->execute();
+		// TODO: Implement Update() method.
 	}
-
-	public function Delete($id)
-	{
-		$sql = "DELETE FROM $this->tableDB WHERE id = :id";
-		$stm = $this->dbPrepare($sql);
-		$stm->bindParam(':id', $id, PDO::PARAM_INT);
-		return $stm->execute();
-	}
-
 }

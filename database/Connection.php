@@ -11,9 +11,8 @@ class Connection
         try {
             if (is_null(self::$pdo)) {
                 self::$pdo = new PDO(
-                    'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME,
-                    DB_USER,
-                    DB_PASS);
+                    'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASS
+				);
                 self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 self::$pdo->setAttribute(PDO::ATTR_PERSISTENT, true);
                 self::$pdo->exec('set names utf8');

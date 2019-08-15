@@ -57,45 +57,58 @@ CREATE TABLE Tecnico (
     setor VARCHAR(50) NOT NULL,
     CONSTRAINT pk_cod_tec PRIMARY KEY (cod_usuario)
 );
+-- -----------------------------------------------
+-- CRIAÇÃO DA TABELA PARA GERAR SOLICITAÇÕES ÚNICAS
+-- -----------------------------------------------
+CREATE TABLE Solicitacao (
+    num_solicitacao INT(9) NOT NULL AUTO_INCREMENT,
+    CONSTRAINT pk_num_sol PRIMARY KEY (num_solicitacao)
+);
 
 -- -----------------------------------------------
 -- CRIAÇÃO DA TABELA PARA SERVIÇOS SOLICITADOS POR ALUNOS
 -- -----------------------------------------------
 CREATE TABLE SolicitacaoEstudante (
-    id INT NOT NULL AUTO_INCREMENT,
     cod_usuario CHAR(7) NOT NULL,
     servico TEXT NOT NULL,
     dataSolicitacao DATETIME NOT NULL,
-    CONSTRAINT pk_id_solEstd PRIMARY KEY (id , cod_usuario),
+    num_solicitacao INT(9) NOT NULL,
+    CONSTRAINT pk_sol_Estd PRIMARY KEY (cod_usuario),
     CONSTRAINT fk_cod_estudante FOREIGN KEY (cod_usuario)
         REFERENCES Estudante (cod_usuario)
-        ON DELETE RESTRICT ON UPDATE RESTRICT
+        ON DELETE RESTRICT ON UPDATE RESTRICT,
+    CONSTRAINT fk_num_sol_estud FOREIGN KEY (num_solicitacao)
+        REFERENCES Solicitacao (num_solicitacao)
 );
 
 -- -----------------------------------------------
 -- CRIAÇÃO DA TABELA PARA SERVIÇOS SOLICITADOS POR PROFESSORES
 -- -----------------------------------------------
 CREATE TABLE SolicitacaoProfessor (
-	id INT NOT NULL AUTO_INCREMENT,
     cod_usuario CHAR(4) NOT NULL,
     servico TEXT NOT NULL,
     dataSolicitacao DATETIME NOT NULL,
-    CONSTRAINT pk_id_solProf PRIMARY KEY (id, cod_usuario),
+    num_solicitacao INT(9) NOT NULL,
+    CONSTRAINT pk_sol_Prof PRIMARY KEY (cod_usuario),
     CONSTRAINT fk_cod_prof FOREIGN KEY (cod_usuario)
         REFERENCES Professor (cod_usuario)
-        ON DELETE RESTRICT ON UPDATE RESTRICT
+        ON DELETE RESTRICT ON UPDATE RESTRICT,
+    CONSTRAINT fk_num_sol_prof FOREIGN KEY (num_solicitacao)
+        REFERENCES Solicitacao (num_solicitacao)
 );
 
 -- -----------------------------------------------
 -- CRIAÇÃO DA TABELA PARA SERVIÇOS SOLICITADOS POR TÉCNICOS
 -- -----------------------------------------------
 CREATE TABLE SolicitacaoTecnico (
-    id INT NOT NULL AUTO_INCREMENT,
     cod_usuario CHAR(6) NOT NULL,
     servico TEXT NOT NULL,
     dataSolicitacao DATETIME NOT NULL,
-    CONSTRAINT pk_id_solTec PRIMARY KEY (id, cod_usuario),
+    num_solicitacao INT(9) NOT NULL,
+    CONSTRAINT pk_sol_Tec PRIMARY KEY (cod_usuario),
     CONSTRAINT fk_cod_tec FOREIGN KEY (cod_usuario)
         REFERENCES Tecnico (cod_usuario)
-        ON DELETE RESTRICT ON UPDATE RESTRICT
+        ON DELETE RESTRICT ON UPDATE RESTRICT,
+    CONSTRAINT fk_num_sol_prof FOREIGN KEY (num_solicitacao)
+        REFERENCES Solicitacao (num_solicitacao)
 );

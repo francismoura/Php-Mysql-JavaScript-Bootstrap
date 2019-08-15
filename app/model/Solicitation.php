@@ -1,92 +1,22 @@
 <?php
 
-include_once '../dao/SolicitationDao.php';
+require_once '../dao/SolicitationDao.php';
 
 class Solicitation extends SolicitationDao
 {
-	private $attribute = array();
-//	private $user;
 
-	public function __construct(User $typeUser)
+	public function __construct()
 	{
-		$this->attribute['user'] = $typeUser;
-		$this->setTableDB('Solicitacao' . $typeUser->getTableDB());
-	}
-
-	public function getAttribute(): array
-	{
-		return $this->attribute;
-	}
-
-	public function __set($name, $value)
-	{
-		$this->attribute[$name] = $value;
-	}
-
-	public function __get($name)
-	{
-		return $this->attribute[$name];
 	}
 
 	public function create()
 	{
-		$user = $this->attribute["user"];
-		//verificar se já existe usuário
-		if (!$this->FindUnit($user->cod_usuario)) {
-			//inserir usuário e solicitação
-			if ($user->getTableDB == "Estudante") {
-				return $user->InsertStudent($user->getAttribute()) && $this->Insert($this->attribute);
-			}
-			return $user->Insert($user->getAttribute()) && $this->Insert($this->attribute);
+		$allSolicitations = 0;
+		$solicitations = $this->FindAll();
+		if (count($solicitations) > 0) {
+			$allSolicitations = sizeof($solicitations);
 		}
-		//inserir apenas a solicitação
-		return $this->Insert($this->attribute);
-	}
-
-	public function getDataToTable()
-	{
-		$solicitation = array();
-		$response = $this->FindAll();
-		if ($response) {
-			foreach ($response as $key => $value) {
-				$solicitationUser = array();
-				foreach ($value as $item => $data) {
-					if ($item == 'cod_usuario') {
-						$responseUser = $this->attribute['user']->FindName($data);
-						$solicitationUser ['nome'] = $responseUser->nome;
-					}
-					$solicitationUser[$item] = $data;
-				}
-				$solicitation [$key] = $solicitationUser;
-			}
-		}
-		return $solicitation;
-	}
-
-	public function getName()
-	{
-		$users = array();
-		$this->FindAll();
-		foreach ($this->attribute as $solicitation) {
-			$codUsuario = $solicitation->cod_usuario;
-			$this->user = $this->user->FindName($codUsuario);
-		}
-		return $users;
-	}
-
-	public function getById($id)
-	{
-		return $this->findUnit($id);
-	}
-
-	public function remove($id)
-	{
-		return $this->Delete($id);
-	}
-
-	public function edit($id)
-	{
-		return $this->Update($id);
+		return $this->Insert($allSolicitations + 1);
 	}
 
 }
