@@ -1,3 +1,5 @@
+(Em andamento!)
+
 # **Projeto CRUD com: Bootstrap, JS, PHP & MySQL**
 
 ### **Operações Básicas de Criação Leitura Exclusão Atualização usando requisições Ajax no JavaScript com API Fetch e backend PHP-PDO-MySQL**
@@ -7,18 +9,55 @@ Este é um sistema simples de cadastro e gestão de solicitações ao "setor de 
 
 ## **Configuração do Projeto:**
 
-Executar a script /database/solicitacao.sql em uma ferramenta de banco de dados relacionais (Workbench, DBeaver, phpMyAdmin, etc).
+1. Executar a script /database/solicitacao.sql em uma ferramenta de banco de dados relacionais (Workbench, DBeaver, phpMyAdmin, etc).
 
-Editar o arquivo /config/config.php:
+2. Editar o arquivo /config/config.php:
     
     define('DB_HOST', 'nomeDoDominioOuIP:Porta');
     define('DB_NAME', 'nomeDaTabela');
     define('DB_USER', 'usuarioDoMysql');
-    define('DB_PASS', 'senhaDoUsuario');    
- 
-## **Descrição do caso:**
+    define('DB_PASS', 'senhaDoUsuario');  
+    
+3. Ativar modo de reescrita de URL (mod_rewrite) no Apache:
 
-Os critérios de aceitação são:
+    Passo 1: Verificar os módulos que estão ativados no servidor Apache.
+
+    `$ cd /etc/apache2/mods-enabled/`    
+    `$ ls`
+
+    Se não existir um módulo denominado "rewrite.load" na pasta, basta ir para o passo 2, caso exista, basta ir para passo 3.
+
+    Passo 2: Habilitando o módulo rewrite.load no Apache:
+
+    `$ sudo a2enmod rewrite`
+
+    Agora vamos partir para a alteração do arquivo de configuração do Apache, no passo 3.
+    
+    Passo 3: Alterando o arquivo de configuração do Apache, para consolidar o uso da "URL amigável".
+    
+    `$ sudo nano /etc/apache2/apache2.conf`
+    
+    Encontre o seguinte código:
+    
+        <Directory /var/www/>
+           Options Indexes FollowSymLinks
+           AllowOverride None
+           Require all granted
+        </Directory>
+    
+    Altere para:   
+    
+        <Directory /var/www/>
+           Options Indexes FollowSymLinks
+           AllowOverride All
+           Require all granted
+        </Directory>
+        
+    Passo 4: Reinicializar o servidor Apache.
+     
+    `$ sudo /etc/init.d/apache2 restart`
+
+## **Descrição do caso:**
 
     1. Banco de dados: 
     
