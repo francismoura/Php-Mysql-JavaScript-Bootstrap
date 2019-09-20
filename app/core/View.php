@@ -2,7 +2,6 @@
 
 class View
 {
-
 	public static function CreateView($viewName)
 	{
 		if (Route::isRouteValid()) {

@@ -1,7 +1,7 @@
 <?php
 //[db]
 define("DB_HOST", "localhost");
-define("DB_NAME", "Solicitacao");
+define("DB_NAME", "solicitacao");
 define("DB_USER", "root");
 define("DB_PASS", "O08O08==vida;");
 
