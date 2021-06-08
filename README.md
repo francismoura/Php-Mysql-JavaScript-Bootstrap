@@ -7,56 +7,6 @@
 Este é um sistema simples de cadastro e gestão de solicitações ao "setor de TI", desenvolvido para estudos.
 
 
-## **Configuração do Projeto:**
-
-1. Executar a script /database/solicitacao.sql em uma ferramenta de banco de dados relacionais (Workbench, DBeaver, phpMyAdmin, etc).
-
-2. Editar o arquivo /config/config.php:
-    
-    define('DB_HOST', 'nomeDoDominioOuIP:Porta');
-    define('DB_NAME', 'nomeDaTabela');
-    define('DB_USER', 'usuarioDoMysql');
-    define('DB_PASS', 'senhaDoUsuario');  
-    
-3. Ativar modo de reescrita de URL (mod_rewrite) no Apache:
-
-    Passo 1: Verificar os módulos que estão ativados no servidor Apache.
-
-    `$ cd /etc/apache2/mods-enabled/`    
-    `$ ls`
-
-    Se não existir um módulo denominado "rewrite.load" na pasta, basta ir para o passo 2, caso exista, basta ir para passo 3.
-
-    Passo 2: Habilitando o módulo rewrite.load no Apache:
-
-    `$ sudo a2enmod rewrite`
-
-    Agora vamos partir para a alteração do arquivo de configuração do Apache, no passo 3.
-    
-    Passo 3: Alterando o arquivo de configuração do Apache, para consolidar o uso da "URL amigável".
-    
-    `$ sudo nano /etc/apache2/apache2.conf`
-    
-    Encontre o seguinte código:
-    
-        <Directory /var/www/>
-           Options Indexes FollowSymLinks
-           AllowOverride None
-           Require all granted
-        </Directory>
-    
-    Altere para:   
-    
-        <Directory /var/www/>
-           Options Indexes FollowSymLinks
-           AllowOverride All
-           Require all granted
-        </Directory>
-        
-    Passo 4: Reinicializar o servidor Apache.
-     
-    `$ sudo /etc/init.d/apache2 restart`
-
 ## **Descrição do caso:**
 
     1. Banco de dados: 
@@ -111,3 +61,54 @@ Este é um sistema simples de cadastro e gestão de solicitações ao "setor de 
     6. Para o desenvolvimento PHP, codifique da forma desejada, porém sem utilização de frameworks.
     7. O sistema deve ser visionado no Github ou Bitbucket com instruções claras para implementação posterior em ambiente
        local.
+      
+      
+## **Configuração do Projeto:**
+
+1. Executar a script /database/solicitacao.sql em uma ferramenta de banco de dados relacionais (Workbench, DBeaver, phpMyAdmin, etc).
+
+2. Editar o arquivo /config/config.php:
+    
+    define('DB_HOST', 'nomeDoDominioOuIP:Porta');
+    define('DB_NAME', 'nomeDaTabela');
+    define('DB_USER', 'usuarioDoMysql');
+    define('DB_PASS', 'senhaDoUsuario');  
+    
+3. Ativar modo de reescrita de URL (mod_rewrite) no Apache:
+
+    Passo 1: Verificar os módulos que estão ativados no servidor Apache.
+
+    `$ cd /etc/apache2/mods-enabled/`    
+    `$ ls`
+
+    Se não existir um módulo denominado "rewrite.load" na pasta, basta ir para o passo 2, caso exista, basta ir para passo 3.
+
+    Passo 2: Habilitando o módulo rewrite.load no Apache:
+
+    `$ sudo a2enmod rewrite`
+
+    Agora vamos partir para a alteração do arquivo de configuração do Apache, no passo 3.
+    
+    Passo 3: Alterando o arquivo de configuração do Apache, para consolidar o uso da "URL amigável".
+    
+    `$ sudo nano /etc/apache2/apache2.conf`
+    
+    Encontre o seguinte código:
+    
+        <Directory /var/www/>
+           Options Indexes FollowSymLinks
+           AllowOverride None
+           Require all granted
+        </Directory>
+    
+    Altere para:   
+    
+        <Directory /var/www/>
+           Options Indexes FollowSymLinks
+           AllowOverride All
+           Require all granted
+        </Directory>
+        
+    Passo 4: Reinicializar o servidor Apache.
+     
+    `$ sudo /etc/init.d/apache2 restart`      
